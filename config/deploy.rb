@@ -19,10 +19,10 @@ ssh_options[:forward_agent] = true
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :deploy do
-  %w[start stop restart].each do |command|
+  %w[run stop].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
+      run "rake unicorn:#{command}"
     end
   end
 
