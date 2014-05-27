@@ -1,6 +1,8 @@
 require "bundler/capistrano"
 
-server "106.187.91.138", :web, :app, :db, primary: true
+# server "106.187.91.138", :web, :app, :db, primary: true
+
+server "localhost", :web, :app, :db, primary: true
 
 set :application, "china_where"
 set :user, "root"
