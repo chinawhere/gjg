@@ -39,8 +39,6 @@ gem 'jquery-rails'
 # gem 'debugger'
 gem 'unicorn'
 group :development do
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
+  gem 'capistrano', "~> 2.11.0"
+  gem "net-ssh", "~> 2.7.0"
 end
