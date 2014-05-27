@@ -38,4 +38,9 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 gem 'unicorn'
-gem 'capistrano', '~> 3.2.0'
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+end
