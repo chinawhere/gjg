@@ -2,7 +2,7 @@ namespace :unicorn do
   desc 'stat unicorn'
   task :run do 
     Dir.chdir File.join(Rails.root)
-    system 'bundle exec unicorn -c config/unicorn.rb -E development -D -p 3001'
+    system 'bundle exec unicorn -c config/unicorn.rb -E development -D -p 80'
   end
   desc 'stop unicorn'
   task :stop do
