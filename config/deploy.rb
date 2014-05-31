@@ -7,36 +7,25 @@ set :user, "root"
 
 server "106.187.91.138", :web, :app, :db, primary: true
 
-# set :default_environment, {
-#   'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
-# }
-
-
-# require "bundler/capistrano"
-
-# server "106.187.91.138", :web, :app, :db, primary: true
-
-# set :application, "china_where"
-# set :user, "root"
-# # set :deploy_to, "/home/#{user}/apps/#{application}"
-# set :deploy_to, "/tmp/#{application}"
-# set :deploy_via, :remote_cache
-# # set :use_sudo, false
-
-# set :scm, "git"
-# set :repository, "git@github.com:chinawhere/chinawhere.git"
-# set :branch, "master"
-
-# default_run_options[:pty] = true
-# ssh_options[:forward_agent] = true
-
-# after "deploy", "deploy:cleanup" # keep only the last 5 releases
-
-# namespace :deploy do
+namespace :deploy do
+  desc "stop unicorn server"
+  task :stop_unicorn, roles: :web do
+    run "cd #{current_path} && bundle exec rake unicorn:stop"
+  end
+  desc "run unicorn server"
+  task :run_unicorn, roles: :web do
+    run "cd #{current_path} && bundle exec rake unicorn:run"
+  end
+  # namespace :unicorn_run do
+  #   desc "run unicorn server"
+  #   task :run, roles: :web do
+  #     run "cd #{current_path} && rake unicorn:start"
+  #   end
+  # end
   # %w[run stop].each do |command|
   #   desc "#{command} unicorn server"
-  #   task command, roles: :app, except: {no_release: true} do
-  #     run "rake unicorn:#{command}"
+  #   task command.to_sym do
+  #     run "cd #{current_path} ; rake unicorn:#{command}"
   #   end
   # end
 
@@ -61,4 +50,4 @@ server "106.187.91.138", :web, :app, :db, primary: true
   #   end
   # end
   # before "deploy", "deploy:check_revision"
-# end
+end

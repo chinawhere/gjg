@@ -6,7 +6,6 @@ namespace :unicorn do
   end
   desc 'stop unicorn'
   task :stop do
-    Dir.chdir File.join(Rails.root, 'tmp', 'pids')
-    system "kill -9 `cat unicorn.pid`"
+    system "kill -9 `cat /tmp/unicorn.pid`"
   end
 end
