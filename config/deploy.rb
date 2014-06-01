@@ -8,7 +8,7 @@ set :user, "root"
 server "106.187.91.138", :web, :app, :db, primary: true
 
 namespace :deploy do
-  before "deploy", "deploy:stop unicorn"
+  before "deploy", "deploy:stop_unicorn"
   before "deploy", "deploy:run_unicorn"
   desc "stop unicorn server"
   task :stop_unicorn, roles: :web do
