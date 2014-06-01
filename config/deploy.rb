@@ -1,7 +1,12 @@
 require 'bundler/capistrano'
+
+default_run_options[:pty] = true
+
 set :application, "china_where"
 set :repository, 'git@github.com:chinawhere/chinawhere.git'
-set :deploy_to, "~/#{application}"
+set :deploy_to, "/home/developer/#{application}"
+
+set :use_sudo, false
 
 set :user, "developer"
 
@@ -9,18 +14,17 @@ server "106.187.91.138", :web, :app, :db, primary: true
 
 namespace :deploy do
   before "deploy", "deploy:check_revision"
+  after "deploy", "deploy:restart_unicorn"
   # before "deploy", "deploy:stop_unicorn"
   # after "deploy", "deploy:run_unicorn"
   # desc "stop unicorn server"
-  # task :stop_unicorn, roles: :web do
-  puts "stop the running unicorn process"
-  run "cd #{current_path} && bundle exec rake unicorn:stop"
-  # end
-  # desc "run unicorn server"
-  # task :run_unicorn, roles: :web do
-  puts "run the new unicorn process"
-  run "cd #{current_path} && bundle exec rake unicorn:run"
-  # end
+  # task :stop_unicorn, roles: :web 
+  task :restart_unicorn, roles: :web do
+    puts "stop the running unicorn process"
+    run "cd #{current_path} && bundle exec rake unicorn:stop"
+    puts "run the new unicorn process"
+    run "cd #{current_path} && bundle exec rake unicorn:run"
+  end
 
   # task :setup_config, roles: :app do
   #   sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
