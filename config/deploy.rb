@@ -1,9 +1,9 @@
 require 'bundler/capistrano'
 set :application, "china_where"
 set :repository, 'git@github.com:chinawhere/chinawhere.git'
-set :deploy_to, "/tmp/#{application}"
+set :deploy_to, "~/#{application}"
 
-set :user, "root"
+set :user, "developer"
 
 server "106.187.91.138", :web, :app, :db, primary: true
 
