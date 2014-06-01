@@ -9,7 +9,7 @@ server "106.187.91.138", :web, :app, :db, primary: true
 
 namespace :deploy do
   before "deploy", "deploy:stop_unicorn"
-  before "deploy", "deploy:run_unicorn"
+  after "deploy", "deploy:run_unicorn"
   desc "stop unicorn server"
   task :stop_unicorn, roles: :web do
     run "cd #{current_path} && bundle exec rake unicorn:stop"
