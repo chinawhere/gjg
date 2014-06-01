@@ -8,27 +8,18 @@ set :user, "root"
 server "106.187.91.138", :web, :app, :db, primary: true
 
 namespace :deploy do
-  before "deploy", "deploy:stop_unicorn"
-  after "deploy", "deploy:run_unicorn"
-  desc "stop unicorn server"
-  task :stop_unicorn, roles: :web do
-    run "cd #{current_path} && bundle exec rake unicorn:stop"
-  end
-  desc "run unicorn server"
-  task :run_unicorn, roles: :web do
-    run "cd #{current_path} && bundle exec rake unicorn:run"
-  end
-  # namespace :unicorn_run do
-  #   desc "run unicorn server"
-  #   task :run, roles: :web do
-  #     run "cd #{current_path} && rake unicorn:start"
-  #   end
+  before "deploy", "deploy:check_revision"
+  # before "deploy", "deploy:stop_unicorn"
+  # after "deploy", "deploy:run_unicorn"
+  # desc "stop unicorn server"
+  # task :stop_unicorn, roles: :web do
+  puts "stop the running unicorn process"
+  run "cd #{current_path} && bundle exec rake unicorn:stop"
   # end
-  # %w[run stop].each do |command|
-  #   desc "#{command} unicorn server"
-  #   task command.to_sym do
-  #     run "cd #{current_path} ; rake unicorn:#{command}"
-  #   end
+  # desc "run unicorn server"
+  # task :run_unicorn, roles: :web do
+  puts "run the new unicorn process"
+  run "cd #{current_path} && bundle exec rake unicorn:run"
   # end
 
   # task :setup_config, roles: :app do
@@ -43,14 +34,13 @@ namespace :deploy do
   #   run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
   # end
   # after "deploy:finalize_update", "deploy:symlink_config"
-  # desc "Make sure local git is in sync with remote."
-  # task :check_revision, roles: :web do
-  #   unless `git rev-parse HEAD` == `git rev-parse origin/master`
-  #     puts "WARNING: HEAD is not the same as origin/master"
-  #     puts "Run `git push` to sync changes."
-  #     exit
-  #   end
-  # end
-  # before "deploy", "deploy:check_revision"
-  # before "deploy", "deploy:check_revision"
+  desc "Make sure local git is in sync with remote."
+  task :check_revision, roles: :web do
+    remote = `git remote`.strip
+    unless `git rev-parse HEAD` == `git rev-parse #{remote}/master`
+      puts "WARNING: HEAD is not the same as #{remote}/master"
+      puts "Run `git push` to sync changes."
+      exit
+    end
+  end
 end
