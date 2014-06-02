@@ -15,6 +15,7 @@ server "106.187.91.138", :web, :app, :db, primary: true
 namespace :deploy do
   before "deploy", "deploy:check_revision"
   after "deploy", "deploy:restart_unicorn"
+  after "deploy:restart_unicorn", "deploy:migrate_db"
   # after "deploy:restart_unicorn", "deploy:reload_nginx"
   # before "deploy", "deploy:stop_unicorn"
   # after "deploy", "deploy:run_unicorn"
@@ -25,6 +26,9 @@ namespace :deploy do
     run "cd #{current_path} && bundle exec rake unicorn:stop"
     puts "run the new unicorn process"
     run "cd #{current_path} && bundle exec rake unicorn:run"
+  end
+  task :migrate_db, roles: :web do
+    run "rake db:migrate"
   end
   # task :link_nginx, roles: :web do
 
