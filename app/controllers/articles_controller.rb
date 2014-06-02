@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    render :text => '1111'
+    render :text => '2222'
     # @articles = Article.all
 
     # respond_to do |format|

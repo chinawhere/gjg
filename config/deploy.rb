@@ -28,7 +28,7 @@ namespace :deploy do
     run "cd #{current_path} && bundle exec rake unicorn:run"
   end
   task :migrate_db, roles: :web do
-    run "rake db:migrate"
+    run "cd #{current_path} && bundle exec rake db:migrate"
   end
   # task :link_nginx, roles: :web do
 
