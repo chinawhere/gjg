@@ -1,5 +1,5 @@
 require 'bundler/capistrano'
-
+set :scm, :git
 default_run_options[:pty] = true
 
 set :application, "china_where"
