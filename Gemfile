@@ -6,6 +6,18 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+#副文本
+gem 'ckeditor'
+
+# css
+gem "twitter-bootstrap-rails"
+
+# 文件和图片处理
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'piet'
+
+
 group :development, :test do
   gem 'sqlite3'
 end

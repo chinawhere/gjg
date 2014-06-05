@@ -1,0 +1,53 @@
+<style type="text/css">
+  .val_error{
+    color: #e4020c;
+    padding-left: 70px;
+    height: 20px;
+    clear: left;
+  }
+</style>
+<%= form_for @event, methods: :post, html: {:class => 'talen_two_f', name: 'anotherTime'} do |f| %>
+  <div>
+    <label>活动标题：</label> 
+    <%= f.text_field :name, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 20],'name':'活动标题'}" %>
+  </div>
+  <div>
+    <label>活动地址：</label> 
+    <%= f.text_field :address, 'validation-config' => "{'checking':['required'，'maxSize'],'init':[true，100],'name':'活动地址'}" %>
+  </div>
+  <div>
+    <label>开始时间：</label> 
+    <%= f.text_field :start_at, 'validation-config' => "{'checking':['required'],'init':[true],'name':'开始时间'}", :class => 'datepicker hasDatepicker'%>
+  </div>
+  <div>
+    <label>结束时间：</label> 
+    <%= f.text_field :end_at, 'validation-config' => "{'checking':['required'],'init':[true],'name':'结束时间'}" %>
+  </div>
+  <div>
+    <label>费用类型：</label> 
+    <%= f.select :fee_type, event_fee_type %>
+  </div>
+  <div>
+    <label>活动金额：</label> 
+    <%= f.text_field :fee %>
+  </div>
+  <div>
+    <label>上限人数：</label> 
+    <%= f.text_field :max_count, 'validation-config' => "{'checking':['min'],'init':[1],'name':'上限人数'}" %>
+  </div>
+  <div>
+    <label>下限人数：</label> 
+    <%= f.text_field :min_count, 'validation-config' => "{'checking':['min', 'max'],'init':[1, 9999],'name':'下限人数'}" %>
+  </div>
+  <div>
+    <label>活动描述：</label> 
+    <%= f.text_field :content, 'validation-config' => "{'checking':['required'],'init':[true],'name':'活动描述'}" %>
+  </div>
+  <div>
+    <label>活动图片：</label> 
+    <%= f.file_field :logo, 'validation-config' => "{'checking':['required'],'init':[true],'name':'活动图片'}" %>
+  </div>
+  <div>
+    <%= f.submit '完成', :class => 'confirm_btn'%>
+  </div>
+<% end -%>

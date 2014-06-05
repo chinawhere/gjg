@@ -1,5 +1,6 @@
 ChinaWhere::Application.routes.draw do
   resources :articles
+  resources :events
 
 
   # The priority is based upon order of creation:
