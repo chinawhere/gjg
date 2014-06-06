@@ -12,4 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require kindeditor
+//= require bootstrap
+//= require bootstrap-datetimepicker
+//= require bootstrap-datetimepicker.zh-CN
 //= require_tree .

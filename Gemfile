@@ -7,15 +7,20 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #副文本
-gem 'ckeditor'
+# gem 'ckeditor'
+gem 'rails_kindeditor'
 
 # css
-gem "twitter-bootstrap-rails"
+# gem "twitter-bootstrap-rails"
+gem 'bootstrap3-rails'
 
 # 文件和图片处理
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'piet'
+
+#时间
+# gem 'bootstrap-datetimepicker-rails'
 
 
 group :development, :test do

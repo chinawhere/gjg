@@ -9,36 +9,36 @@ $(function(){
                 }
     });
 });
-//针对时间补写验证
-// $(function(){            
-//     var $conBtn = $("form[name=anotherTime]"); 
-//     var errorDiv = $("<div class='val_start_error'>请选择开始时间</div>");
-//     var errorDiv1 = $("<div class='val_end_error'>请选择结束时间</div>");
-//     $conBtn.submit(function(){
-//         var startTime = ($("#start_date_y").val()) && ($("#start_date_m").val());
-//         if(startTime){
-//             var endTime = ($("#end_date_y").val()) && ($("#end_date_m").val());
-//             var error = $("#start_date_y").parent().parent().find(".val_start_error");
-//             if(error){
-//                 error.hide();
-//             };                    
-//             if(endTime){
-//                 var error1 =  $("#end_date_y").parent().parent().find(".val_end_error");
-//                 if(error1){
-//                     error1.hide();
-//                 }
-//             }else{
-//                 $("#end_date_y").parent().after(errorDiv1);
-//                 $("#start_date_y").parent().parent().find(".val_end_error").show();
-//                 return false;
-//             }                 
-//         }else{
-//             $("#start_date_y").parent().after(errorDiv);
-//             $("#start_date_y").parent().parent().find(".val_start_error").show();
-//             return false;
-//         }
-//     });
-// });
+// 针对时间补写验证
+$(function(){            
+    var $conBtn = $("form[name=anotherTime]"); 
+    var errorDiv = $("<div class='val_start_error'>请选择开始时间</div>");
+    var errorDiv1 = $("<div class='val_end_error'>请选择结束时间</div>");
+    $conBtn.submit(function(){
+        var startTime = ($("#start_date_y").val()) && ($("#start_date_m").val());
+        if(startTime){
+            var endTime = ($("#end_date_y").val()) && ($("#end_date_m").val());
+            var error = $("#start_date_y").parent().parent().find(".val_start_error");
+            if(error){
+                error.hide();
+            };                    
+            if(endTime){
+                var error1 =  $("#end_date_y").parent().parent().find(".val_end_error");
+                if(error1){
+                    error1.hide();
+                }
+            }else{
+                $("#end_date_y").parent().after(errorDiv1);
+                $("#start_date_y").parent().parent().find(".val_end_error").show();
+                return false;
+            }                 
+        }else{
+            $("#start_date_y").parent().after(errorDiv);
+            $("#start_date_y").parent().parent().find(".val_start_error").show();
+            return false;
+        }
+    });
+});
 
 //验证效果        
 $(function(){
