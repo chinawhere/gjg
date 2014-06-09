@@ -64,3 +64,5 @@ group :development do
   gem 'capistrano', "~> 2.11.0"
   gem "net-ssh", "~> 2.7.0"
 end
+
+gem 'capistrano-rbenv'
