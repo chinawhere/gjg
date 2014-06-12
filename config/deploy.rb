@@ -38,5 +38,6 @@ namespace :deploy do
       puts "Run `git push` to sync changes."
       exit
     end
+    run "ruby -v"
   end
 end
