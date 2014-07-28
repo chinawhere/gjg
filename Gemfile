@@ -66,3 +66,4 @@ group :development do
 end
 
 gem 'capistrano-rbenv'
+gem 'activeadmin'
