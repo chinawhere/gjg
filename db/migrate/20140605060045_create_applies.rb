@@ -1,3 +1,4 @@
+# coding: utf-8
 class CreateApplies < ActiveRecord::Migration
   def change
     create_table :applies do |t|

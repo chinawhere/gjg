@@ -1,3 +1,4 @@
+# coding: utf-8
 namespace :unicorn do
   desc 'stat unicorn'
   task :run do 

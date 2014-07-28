@@ -1,3 +1,4 @@
+# coding: utf-8
 ChinaWhere::Application.routes.draw do
   resources :articles
   resources :events

@@ -1,3 +1,4 @@
+# coding: utf-8
 namespace :chinawhere do
   desc 'insert category'
   task :insert_category => :environment do 

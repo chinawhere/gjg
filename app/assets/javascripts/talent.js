@@ -9,7 +9,7 @@ $(function(){
                 }
     });
 });
-// 针对时间补写验证
+//针对时间补写验证
 $(function(){            
     var $conBtn = $("form[name=anotherTime]"); 
     var errorDiv = $("<div class='val_start_error'>请选择开始时间</div>");

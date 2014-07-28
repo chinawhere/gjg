@@ -18,6 +18,14 @@
     <%= f.text_field :address, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 100],'name':'活动地址'}", :class => 'form-control'%>
   </div>
   <div class="input-group">
+    <span class="input-group-addon">活动类型：</span>
+    <div class="form-control input-append">
+      <%= f.select :category_id, options_for_select(Category.all.map{|c| [c.name,c.id]}), :class => 'form-control', 'data-style' => "btn-primary"%>
+    </div>
+  </div>
+
+  
+  <div class="input-group">
     <span class="input-group-addon">开始时间：</span>
     <div class="form-control input-append date datetimepicker">
       <%= f.text_field :start_at, style: 'width: 100%;border: 0' %>

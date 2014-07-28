@@ -1,3 +1,4 @@
+# coding: utf-8
 class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
