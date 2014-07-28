@@ -61,3 +61,7 @@ production:
   pool: 5
   username: chinawhere
   password: lzj19880614
+  # adapter: sqlite3
+  # database: db/development.sqlite3
+  # pool: 5
+  # timeout: 5000
