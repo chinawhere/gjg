@@ -1,6 +1,14 @@
 #source 'https://rubygems.org'
 source 'http://ruby.taobao.org'
 
+if RUBY_VERSION =~ /1.9/
+
+  Encoding.default_external = Encoding::UTF_8
+
+  Encoding.default_internal = Encoding::UTF_8
+
+end
+
 gem 'rails', '3.2.13'
 
 # Bundle edge Rails instead:
@@ -67,3 +75,4 @@ end
 
 gem 'capistrano-rbenv'
 gem 'activeadmin'
+

@@ -14,5 +14,7 @@
 /log/*.log
 /tmp
 /unicorn
+/.DS_Store
+/public/uploads
 public/assets
 .gitignore

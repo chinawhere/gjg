@@ -5,5 +5,5 @@ class Event < ActiveRecord::Base
 
   belongs_to :user
 
-  FEE_TYPE = {0 => '免费', 1 => '付费', 2 => 'AA'}
+  # FEE_TYPE = {0 => '免费', 1 => '付费', 2 => 'AA'}
 end

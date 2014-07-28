@@ -1,5 +1,5 @@
 require 'bundler/capistrano'
-require "capistrano-rbenv"
+# require "capistrano-rbenv"
 set :scm, :git
 default_run_options[:pty] = true
 
@@ -8,7 +8,7 @@ set :repository, 'git@github.com:chinawhere/chinawhere.git'
 set :deploy_to, "/home/developer/#{application}"
 set :keep_releases, 3
 
-set :rbenv_ruby_version, "2.0.0-p451"
+# set :rbenv_ruby_version, "2.0.0-p451"
 
 set :use_sudo, false
 
@@ -38,5 +38,6 @@ namespace :deploy do
       puts "Run `git push` to sync changes."
       exit
     end
+    run "ruby -v"
   end
 end
