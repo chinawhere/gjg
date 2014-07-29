@@ -19,3 +19,5 @@
 public/assets
 .gitignore
 /public/upload
+.DS_Store
+/test
