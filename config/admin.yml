@@ -2,10 +2,10 @@
 #    只支持两级菜单;二级菜单可用属性： name/href/rel/data-confirm/data-method
 
 admin:
-  - name: 系统设置
+  - name: 权限管理
     menus:
-      - name: 管理员
-        href: /admin/staffers
+      - name: 用户管理
+        href: /admin/users
       - name: 权限角色
         href: /admin/roles
       - name: 同步所有新闻频道

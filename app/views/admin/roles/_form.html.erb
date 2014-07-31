@@ -1,0 +1,11 @@
+<div class="portlet-body form">
+  <%= form_for @role, url: defined?(url) ? url : admin_roles_path, methods: :post do |f|%>
+    <div class="form-body">
+      <%= form_text_field(text_label: '角色名', text_name: 'role[name]', text_value: f.object.name) %>
+      <%= form_text_field(text_label: '资源名', text_name: 'role[resource_type]', text_value: f.object.resource_type)%>
+      <%= form_text_field(text_label: '资源id', text_name: 'role[resource_id]', text_value: f.object.resource_id) %>
+      <%= f.submit '添加', :class => 'btn blue'%>
+      <%= link_to '取消', admin_roles_path, :class => 'btn default'%>
+    </div>
+  <% end -%>
+</div>

@@ -1,12 +1,19 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
+
+  root :to => 'home#index'
   resources :articles
   resources :events
-  resources :admin do
-    collection do
-      get :login
-      post :sessions
-    end
+
+  namespace :admin do
+    root :to => "sessions#index"
+    get :login, controller: :sessions, action: :login
+    get :logout, controller: :sessions, action: :logout
+    post :sessions, controller: :sessions, action: :sessions
+
+    resources :users
+
+    resources :roles
   end
 
 

@@ -9,8 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *=require_self
- *=require /dist/css/bootstrap.min.css
  *=require ./global/components.css
  *=require ./global/layout.css
  *=require ./global/default.css
+ *=require bootstrap
  */

@@ -27,6 +27,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'piet'
 
+#权限管理
+gem "rolify"
+
 #时间
 # gem 'bootstrap-datetimepicker-rails'
 

@@ -1,0 +1,28 @@
+<div class="portlet-body form">
+  <%= form_for @user, url: defined?(url) ? url : admin_users_path, methods: :post do |f|%>
+    <div class="form-body">
+      <%= form_text_field(text_label: '用户名', text_name: 'user[name]', text_value: f.object.name) %>
+      <%= form_text_field(text_label: '邮箱', text_name: 'user[email]', text_value: f.object.email, text_class: 'fa-envelope-o') %>
+      <% if @user.new_record? %>
+        <%= form_text_field(text_label: '密码', text_name: 'user[password]', text_type: 'password') %>
+        <%= form_text_field(text_label: '确认密码', text_name: 'user[password_confirmation]', text_type: 'password') %>
+      <% end -%>
+      <%= form_text_field(text_label: '手机号码', text_name: 'user[mobile]', text_value: f.object.mobile, text_class: 'fa-phone-square') %>
+      <%= form_text_field(text_label: '职位名称', text_name: 'user[position]', text_value: f.object.position) %>
+      <%= form_text_field(text_label: '年龄', text_name: 'user[age]', text_value: f.object.age) %>
+      <%= form_text_field(text_label: 'qq', text_name: 'user[qq]', text_value: f.object.qq, text_class: 'fa-qq') %>
+      <%= form_select_field(text_label: '性别', text_name: 'user[sex]', text_option: {'M' => '男', 'F' => '女'}) %>
+      <div class="form-group">
+        <label>上传头像</label>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-upload"></i>
+          </span>
+          <%= f.file_field :logo, :class => 'form-control input-medium' %>
+        </div>
+      </div>
+      <%= f.submit '添加', :class => 'btn blue'%>
+      <%= link_to '取消', admin_users_path, :class => 'btn default'%>
+    </div>
+  <% end -%>
+</div>
