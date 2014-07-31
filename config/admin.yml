@@ -1,0 +1,274 @@
+# 管理后台菜单配置，默认载入目录下所有yaml文件；新增角色后，只需在此文件同级目录下创建对应yaml文件，并设置数据库中角色字段abbrev与该文件中的标识名一致。
+#    只支持两级菜单;二级菜单可用属性： name/href/rel/data-confirm/data-method
+
+admin:
+  - name: 系统设置
+    menus:
+      - name: 管理员
+        href: /admin/staffers
+      - name: 权限角色
+        href: /admin/roles
+      - name: 同步所有新闻频道
+        href: /admin/news_channels/sync_all
+      - name: 推荐列表
+        href: /admin/recommends
+  - name: 技术开发
+    menus:
+      - name: 错误日志
+        href: /admin/error_logs
+      - name: 后台日志
+        href: /admin/dev/loggers
+  - name: 邮件管理
+    menus:
+      - name: 邮件控制台
+        href: /admin/mails
+      - name: 整合邮件
+        href: /admin/mails/mailhub
+      - name: 定时邮件
+        href: /admin/mails/calendar
+      - name: 每日话题管理
+        href: /admin/daily_topics
+      - name: 代理邮件
+        href: /admin/mails/agent_mail
+      - name: 邮件Tags
+        href: /admin/mails/mail_tags
+      - name: 好友请求邮件标题
+        href: /admin/mails/cr_titles
+      - name: 测试smtp
+        href: /admin/dev/test_email
+      - name: 测试每日私信、好友请求
+        href: /admin/dev/test_statistic_mail
+      - name: inside模板
+        href: /admin/email_backgrounds?type=tianji_inside_core
+      - name: career 模板
+        href: /admin/email_backgrounds?type=tianji_career
+  - name: 用户管理
+    menus:
+      - name: 基本帐号管理
+        href: /admin/users/accounts
+      - name: 用户高级管理
+        href: /admin/users
+      - name: 按日志数统计
+        href: /admin/users/articles
+      - name: 登录用户
+        href: /admin/users/login
+      - name: 后台操作日志
+        href: /admin/async_logs?tp=editor
+      - name: 用户激活
+        href: /admin/contact_agents
+      - name: 用户控制台
+        href: /admin/users/console
+      - name: 好友请求白名单
+        href: /admin/users/request_white_list
+  - name: 数据统计
+    menus:
+      - name: 微博管理
+        href: /admin/data/statuses
+      - name: 评论管理
+        href: /admin/data/comments
+      - name: 微博统计
+        href: /admin/data/statuses_statistics
+      - name: 评论统计
+        href: /admin/data/comments_statistics
+      - name: 新浪微博绑定
+        href: /admin/users/sina_weibo_bind
+      - name: 定制页数据下载
+        href: /admin/data_reports
+  - name: 用户认证
+    menus:
+      - name: 认证用户
+        href: /admin/profile_verify_users
+      # - name: 行业管理
+      #   href: /admin/industries
+  - name: 推荐管理
+    menus:
+      - name: 首页右侧推荐
+        href: /admin/recommends/home_right
+      - name: 天际聚焦
+        href: /admin/recommends/tianji_focus
+      - name: 活动推荐
+        href: /admin/recommends/events_index
+      - name: 人脉圈首页推荐
+        href: /admin/recommends/group_index
+      - name: 名人推荐
+        href: /admin/famous_people
+      - name: 豆瓣图书推荐
+        href: /admin/read_book/books
+  - name: 人脉圈频道
+    menus:
+      - name: 人脉圈分类
+        href: /admin/group_categories
+      - name: 人脉圈
+        href: /admin/groups
+  - name: 广场频道
+    menus:
+      - name: 缓存管理
+        href: /admin/pub/manage_cache
+  - name: 活动频道
+    menus:
+      - name: 活动管理
+        href: /admin/events
+      - name: 活动留言
+        href: /admin/event_comments
+  - name: 日志频道
+    menus:
+      - name: 投稿分类
+        href: /admin/recommend_categories
+      - name: 专栏管理
+        href: /admin/authors
+      - name: 日志管理
+        href: /admin/articles
+  - name: 新闻频道
+    menus:
+      - name: 24小时新闻
+        href: /admin/news
+      - name: 历史新闻
+        href: /admin/news/history
+      - name: 推荐新闻
+        href: /admin/news/recommend
+      - name: 新闻留言
+        href: /admin/news_comments
+      - name: 频道
+        href: /admin/news_channels
+      - name: 分类
+        href: /admin/news_categories
+
+  - name: 市场活动
+    menus:
+      - name: 竞赛小组列表
+        href: /admin/group_invitations
+      - name: sap云计算销售峰会
+        href: /admin/market_saps
+  - name: 调查问卷
+    menus:
+      - name: 调查问卷
+        href: /admin/surveys
+      - name: 新增调查问卷
+        href: /admin/surveys/new
+  - name: 企业管理
+    menus:
+      - name: 动态置顶推荐
+        href: /admin/companies/recommend_feed
+      - name: 企业管理
+        href: /admin/companies
+      - name: 新增企业
+        href: /admin/companies/new
+      - name: 公司主页新建管理
+        href: /admin/corps/list
+      - name: 公司主页认领管理
+        href: /admin/corp_claimers
+  - name: 优惠券管理
+    menus:
+      - name: 全部优惠券
+        href: /admin/coupons
+      - name: 添加优惠券
+        href: /admin/coupons/new
+  - name: 市场活动
+    menus:
+      - name: 竞赛小组列表
+        href: /admin/group_invitations
+  - name: MBA管理
+    menus:
+      - name: 外部链接管理
+        href: /admin/outer_links
+      - name: 课程管理
+        href: /admin/courses
+      - name: 课程分类管理
+        href: /admin/course_categories
+      - name: Home页可能感兴趣的课程
+        href: /admin/hot_1/mba_hots
+      - name: 首页热门机构管理
+        href: /admin/hot_2/mba_hots
+      - name: 首页分类机构管理
+        href: /admin/hot_4/mba_hots
+      - name: 首页热门课程/公告管理
+        href: /admin/mba_recommands
+      - name: 首页学习卡推荐管理
+        href: /admin/recommends/cards
+      - name: 首页人脉圈管理
+        href: /admin/recommends/mba_main_groups
+      - name: 机构/活动页人气机构管理
+        href: /admin/hot_3/mba_hots
+  - name: 商学院管理
+    menus:
+      - name: 商院案例管理
+        href: /admin/biz_colleges/bc_cases/
+      - name: 题库管理
+        href: /admin/biz_colleges/bc_subjects/
+      - name: 动态资讯
+        href: /admin/biz_colleges/bc_news/
+      - name: 商学院活动管理
+        href: /admin/biz_colleges/bc_events/
+      - name: 人物专访
+        href: /admin/biz_colleges/bc_famous/
+      - name: 热门课程
+        href: /admin/biz_colleges/bc_hot_courses/
+      - name: 英才书架
+        href: /admin/biz_colleges/bc_hot_books/
+      - name: 品牌广告管理
+        href: /admin/biz_colleges/bc_famous_ad/
+  - name: 手机客户端
+    menus:
+      - name: 首页左侧手机客户端信息
+        href: /admin/recommends/home_left
+
+  - name: 2012互联网大会
+    menus:
+      - name: 数据统计
+        href: /admin/cic_forms
+  - name: 广告管理
+    menus:
+      - name: 交互广告管理
+        href: /admin/ads
+  - name: 诺曼底
+    menus:
+      - name: 创建新公司
+        href: /admin/corps/new?come_from=normandy
+      - name: 诺曼底公司列表
+        href: /admin/normandy/normandy
+      - name: 修改投票数
+        href: /admin/normandy/contestants/list
+      - name: 诺曼底自动创建公司列表
+        href: /admin/normandy/normandy/ncorps
+      - name: 诺曼底参赛者
+        href: /admin/normandy/contestants
+      - name: 诺曼底中奖用户管理
+        href: /admin/normandy/normandy_prizes
+  - name: 公司运营
+    menus:
+      - name: 正常公司信息
+        href: /admin/corps
+      - name: 职位发布白名单
+        href: /admin/corp_job_promulgators
+      - name: 云公司信息
+        href: /admin/corps/ucompany_page_index
+      - name: 公司资料审核
+        href: /admin/corps_verify/verify_corps
+      - name: 公司logo审核
+        href: /admin/corps_verify/verify_logos
+  - name: 学校库
+    menus:
+      - name: 大学
+        href: /admin/universities
+      - name: 大学别名
+        href: /admin/university_names
+  - name: 直邮
+    menus:
+      - name: 直邮记录
+        href: /admin/messages
+      - name: 发送直邮
+        href: /admin/messages/new
+  - name: 用户激活邮件管理
+    menus:
+      - name: 分类管理
+        href: /admin/activation/categories
+      - name: 种子用户
+        href: /admin/activation/senders
+      - name: 一度邀请模版管理
+        href: /admin/activation/friend_requests
+      - name: 私信、直邮模版管理
+        href: /admin/activation/messages
+  - name: 徽章管理
+    menus:
+      - name: 徽章列表
+        href: /admin/medals

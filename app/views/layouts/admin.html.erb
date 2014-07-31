@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>优购咨询站</title>
+  <%= stylesheet_link_tag    "/assets/font-awesome.min" %>
+  <%= stylesheet_link_tag    "/assets/main" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body class="page-header-fixed page-sidebar-closed-hide-logo">
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<!--<![endif]-->
+<!-- BEGIN HEADER -->
+<div class="page-header navbar navbar-fixed-top" style="z-index: 1000 !important" ng-controller='IndexCtrl'>
+  <!-- BEGIN HEADER INNER -->
+  <div class="page-header-inner">
+    <!-- BEGIN LOGO -->
+    <div class="page-logo">
+      <a href="/index">
+        <img src="/images/logo.png" alt="logo" class="logo-default" style="width:100px;height:21px" />
+      </a>
+
+    </div>
+    <!-- END LOGO -->
+    <!-- END HEADER SEARCH BOX -->
+    <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+    <div class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+    </div>
+    <!-- END RESPONSIVE MENU TOGGLER -->
+    <!-- BEGIN TOP NAVIGATION MENU -->
+    <div class="top-menu">
+      <ul class="nav navbar-nav pull-right" style="list-style-type:none">
+        <!-- BEGIN NOTIFICATION DROPDOWN -->
+        
+        <!-- BEGIN USER LOGIN DROPDOWN -->
+        <li class="dropdown dropdown-user open">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" style="text-decoration:none;padding: 21px 22px 5px 25px">
+            <img alt="" class="img-circle" src="/images/avatar.png" style="width:25;height:25px;"/>
+            <span class="username">
+            <%= @user.name %> </span>
+            <i class="fa fa-angle-down"></i>
+          </a>
+          <ul class="dropdown-menu" style="width:130px;top:50px;right:20px;">
+            <li >
+              <a href="" >
+              <i class="fa fa-key"></i> 修改密码</a>
+            </li>
+            <li class="divider">
+            </li>
+            <li>
+              <a href="logout">
+              <i class="fa fa-key"></i> 退出系统 </a>
+            </li>
+          </ul>
+        </li>
+        <!-- END USER LOGIN DROPDOWN -->
+      </ul>
+    </div>
+    <!-- END TOP NAVIGATION MENU -->
+  </div>
+  <!-- END HEADER INNER -->
+</div>
+<!-- END HEADER -->
+<div class="clearfix">
+</div>
+<!-- BEGIN CONTAINER -->
+<div class="page-container" style="margin-top: 26px;">
+  <!-- BEGIN SIDEBAR -->
+  <div class="page-sidebar navbar-collapse collapse" style="position:relative;z-index:1000">
+    <ul class="page-sidebar-menu hidden-sm hidden-xs" data-slide-speed="200">
+        <br/>
+        <br/>
+        <% menus = YAML.load_file("config/admin.yml").symbolize_keys[:admin] %>
+        <% menus.each_with_index do |menu, index| %>
+        <li class="<%= 'start active open' if index == 0%>">
+          <a href="javascript:;">
+          <i class="fa fa-cogs"></i>
+          <span class="title">
+          <%= menu["name"] %></span>
+          <span class="arrow <%= 'open' if index == 0 %>">
+          </span>
+          <span class="selected"></span>
+          </a>
+          
+            <ul class="sub-menu">
+              <% menu["menus"].each do |s_menu| %>
+                <li >
+                  <a href="<%= s_menu['href'] %>">
+                  <%= s_menu['name'] %></a>
+                </li>
+              <% end %>
+            </ul>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- END SIDEBAR -->
+  <!-- BEGIN CONTENT -->
+  <div class="page-content-wrapper" >
+    <div class="page-content" style="min-height: 1400px;">
+      <%= yield %>
+    </div>
+  </div>
+  <!-- END CONTENT -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<div class="page-footer">
+  <div class="page-footer-inner">
+     2014 &copy; Metronic by keenthemes.
+  </div>
+  <div class="page-footer-tools">
+    <span class="go-top">
+    <i class="fa fa-angle-up"></i>
+    </span>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function(){
+    $('.page-footer').on('click', '.go-top', function () {
+      $('body,html').animate({scrollTop:0},1000);
+      
+    });
+    
+    $('ul.page-sidebar-menu').on('click', 'li', function () {
+      $(this).addClass("start active open");
+      $(this).children("a").children("span.arrow").addClass("open");
+      $(this).siblings('li').removeClass("start active open");
+      $(this).siblings('li').children("a").children("span.arrow").removeClass("open");
+    });
+
+    $('.dropdown-user').hover(function(){
+      $(this).children('ul.dropdown-menu').show();
+    },function(){
+      $(this).children('ul.dropdown-menu').hide();
+    })
+
+  })
+  
+</script>>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>优购咨询站</title>
+  <%= stylesheet_link_tag    "/assets/admin"%>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "/assets/jquery.backstretch" %>
+  <style type="text/css">
+    form.login-form .alert{
+      margin-bottom: 20px;
+      width: 90%;
+      padding: 15px;
+    }
+    form.login-form .form-group{
+      margin-bottom: 15px;
+    }
+    form.login-form .form-group input{
+      height: 34px;
+      width: 88%;
+    }
+  </style>
+  <%= csrf_meta_tags %>
+</head>
+<body class='login'>
+
+  <!-- BEGIN LOGO -->
+  <div class="logo">
+    <a href="/">
+<!--     <img src="../../assets/admin/layout/img/logo-big.png" alt=""/>
+ -->    </a>
+  </div>
+  <!-- END LOGO -->
+  <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+  <div class="menu-toggler sidebar-toggler">
+  </div>
+  <!-- END SIDEBAR TOGGLER BUTTON -->
+  <!-- BEGIN LOGIN -->
+  <div class="content" style="width:300px">
+    <!-- BEGIN LOGIN FORM -->
+    <form class="login-form" action="sessions" method="post">
+      <h3 class="form-title">ChinaWhere</h3>
+      <% if false %>
+      <div class="alert alert-danger">
+        用户名或密码输入错误
+      </div>
+      <% end %>
+      <div class="form-group">
+        <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+        <label class="control-label visible-ie8 visible-ie9">用户名</label>
+        <div class="input-icon" >
+          <i class="fa fa-user"></i>
+          <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名" name="session[login_name]" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label visible-ie8 visible-ie9">密码</label>
+        <div class="input-icon">
+          <i class="fa fa-lock"></i>
+          <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="session[password]" />
+        </div>
+      </div>
+      <div class="form-actions">
+        <label class="checkbox">
+        <input type="checkbox" name="remember" value="1"/> 记住我 </label>
+        <button type="submit" class="btn green pull-right">
+        登录 <i class="m-icon-swapright m-icon-white"></i>
+        </button>
+      </div>
+    </form>
+
+  </div>
+
+  <!-- END LOGIN -->
+  <!-- BEGIN COPYRIGHT -->
+  <footer>
+    <div class="copyright">
+      Power by ChinaWhere-Developer, @Metronic
+    </div>
+  </footer>
+
+  <script>
+  $.backstretch([
+          "/images/bg/1.jpg",
+          "/images/bg/2.jpg",
+          "/images/bg/3.jpg",
+          "/images/bg/4.jpg"
+        ], {
+            fade: 750,
+            duration: 4000
+        });
+  </script>
+
+</body>
+</html>
