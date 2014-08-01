@@ -21,3 +21,5 @@ public/assets
 /public/upload
 .DS_Store
 /test
+.rvmrc
+Gemfile.lock
