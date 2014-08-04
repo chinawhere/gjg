@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ChinaWhere</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <%= render '/layouts/header' %>
+    <div class="container" style="margin-top:90px">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-1"><%= yield %></div>
+      </div>
+
+    </div> <!-- /container -->
+
+    <div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+</body>
+
+</html>

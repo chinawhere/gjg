@@ -1,0 +1,168 @@
+/* 日历样式 */
+.calendar .current_f {
+	background-color: #00afbc; 
+	color: #fff; 
+	border: none
+}
+#calendar2 .calendar {
+	width:260px;
+	overflow: hidden; 
+	_zoom: 1;
+}
+#calendar2 .calendar .nowDate span {
+	width:104px;
+	font-size: 16px;
+	font-weight: bold;
+	font-family: "Tahoma";
+}
+#calendar2 .calendar .week span {
+	width:31px;
+}
+#calendar2 .calendar .days li {
+	width:25px;
+	height:23px; 
+	line-height: 23px;
+}
+.calendar {
+	color:#666;
+}
+.calendar li {
+	list-style:none;
+}
+.calendar a {
+	text-decoration:none;
+	color:#00afbc;
+}
+.calendar .nowDate {
+	text-align:right;
+	font-size:12px;
+	padding:7px 0;
+}
+.calendar .nowDate span {
+	display:inline-block;
+	width:200px;
+}
+.calendar .nowDate a {
+	text-decoration:none;
+	margin:0 5px;
+}
+.calendar .nowDate .prevMonth {
+	background-position:-168px -96px;
+}
+.calendar .nowDate .nextMonth {
+	background-position:-168px -120px;
+}
+.calendar .nowDate b {
+	cursor:pointer;padding:0 2px;
+}
+.calendar .sun {
+	color:#9b1e1e;
+}
+.calendar .week { 
+	border-bottom:1px solid #e5e5e5;
+	margin: 0 auto 0 40px;
+	width: 220px; 
+}
+.calendar .week span {
+	display:inline-block;
+	text-align:center;
+	width:98px;
+	padding:10px 0;
+}
+.calendar .days { 
+	width: 260px; 
+	margin: 0 auto;
+}
+.calendar .days li {
+	float:left;
+	display:block;
+	margin:3px;
+	position:relative;
+	border-radius:5px;
+}
+.calendar .days .gray {
+	opacity: 0.5;
+	filter: Alpha(Opacity=50);
+}
+.calendar .days .current{
+
+}
+.calendar .days li .d {
+	text-decoration:none;
+	position:absolute;
+	bottom:0px;
+	right:5px;
+	font-size:12px;
+	font-weight:600;
+}
+.calendar .yearList,.calendar .monthList {
+	height:115px;
+	border:1px solid #e0e0e0;
+	width:200px; 
+	position:absolute;
+	left:50%;
+	margin-left:-100px;
+	background:#fff;
+	z-index:2;
+	border-radius:5px;
+	top:35px;
+	display:none;
+}
+.calendar .yearList ul {
+	height:91px;
+}
+.calendar .yearList li {
+	float:left;
+	padding:6px 17px;
+	cursor:pointer;
+}
+.calendar .yearList li:hover {
+	background:#e5e5e5;
+}
+.calendar .yearList li.current {
+	background:#f60;
+	color:#fff;
+}
+.calendar .yearList p {
+	padding:3px 5px;
+	font-size:14px;
+	font-weight:600;
+	border-top:1px solid #e0e0e0;
+	background:#f5f5f5;
+	text-align:center;
+}
+.calendar .yearList p .prev {
+	float:left;
+}
+.calendar .yearList p .next {
+	float:right;
+}
+.calendar .monthList li {
+	float:left;
+	width:56px;
+	text-align: center;
+	padding:5px;
+	cursor:pointer;
+}
+.calendar .monthList li:hover {
+	background:#e5e5e5;
+	border-radius:3px;
+}
+.calendar .monthList li.current {
+	color:#fff;
+}
+.calendar .monthList li.current {
+	background:#f60;
+	border-radius:3px;
+}
+
+.calendar_tip {
+	padding:5px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	border-radius: 5px; 
+	position: absolute;
+	_width: 80px;
+}
+
+/* 日历样式 */

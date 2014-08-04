@@ -15,7 +15,7 @@ User.where( name:     '唐玲',
             mobile:   '18701175667',
             position: 'ruby工程师',
             age:      26,
-            qq:       '361771529').first_or_create
+            qq:       '361771529').first_or_create.add_role :admin
 
 user = User.first
 user.add_role? :admin

@@ -131,22 +131,12 @@
   </div>
   <script type="text/javascript">
     $(function(){
-      $('.page-footer').on('click', '.go-top', function () {
-        $('body,html').animate({scrollTop:0},1000);
-      });
-
       $('ul.page-sidebar-menu').on('click', 'li', function () {
         $(this).addClass("start active open");
         $(this).children("a").children("span.arrow").addClass("open");
         $(this).siblings('li').removeClass("start active open");
         $(this).siblings('li').children("a").children("span.arrow").removeClass("open");
       });
-
-      $('.dropdown-user').hover(function(){
-        $(this).children('ul.dropdown-menu').show();
-      },function(){
-        $(this).children('ul.dropdown-menu').hide();
-      })
     })
   </script>
 </body>
