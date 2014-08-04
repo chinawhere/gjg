@@ -1,14 +1,22 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
-  root to: 'home#index'
-  scope controller: :home do
+  root to: 'welcome#index'
+  scope controller: :sessions do
     get :login
     get :register
     get :logout
     post :sessions
     post :sign_up
   end
+
+  # scope controller: :home do
+  #   get :login
+  #   get :register
+  #   get :logout
+  #   post :sessions
+  #   post :sign_up
+  # end
 
   resources :articles
   resources :events

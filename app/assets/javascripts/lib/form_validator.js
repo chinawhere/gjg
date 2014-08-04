@@ -1,17 +1,3 @@
-/*
- * author : wumingli
- * author email : wumingli@tianji.com
- * with jquery-1.7.2
- * for : form validator
- * developed at : 2013/6/28 10:06:45
- * Copyright 2013. All rights reserved.
- */
-/*
- 待增加功能：
- 1.日期类验证
-
-*/
-
 (function ($) {
     'use strict';
     var oResults = {};
