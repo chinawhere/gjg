@@ -40,7 +40,7 @@ class EventsController < ApplicationController
 
   private
 
-  def load_user
+  def load_event
     @event = Event.find(params[:id])
   end
 end
