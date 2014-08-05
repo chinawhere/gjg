@@ -31,6 +31,9 @@ gem 'piet'
 #权限管理
 gem "rolify"
 
+# 分页
+gem 'will_paginate'
+
 #时间
 # gem 'bootstrap-datetimepicker-rails'
 

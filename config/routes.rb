@@ -10,6 +10,8 @@ ChinaWhere::Application.routes.draw do
     post :sign_up
   end
 
+  resources :home, only: [:index]
+
   # scope controller: :home do
   #   get :login
   #   get :register
