@@ -23,7 +23,7 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">活动类型：</span>
-    <%= f.select :category_id, options_for_select(Category.where(status: 'event').map{|c| [c.name,c.id]}), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
+    <%= f.select :category_id, options_for_select(Category.where(status: 'event').map{|c| [c.name,c.id]}, selected:[@event.category_id]), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
   </div>
   <div class="input-group">
     <span class="input-group-addon">开始时间：</span>
@@ -35,7 +35,7 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">费用类型：</span>
-    <%= f.text_field :fee_type, :class => 'form-control'%> 
+    <%= f.select :fee_type, options_for_select(Event::FEE_TYPE.map{|c| [c[1],c[0]]}, selected:[@event.fee_type]), {},:class => 'form-control', 'data-style' => "btn-primary"%>
   </div>
   <div class="input-group">
     <span class="input-group-addon">活动金额：</span>

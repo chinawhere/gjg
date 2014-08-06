@@ -7,5 +7,5 @@ class Event < ActiveRecord::Base
 
   EVENT_CATEGORY = Hash[Category.where(status: 'event').map{|c| [c.id,c.name]}]
 
-  # FEE_TYPE = {0 => '免费', 1 => '付费', 2 => 'AA'}
+  FEE_TYPE = {0 => '免费', 1 => '自费', 2 => '付费', 3 => 'AA'}
 end
