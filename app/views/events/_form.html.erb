@@ -1,3 +1,7 @@
+<%= content_for :header do %>
+  <%= stylesheet_link_tag    'product/calendar/jscal2','product/calendar/border-radius','product/calendar/steel' %>
+  <%= javascript_include_tag 'product/calendar/jscal2',  'product/calendar/cn'%>
+<% end -%>
 <style type="text/css">
   .val_error{
     color: #e4020c;
@@ -23,23 +27,11 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">开始时间：</span>
-    <div class="form-control input-append date datetimepicker">
-      <%= f.text_field :start_at, style: 'width: 100%;border: 0' %>
-      <span class="add-on">
-        <i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar">
-        </i>
-      </span>
-    </div>
+    <%= f.text_field :start_at, :class => 'form-control', value: (@event.start_at.strftime('%F %T') rescue ''), 'validation-config' => "{'checking':['required'],'init':[true],'name':'开始时间'}" %>
   </div>
   <div class="input-group">
     <span class="input-group-addon">结束时间：</span>
-    <div class="form-control input-append date datetimepicker">
-      <%= f.text_field :end_at, style: 'width: 100%;border: 0'%>
-      <span class="add-on">
-        <i data-date-icon="icon-calendar" data-time-icon="icon-time" class="icon-calendar">
-        </i>
-      </span>
-    </div>
+    <%= f.text_field :end_at, :class => 'form-control', value: (@event.end_at.strftime('%F %T') rescue ''), 'validation-config' => "{'checking':['required'],'init':[true],'name':'结束时间'}" %>
   </div>
   <div class="input-group">
     <span class="input-group-addon">费用类型：</span>
@@ -63,17 +55,19 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">活动图片：</span>
-    <%= f.file_field :logo, 'validation-config' => "{'checking':['required'],'init':[true],'name':'活动图片'}", :class => 'form-control' %>
+    <%= f.file_field :logo, :class => 'form-control' %>
   </div>
   <div class="btn-group">
     <%= f.submit '完成', :class => 'btn btn-default'%>
   </div>
 <% end -%>
-<script type="text/javascript">
-  $(function() {
-    $('.datetimepicker').datetimepicker({
-      format: 'yyyy-mm-dd hh:mm',
-      language:  'zh-CN'
-    });
-  });
-</script>
+<script type="text/javascript">//<![CDATA[
+
+      var cal = Calendar.setup({
+          onSelect: function(cal) { cal.hide() },
+          showTime: true
+      });
+      cal.manageFields("event_start_at", "event_start_at", "%Y-%m-%d %H:%M:%S");
+      cal.manageFields("event_end_at", "event_end_at", "%Y-%m-%d %H:%M:%S");
+
+    //]]></script>
