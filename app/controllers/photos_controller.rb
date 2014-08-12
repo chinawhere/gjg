@@ -1,21 +1,14 @@
 #coding: utf-8
 class PhotosController < ApplicationController
   def create
+    session[:user_id] = params[:user_id]
     photo = Photo.new(params[:photo])
-    respond_to do |format|
-      if photo.save  
-        format.html {  
-          render :json => [photo.to_json_picture].to_json,  
-          :content_type => 'text/html',  
-          :layout => false  
-        }  
-        format.json { render json: {files: [photo.to_json_picture]}, status: :created, location: album_photo_url(@album.id, photo.id) }  
-      else
-        p photo.errors 
-        format.html { render action: "new" }  
-        format.json { render json: photo.errors, status: :unprocessable_entity }  
-      end  
-    end 
+    photo.name = params[:photo][:avatar].original_filename
+    if photo.save
+      render json: {success: true}.to_json
+    else
+      render json: {success: false}.to_json
+    end
   end
 
   def destroy  

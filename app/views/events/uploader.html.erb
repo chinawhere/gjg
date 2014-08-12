@@ -1,151 +1,171 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>ChinaWhere</title>
-  <%= stylesheet_link_tag    "application"%>
+<style type="text/css">
+  #holder {
+    border: 5px dashed #ccc;
+    min-height: 300px;
+    margin: 20px auto;
+    padding: 5px;
+    line-height: 130px;
+  }
 
-  <%= javascript_include_tag "application" %>
+  #holder.hover {
+    border: 10px dashed #0c0;
+  }
 
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  #holder_img{
+    padding: 10px;
+  }
 
-<div class="container">  
-  <h2>Upload file</h2>  
-  <%= form_for @photo, :html => { :multipart => true, :id => "fileupload"  } do |f| %>  
-    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->  
-    <div class="row fileupload-buttonbar">  
-      <div class="span7">  
-        <!-- The fileinput-button span is used to style the file input field as button -->  
-        <span class="btn btn-success fileinput-button">  
-          <i class="icon-plus icon-white"></i>  
-          <span>Add files...</span>  
-          <%= f.file_field :path, multiple: true, name: "photo[avatar]" %>  
-        </span>  
-        <button type="submit" class="btn btn-primary start">  
-          <i class="icon-upload icon-white"></i>  
-          <span>Start upload</span>  
-        </button>  
-        <button type="reset" class="btn btn-warning cancel">  
-          <i class="icon-ban-circle icon-white"></i>  
-          <span>Cancel upload</span>  
-        </button>  
-        <button type="button" class="btn btn-danger delete">  
-          <i class="icon-trash icon-white"></i>  
-          <span>Delete</span>  
-        </button>  
-        <input type="checkbox" class="toggle">  
-      </div>  
-      <div class="span5">  
-        <!-- The global progress bar -->  
-        <div class="progress progress-success progress-striped active fade">  
-          <div class="bar" style="width:0%;"></div>  
-        </div>  
-      </div>  
-    </div>  
-    <!-- The loading indicator is shown during image processing -->  
-    <div class="fileupload-loading"></div>  
-    <br>  
-    <!-- The table listing the files available for upload/download -->  
-    <table class="table table-striped"><tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>  
-    </table>  
-  <% end %>  
-  
-</div>  
-<script>  
-  var fileUploadErrors = {  
-  maxFileSize: 'File is too big',  
-  minFileSize: 'File is too small',  
-  acceptFileTypes: 'Filetype not allowed',  
-  maxNumberOfFiles: 'Max number of files exceeded',  
-  uploadedBytes: 'Uploaded bytes exceed file size',  
-  emptyResult: 'Empty file upload result'  
-  };  
-</script>  
-  
-<!-- The template to display files available for upload -->  
-<script id="template-upload" type="text/x-tmpl">  
-  {% for (var i=0, file; file=o.files[i]; i++) { %}  
-  <tr class="template-upload fade">  
-    <td class="preview"><span class="fade"></span></td>  
-    <td class="name"><span>{%=file.name%}</span></td>  
-    <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>  
-    {% if (file.error) { %}  
-    <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>  
-    {% } else if (o.files.valid && !i) { %}  
-    <td>  
-      <div class="progress progress-success progress-striped active"><div class="bar" style="width:0%;"></div></div>  
-    </td>  
-    <td class="start">{% if (!o.options.autoUpload) { %}  
-      <button class="btn btn-primary">  
-        <i class="icon-upload icon-white"></i>  
-        <span>{%=locale.fileupload.start%}</span>  
-      </button>  
-      {% } %}</td>  
-    {% } else { %}  
-    <td colspan="2"></td>  
-    {% } %}  
-    <td class="cancel">{% if (!i) { %}  
-      <button class="btn btn-warning">  
-        <i class="icon-ban-circle icon-white"></i>  
-        <span>{%=locale.fileupload.cancel%}</span>  
-      </button>  
-      {% } %}</td>  
-  </tr>  
-  {% } %}  
-</script>  
-<!-- The template to display files available for download -->  
-<script id="template-download" type="text/x-tmpl">  
-  {% for (var i=0, file; file=o.files[i]; i++) { %}  
-    <tr class="template-download fade">  
-      {% if (file.error) { %}  
-        <td></td>  
-        <td class="name"><span>{%=file.name%}</span></td>  
-        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>  
-        <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>  
-        {% } else { %}  
-        <td class="preview">{% if (file.thumbnail_url) { %}  
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}"></a>  
-          {% } %}</td>  
-        <td class="name">  
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>  
-        </td>  
-        <td class="size"><span>{%=o.formatFileSize(file.size)%}</span></td>  
-        <td colspan="2"></td>  
-        {% } %}  
-      <td class="delete">  
-        <button class="btn btn-danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}">  
-          <i class="icon-trash icon-white"></i>  
-          <span>{%=locale.fileupload.destroy%}</span>  
-        </button>  
-        <input type="checkbox" name="delete" value="1">  
-      </td>  
-    </tr>  
-    {% } %}  
-</script>  
-  
-<script type="text/javascript" charset="utf-8">  
-  $(function () {  
-      // Initialize the jQuery File Upload widget:  
-      $('#fileupload').fileupload();  
-      //   
-      // Load existing files:  
-      $.getJSON($('#fileupload').prop('action'), function (files) {  
-        var fu = $('#fileupload').data('blueimpFileupload'),   
-          template;  
-        fu._adjustMaxNumberOfFiles(-files.length);  
-        console.log(files);  
-        template = fu._renderDownload(files)  
-          .appendTo($('#fileupload .files'));  
-        // Force reflow:  
-        fu._reflow = fu._transition && template.length &&  
-          template[0].offsetWidth;  
-        template.addClass('in');  
-        $('#loading').remove();  
-      });  
-  
-  });  
-</script> 
-</body>
+  .dateimg{
+    text-align: center;
+    border: 1px solid #dddddd;
+    padding: 2px;
+    height: 140px;
+  }
 
-</html>
+</style>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">上传图片</h3>
+  </div>
+  <div class="panel-body">
+    <div id="holder">
+      <div id="holder_img" class="row">
+      </div>
+    </div>
+    <p id="upload" class="hidden"><label>Drag &amp; drop not supported, but you can still upload via this input field:<br><input type="file"></label></p>
+    <p id="filereader">File API &amp; FileReader API not supported</p>
+    <p id="formdata">XHR2's FormData is not supported</p>
+    <p id="progress">XHR2's upload progress isn't supported</p>
+    <p>上传进度： <progress id="uploadprogress" min="0" max="100" value="0" style="width: 90%">0</progress></p>
+    <p>Drag an image from your desktop on to the drop zone above to see the browser both render the preview, but also upload automatically to this server.</p>
+  </div>
+</div>
+<script>
+  // 检查浏览器是否支持拖放上传。
+    var holder = document.getElementById('holder'),
+    tests = {
+      filereader: typeof FileReader != 'undefined',
+      dnd: 'draggable' in document.createElement('span'),
+      formdata: !!window.FormData,
+      progress: "upload" in new XMLHttpRequest
+    },
+    support = {
+      filereader: document.getElementById('filereader'),
+      formdata: document.getElementById('formdata'),
+      progress: document.getElementById('progress')
+    },
+    acceptedTypes = {
+      'image/png': true,
+      'image/jpeg': true,
+      'image/gif': true
+    },
+    progress = document.getElementById('uploadprogress'),
+    fileupload = document.getElementById('upload');
+
+    "filereader formdata progress".split(' ').forEach(function (api) {
+      if (tests[api] === false) {
+        support[api].className = 'fail';
+      } else {
+        support[api].className = 'hidden';
+      }
+    });
+
+    function previewfile(file) {
+      if (tests.filereader === true && acceptedTypes[file.type] === true) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+          var cloDiv = document.createElement("div");
+            cloDiv.className = "col-md-4";
+            cloDiv.style = "padding:5px";
+          var dateimgDiv = document.createElement("div");
+            dateimgDiv.className = "dateimg";
+
+          cloDiv.appendChild(dateimgDiv);
+
+          var image = new Image();
+          image.src = event.target.result;
+          // image.width = 250; // a fake resize
+          image.height = 118;
+          dateimgDiv.appendChild(image);
+
+          var holder_img = document.getElementById('holder_img');
+          holder_img.appendChild(cloDiv);
+
+        };
+        reader.readAsDataURL(file);
+      }  else {
+        holder.innerHTML += '<p>Uploaded ' + file.name + ' ' + (file.size ? (file.size/1024|0) + 'K' : '');
+      }
+    }
+
+    function previewfile2(file) {
+      var image = new Image();
+      image.src = file;
+      image.width = 250; // a fake resize
+      image.height = 250;
+      holder.appendChild(image);
+    }
+
+    function callback() {
+      //接收响应数据  www.2cto.com
+      //判断对象状态是否交互完成，如果为4则交互完成
+      if(xhr.readyState == 4) {
+           //判断对象状态是否交互成功,如果成功则为200
+        if(xhr.status == 200) {
+            //接收数据,得到服务器输出的纯文本数据
+            var response = $.parseJSON(xhr.responseText);
+            previewfile2(response["thumbnail_url"]);
+            //得到div的节点将数据显示在div上
+            // var divresult = document.getElementById("result");
+            // divresult.innerHTML = response;
+        }
+      }
+    }
+
+    function readfiles(files) {
+        debugger;
+        var formData = tests.formdata ? new FormData() : null;
+        var event_id = <%= @event.id %>;
+        var user_id = <%= @current_user.id %>;
+        formData.append('photo[event_id]', event_id);
+        formData.append('user_id', user_id);
+        for (var i = 0; i < files.length; i++){
+          if (tests.formdata) formData.append('photo[avatar]', files[i]);
+          previewfile(files[i]);
+        }
+
+        // now post a new XHR request
+        if (tests.formdata) {
+          var xhr = new XMLHttpRequest();
+          xhr.open('POST', '/photos');
+          xhr.onload = function() {
+            progress.value = progress.innerHTML = 100;
+          };
+
+          if (tests.progress) {
+            xhr.upload.onprogress = function (event) {
+              if (event.lengthComputable) {
+                var complete = (event.loaded / event.total * 100 | 0);
+                progress.value = progress.innerHTML = complete;
+              }
+            }
+          }
+          xhr.send(formData)
+        }
+    }
+
+    if (tests.dnd) {
+      holder.ondragover = function () { this.className = 'hover'; return false; };
+      holder.ondragend = function () { this.className = ''; return false; };
+      holder.ondrop = function (e) {
+        this.className = '';
+        e.preventDefault();
+        readfiles(e.dataTransfer.files);
+      }
+    } else {
+      fileupload.className = 'hidden';
+      fileupload.querySelector('input').onchange = function () {
+        readfiles(this.files);
+      };
+    }
+</script>
