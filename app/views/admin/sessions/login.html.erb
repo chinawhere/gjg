@@ -3,8 +3,10 @@
 <head>
   <title>优购咨询站</title>
   <%= stylesheet_link_tag    "/assets/admin"%>
+  <%= stylesheet_link_tag    "/assets/product/admin_login"%>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag "/assets/jquery.backstretch" %>
+  <%= javascript_include_tag "ui/jquery.backstretch" %>
+
   <style type="text/css">
     form.login-form .alert{
       margin-bottom: 20px;
@@ -78,15 +80,15 @@
   </footer>
 
   <script>
-  $.backstretch([
-          "/images/bg/1.jpg",
-          "/images/bg/2.jpg",
-          "/images/bg/3.jpg",
-          "/images/bg/4.jpg"
-        ], {
-            fade: 750,
-            duration: 4000
-        });
+    $.backstretch([
+        "/images/bg/1.jpg",
+        "/images/bg/2.jpg",
+        "/images/bg/3.jpg",
+        "/images/bg/4.jpg"
+      ], {
+          fade: 750,
+          duration: 4000
+      });
   </script>
 
 </body>

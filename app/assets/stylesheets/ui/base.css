@@ -1,0 +1,14 @@
+/*分页*/
+.pagination span.disabled{
+  border: 1px solid #CCCCCC;
+  color: #D1D1D1;
+  margin: 2px;
+  padding: 2px 5px;
+}
+.pagination a{
+  border: 1px solid #999999;
+  color: #666666; 
+  margin: 2px;
+  padding: 2px 5px;
+  text-decoration: none;
+}

@@ -1,8 +1,8 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
-  root to: 'home#index'
-  scope controller: :home do
+  root to: 'welcome#index'
+  scope controller: :sessions do
     get :login
     get :register
     get :logout
@@ -10,8 +10,23 @@ ChinaWhere::Application.routes.draw do
     post :sign_up
   end
 
+  resources :home, only: [:index]
+
+  # scope controller: :home do
+  #   get :login
+  #   get :register
+  #   get :logout
+  #   post :sessions
+  #   post :sign_up
+  # end
+
   resources :articles
-  resources :events
+  resources :events do
+    member do
+      get :uploader
+    end
+  end
+  resources :photos, only: [:create, :destroy]
 
   namespace :admin do
     root to: "sessions#index"

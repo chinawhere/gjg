@@ -1,6 +1,8 @@
 #encoding: utf-8
 class EventsController < ApplicationController
-  before_filter :load_user, only: [:create, :update]
+  before_filter :require_login, except: [:index, :show]
+  before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader]
+  layout 'home'
   def index
     @events = Event.all
   end
@@ -19,26 +21,29 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
     if @event.update_attributes(params[:event])
       redirect_to events_path
     else
       render :edit
     end
-        
   end
 
   def edit
-    @event = Event.find(params[:id])
+  end
+
+  def destroy
+  end
+
+  def uploader
+    @photo = @event.photos.build
   end
 
   private
 
-  def load_user
-    @current_user = User.first
+  def load_event
+    @event = Event.find(params[:id])
   end
 end

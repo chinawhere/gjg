@@ -1,5 +1,5 @@
-# coding: utf-8
-class UserLogoUploader < CarrierWave::Uploader::Base
+# encoding: utf-8
+class PhotoAvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   #  include CarrierWave::Compatibility::Paperclip
   include Piet::CarrierWaveExtension
@@ -9,26 +9,20 @@ class UserLogoUploader < CarrierWave::Uploader::Base
   storage :file
 
   def store_dir
-    "upload/users/logo/#{("%09d" % model.id).scan(/\d{3}/).join("/")}"
+    "upload/photos/avatar/#{("%09d" % model.id).scan(/\d{3}/).join("/")}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-
-  def default_url
-    "/images/logos/user/" + [version_name,"logo.png"].compact.join('_')
-  end
+  # def default_url
+  #   #"/images/company_login/logo.png"
+  # end
 
   version :lager do
-    process :resize_to_fit => [180, 200]
+    process resize_to_fit: [600, '']
   end
-
 
   version :medium do
-    process resize_to_fit: [90, 100]
-  end
-
-  version :feed do
-    process resize_to_fit: [45, 50]
+    process resize_to_fit: [118, 118]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
