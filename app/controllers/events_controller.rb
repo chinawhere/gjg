@@ -1,7 +1,7 @@
 #encoding: utf-8
 class EventsController < ApplicationController
   before_filter :require_login, except: [:index, :show]
-  before_filter :load_event, only: [:show, :update, :edit, :destroy]
+  before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader]
   layout 'home'
   def index
     @events = Event.all
@@ -29,13 +29,16 @@ class EventsController < ApplicationController
     else
       render :edit
     end
-        
   end
 
   def edit
   end
 
   def destroy
+  end
+
+  def uploader
+    @photo = @event.photos.build
   end
 
   private

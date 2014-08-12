@@ -27,6 +27,8 @@ gem 'bootstrap3-rails'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'piet'
+# 多图片上传
+gem "jquery-fileupload-rails"
 
 #权限管理
 gem "rolify"

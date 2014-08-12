@@ -21,7 +21,12 @@ ChinaWhere::Application.routes.draw do
   # end
 
   resources :articles
-  resources :events
+  resources :events do
+    member do
+      get :uploader
+    end
+  end
+  resources :photos, only: [:create, :destroy]
 
   namespace :admin do
     root to: "sessions#index"
