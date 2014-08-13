@@ -17,8 +17,7 @@ User.where( name:     '唐玲',
             age:      26,
             qq:       '361771529').first_or_create.add_role :admin
 
-user = User.first
-user.add_role? :admin
+
 
  [{:name=>"运动旅行", :status=>"event"},{:name=>"交友聚会", :status=>"event"},{:name=>"教育培训", :status=>"event"},
   {:name=>"沙龙讲座", :status=>"event"},{:name=>"艺术文化", :status=>"event"},{:name=>"消费体验", :status=>"event"},
