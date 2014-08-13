@@ -7,11 +7,11 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Chinawhere</a>
+      <a class="navbar-brand" href="/">Chinawhere</a>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li <%= 'class=active' if params[:controller] == 'home' %>><%= link_to '首页', home_path %></li>
+        <li <%= 'class=active' if params[:controller] == 'home' %>><%= link_to '个人中心', home_path %></li>
         <li <%= 'class=active' if params[:controller] == 'events' %>><%= link_to '活动', events_path%></li>
         <li><a href="#contact">Contact</a></li>
         <li class="dropdown">

@@ -3,13 +3,13 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    render :text => '8888'
-    # @articles = Article.all
+    # render :text => '8888'
+    @articles = Article.all
 
-    # respond_to do |format|
-    #   format.html # index.html.erb
-    #   format.json { render json: @articles }
-    # end
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @articles }
+    end
   end
 
   # GET /articles/1

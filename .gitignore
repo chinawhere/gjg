@@ -23,3 +23,4 @@ public/assets
 /test
 .rvmrc
 Gemfile.lock
+*.rdb
