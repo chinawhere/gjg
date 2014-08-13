@@ -1,12 +1,27 @@
 <div class="row" style="padding:10px">
-  <h3><%= @event.name%></h3>
+  <h3 style="border-bottom: 1px solid #ccc"><%= @event.name%></h3>
+  <% if @event.user == @current_user%>
+    <p class="pull-right" style="margin-top:-30px">
+      <%= link_to '编辑', edit_event_path(@event), class: 'fa fa-pencil'%>
+      <%= link_to '上传图片', uploader_event_path(@event), class: 'fa fa-upload'%>
+    </p>
+  <% end -%>
+  <div class="row" style="margin-top: 15px">
+    <div class="col-md-2"><%= image_tag @event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></div>
+    <div class="col-md-6">
+      <p>地点：<%= @event.address %></p>
+      <p>时间：<%= "#{@event.start_at.strftime('%m月%d日 %H:%M')}--#{@event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
+      <p>费用：<%= @event.display_fee %> </p>
+      <p>类型：<%= Event::EVENT_CATEGORY[@event.category_id] %></p>
+    </div>
+  </div>
   <div class="row" style="margin: 10px">
-    <h4>活动介绍</h4>
+    <h4>活动详情:</h4>
     <p><%= @event.content.html_safe rescue ''%></p>
   </div>
   <div class="row" style="margin: 10px">
-    <h4>活动图片</h4>
-    <% @photos.each do |photo|%>
+    <h4>活动图片:</h4>
+    <% @event.photos.each do |photo|%>
       <div class="col-md-2" style="padding:5px">
         <%= image_tag photo.avatar_url(:medium), :class => 'img-thumbnail', size:"118x118"%>
       </div>

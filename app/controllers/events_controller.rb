@@ -24,8 +24,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    photo_ids = @event.photo_ids
-    @photos = Photo.where(id: @event.photo_ids) rescue []
   end
 
   def update
@@ -43,7 +41,6 @@ class EventsController < ApplicationController
   end
 
   def uploader
-    @photo = @event.photos.build
   end
 
   private

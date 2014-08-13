@@ -37,7 +37,15 @@
     <p id="formdata">XHR2's FormData is not supported</p>
     <p id="progress">XHR2's upload progress isn't supported</p>
     <p>上传进度： <progress id="uploadprogress" min="0" max="100" value="0" style="width: 90%">0</progress></p>
-    <p>Drag an image from your desktop on to the drop zone above to see the browser both render the preview, but also upload automatically to this server.</p>
+    <p>请将图像从您的桌面拖至上传区域，图像将自动上传到服务器</p>
+    <div class="row" style="margin: 10px">
+      <h4>已上传图片</h4>
+      <% @event.photos.each do |photo|%>
+        <div class="col-md-2" style="padding:5px">
+          <%= image_tag photo.avatar_url(:medium), :class => 'img-thumbnail', size:"118x118"%>
+        </div>
+      <% end -%>
+    </div>
   </div>
 </div>
 <script>
