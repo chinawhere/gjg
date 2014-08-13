@@ -1,11 +1,12 @@
-<div class="row" style="padding:10px">
+<div class="row" style="margin-left:10px">
   <h3 style="border-bottom: 1px solid #ccc"><%= @event.name%></h3>
-  <% if @event.user == @current_user%>
-    <p class="pull-right" style="margin-top:-30px">
+  <p class="pull-right" style="margin-top:-30px">
+    <%= link_to '活动图片', photos_event_path(@event), class: 'fa fa-photo'%>
+    <% if @event.user == @current_user%>
       <%= link_to '编辑', edit_event_path(@event), class: 'fa fa-pencil'%>
       <%= link_to '上传图片', uploader_event_path(@event), class: 'fa fa-upload'%>
-    </p>
-  <% end -%>
+    <% end -%>
+  </p>
   <div class="row" style="margin-top: 15px">
     <div class="col-md-2"><%= image_tag @event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></div>
     <div class="col-md-6">

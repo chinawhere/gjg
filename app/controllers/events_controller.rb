@@ -1,7 +1,7 @@
 #encoding: utf-8
 class EventsController < ApplicationController
-  before_filter :require_login, except: [:index, :show]
-  before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader]
+  before_filter :require_login, except: [:index, :show, :photos]
+  before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader, :photos]
   layout 'home'
   def index
     @events = Event.paginate(page: params[:page] || 1, per_page: params[:per_page] || 2)
@@ -41,6 +41,9 @@ class EventsController < ApplicationController
   end
 
   def uploader
+  end
+
+  def photos
   end
 
   private
