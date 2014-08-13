@@ -3,5 +3,7 @@ class HomeController < ApplicationController
   before_filter :require_login
   def index
     @events = @current_user.events.paginate(page: params[:page] || 1, per_page: params[:per_page] || 2)
+    photo_ids = @events.map(&:photos_path).compact.join(',').split(',') rescue []
+    @photos = Photo.where(id: photo_ids)
   end
 end

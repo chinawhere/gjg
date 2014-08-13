@@ -4,7 +4,10 @@ class EventsController < ApplicationController
   before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader]
   layout 'home'
   def index
-    @events = Event.all
+    @events = Event.paginate(page: params[:page] || 1, per_page: params[:per_page] || 2)
+    photo_ids = @events.map(&:photos_path).compact.join(',').split(',') rescue []
+    @photos = Photo.where(id: photo_ids)
+
   end
 
   def new
@@ -21,6 +24,8 @@ class EventsController < ApplicationController
   end
 
   def show
+    photo_ids = @event.photo_ids
+    @photos = Photo.where(id: @event.photo_ids) rescue []
   end
 
   def update

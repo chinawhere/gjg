@@ -18,11 +18,11 @@ class EventLogoUploader < CarrierWave::Uploader::Base
   # end
 
   version :lager do
-    process :resize_to_fit => [300, 300]
+    process :resize_to_fill => [300, 300]
   end
 
   version :medium do
-    process resize_to_fit: [118, 118]
+    process resize_to_fill: [118, 118]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

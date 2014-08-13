@@ -19,16 +19,16 @@ class UserLogoUploader < CarrierWave::Uploader::Base
   end
 
   version :lager do
-    process :resize_to_fit => [180, 200]
+    process :resize_to_fill => [180, 200]
   end
 
 
   version :medium do
-    process resize_to_fit: [90, 100]
+    process resize_to_fill: [90, 100]
   end
 
   version :feed do
-    process resize_to_fit: [45, 50]
+    process resize_to_fill: [45, 50]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
