@@ -14,9 +14,8 @@ class Event < ActiveRecord::Base
     self.photos_path.split(',') rescue []
   end
 
-  def recommend_photos photos
-    photo_ids = self.photo_ids
-    return [] if photo_ids.blank?
-    photos.select{|p| photo_ids.include?(p.id)} rescue []
+  def display_fee
+    Event::FEE_TYPE[self.fee_type]
   end
+
 end

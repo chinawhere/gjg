@@ -2,7 +2,14 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title"><%= link_to event.name, event_path(event) %></h3>
+      <% if event.user == @current_user%>
+        <p class="pull-right" style="margin-top:-20px">
+          <%= link_to '编辑', edit_event_path(event), class: 'fa fa-pencil'%>
+          <%= link_to '上传图片', uploader_event_path(event), class: 'fa fa-upload'%>
+        </p>
+      <% end -%>
     </div>
+
     <ul class="list-group">
       <li class="list-group-item">
         <div class="row">
