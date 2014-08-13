@@ -18,11 +18,11 @@ class PhotoAvatarUploader < CarrierWave::Uploader::Base
   # end
 
   version :lager do
-    process resize_to_fit: [600, '']
+    process resize_to_fit: [600, 600]
   end
 
   version :medium do
-    process resize_to_fit: [118, 118]
+    process resize_to_fill: [118, 118]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
