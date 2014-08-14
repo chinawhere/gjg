@@ -3,4 +3,8 @@ class WelcomeController < ApplicationController
   def index
   	@events = Event.limit(10)
   end
+
+  def test
+  	render :layout => false
+  end
 end

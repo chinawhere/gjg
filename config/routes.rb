@@ -2,6 +2,7 @@
 ChinaWhere::Application.routes.draw do
 
   root to: 'welcome#index'
+  get 'test', to: 'welcome#test', as: :test
   scope controller: :sessions do
     get :login
     get :register
