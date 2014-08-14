@@ -26,6 +26,8 @@ ChinaWhere::Application.routes.draw do
     member do
       get :uploader
       get :photos
+      get :apply_event
+      get :not_apply_event
     end
   end
   resources :photos, only: [:create, :destroy]

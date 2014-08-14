@@ -46,6 +46,17 @@ class EventsController < ApplicationController
   def photos
   end
 
+  def apply_event
+    Apply.where(:user_id => @current_user.id,:event_id => params[:id]).first_or_create
+    redirect_to :back
+  end
+
+  def not_apply_event
+    apply = Apply.where(:user_id => @current_user.id,:event_id => params[:id]).first
+    apply.delete if apply.present?
+    redirect_to :back
+  end
+
   private
 
   def load_event
