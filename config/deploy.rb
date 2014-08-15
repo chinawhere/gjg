@@ -29,6 +29,9 @@ task :before_clone do
   system "git commit -m '#{Time.now.to_s}'"
   system "git push origin #{branch}"
 end
+task :clean_assets do 
+  queue! %[RAILS_ENV="#{environment}" rake assets:clean]
+end
 
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
@@ -69,7 +72,6 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    invoke :'rails:assets_clean'
     invoke :'rails:assets_precompile'
 
     to :launch do
