@@ -78,7 +78,7 @@ group :development do
   gem "net-ssh", "~> 2.7.0"
 end
 
-gem 'capistrano-rbenv'
+# gem 'capistrano-rbenv'
 gem 'activeadmin'
 
 gem 'mina'
