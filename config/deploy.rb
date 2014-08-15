@@ -68,11 +68,11 @@ task :deploy => :environment do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
     invoke :before_clone
+    invoke :clean_assets
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    invoke :clean_assets
     invoke :'rails:assets_precompile'
 
     to :launch do
