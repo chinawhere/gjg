@@ -17,7 +17,7 @@
 /unicorn
 /.DS_Store
 /public/uploads
-public/assets
+# public/assets
 .gitignore
 /public/upload
 .DS_Store
