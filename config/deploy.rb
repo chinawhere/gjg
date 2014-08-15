@@ -29,8 +29,8 @@ task :before_clone do
   system "git commit -m '#{Time.now.to_s}'"
   system "git push origin #{branch}"
 end
-task :clean_assets do 
-  queue! %[RAILS_ENV=production rake assets:clean]
+task :clean_assets do
+  queue! "RAILS_ENV=production bundle exec rake assets:clean"
 end
 
 # Optional settings:
