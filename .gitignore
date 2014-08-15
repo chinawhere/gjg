@@ -22,5 +22,4 @@ public/assets
 .DS_Store
 /test
 .rvmrc
-Gemfile.lock
 *.rdb
