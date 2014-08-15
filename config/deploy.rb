@@ -30,6 +30,11 @@ task :before_clone do
   system "git push origin #{branch}"
 end
 
+desc "run db:seed"
+task :db_seed do
+  queue 'bundle exec rake db:seed'
+end
+
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
 #   set :port, '30000'     # SSH port number.

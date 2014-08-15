@@ -36,9 +36,11 @@ gem 'will_paginate'
 #时间
 # gem 'bootstrap-datetimepicker-rails'
 
-group :development, :test do
-  gem 'sqlite3'
-end
+gem 'sqlite3'
+
+# group :development, :test do
+#   gem 'sqlite3'
+# end
 
 group :production do
   gem 'pg'
