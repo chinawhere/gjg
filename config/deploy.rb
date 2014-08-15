@@ -30,7 +30,7 @@ task :before_clone do
   system "git push origin #{branch}"
 end
 task :clean_assets do 
-  queue! %[RAILS_ENV="#{environment}" rake assets:clean]
+  queue! %[RAILS_ENV=production rake assets:clean]
 end
 
 # Optional settings:
