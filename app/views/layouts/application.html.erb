@@ -6,15 +6,13 @@
   <%= stylesheet_link_tag    "ui/scaffolds", "ui/base" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "ui/ui_header" %>
+  <%= yield :header %>
   <%= csrf_meta_tags %>
 </head>
 <body>
     <%= render '/layouts/header' %>
     <div class="container" style="margin-top:90px">
-      <div class="row">
-        <div class="col-md-10 col-md-offset-1"><%= yield %></div>
-      </div>
-
+      <%= yield %>
     </div> <!-- /container -->
 
     <div id="footer">
@@ -22,6 +20,9 @@
         <p class="text-muted">Place sticky footer content here.</p>
       </div>
     </div>
+    <script type="text/javascript">
+      $('#best_topics').coinslider({width:750, height: 396, navigation: true, hoverPause: true, spw: 0, sph: 0});
+    </script>
 </body>
 
 </html>

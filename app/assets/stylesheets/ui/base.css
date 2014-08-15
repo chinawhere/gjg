@@ -12,3 +12,8 @@
   padding: 2px 5px;
   text-decoration: none;
 }
+
+/*remove padding*/
+.remove-padding-for-bootstrap{
+	padding: 0;
+}

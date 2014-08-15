@@ -1,22 +1,54 @@
-<div class="jumbotron">
-  <h3>中国很大，我心无涯</h3>
-  <p>你是否厌倦了无聊的工作，想组织一次野外探险？</p>
-  <p>你是否好久没有运动，想约几个人一块去打球，但是找不到合适的人？</p>
-  <p>你是否想买一件心仪很久的商品，但是需要其他人一块购买，有更多的优惠折扣？</p>
-  <p>还等什么，赶快发起一次专属你的活动吧，let's go !</p>
-  <p>
-    <%= link_to "新建活动", new_event_path, {:class => "btn btn-primary btn-lg active"}%>
-  </p>
+<% content_for :header do %>
+<%= javascript_include_tag "lib/coin-slider" %>
+<% end %>
+<div class="row ">
+  <div class="col-md-8">
+    <div id = "best_topics" class="inner jumbotron remove-padding-for-bootstrap">
+      
+      <a href="http://www.minininjas.com/" target="_blank">
+        <img src="http://m.tuniucdn.com/filebroker/cdn/olb/19/e7/19e79b445487a6f6ec443632095ab40a_w800_h0_c0_t0.jpg" alt="Mini Ninjas" />
+        <span>
+        <b>组团去爬山</b><br />
+        Your quest to defeat the Evil Samurai Warlord has begun. Control the powers of nature, possess creatures, use your
+        furious Ninja skills to free your Ninja friends.
+        叫上伙伴,带上装备,我们球场见喽!
+        </span>
+      </a>
+      
+      <a href="http://www.princeofpersiagame.com/" target="_blank">
+        <img src="http://i3.hoopchina.com.cn/blogfile/201210/22/135087353028533.jpg" alt="Price of Persia" />
+        <span>
+        <b>一起去打球吧</b><br />
+        Your quest to defeat the Evil Samurai Warlord has begun. Control the powers of nature, possess creatures, use your
+        furious Ninja skills to free your Ninja friends.
+        叫上伙伴,带上装备,我们球场见喽!
+        </span>
+      </a>
+      
+    </div>
+  </div>
+  <div class="col-md-4 jumbotron">
+    <div class="inner remove-padding-for-bootstrap">
+      <h3>中国很大，我心无涯</h3>
+      <p>你是否厌倦了无聊的工作，想组织一次野外探险？</p>
+      <p>你是否好久没有运动，想约几个人一块去打球，但是找不到合适的人？</p>
+      <p>你是否想买一件心仪很久的商品，但是需要其他人一块购买，有更多的优惠折扣？</p>
+      <p>还等什么，赶快发起一次专属你的活动吧，let's go !</p>
+      <p>
+      <%= link_to "新建活动", new_event_path, {:class => "btn btn-primary btn-lg active"}%>
+      </p>
+      
+    </div>
+  </div>
 </div>
-
 <div class="row">
   <% @events.each do |event| %>
   <div class="col-sm-6 col-md-4 col-lg-3 ">
     <div class="thumbnail">
       <a class="bg-warning"><%= image_tag event.logo_url(:medium), :class => 'img-circle' %></a>
       <div class="caption">
-        <h4> 
-          <%= link_to truncate(event.name,:length => 12), event_path(event), {:title => event.name}%>
+        <h4>
+        <%= link_to truncate(event.name,:length => 12), event_path(event), {:title => event.name}%>
         </h4>
         <p class="bg-primary">时间：<%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
         <p>地点：<%= event.address %></p>
