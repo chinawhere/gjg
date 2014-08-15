@@ -1,6 +1,5 @@
 #source 'https://rubygems.org'
-# source 'http://ruby.taobao.org'
-source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
 if RUBY_VERSION =~ /1.9/
 
@@ -81,4 +80,6 @@ end
 
 gem 'capistrano-rbenv'
 gem 'activeadmin'
+
+gem 'mina'
 

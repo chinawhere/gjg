@@ -1,43 +1,85 @@
-require 'bundler/capistrano'
-# require "capistrano-rbenv"
-set :scm, :git
-default_run_options[:pty] = true
+require 'mina/puma'
+require 'mina/bundler'
+require 'mina/rails'
+require 'mina/git'
+require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
+# require 'mina/rvm'    # for rvm support. (http://rvm.io)
 
-set :application, "china_where"
+# Basic settings:
+#   domain       - The hostname to SSH to.
+#   deploy_to    - Path to deploy into.
+#   repository   - Git repo to clone from. (needed by mina/git)
+#   branch       - Branch name to deploy. (needed by mina/git)
+
+# set :domain, 'foobar.com'
+set :user, 'developer'
+set :domain, 'starroom_main'
+# set :domain, 'ubuntu'
+set :deploy_to,  '/home/developer/chinawhere'
 set :repository, 'git@github.com:chinawhere/chinawhere.git'
-set :deploy_to, "/home/developer/#{application}"
-set :keep_releases, 3
+set :branch, 'master'
 
-# set :rbenv_ruby_version, "2.0.0-p451"
+# Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
+# They will be linked in the 'deploy:link_shared_paths' step.
+set :shared_paths, ['config/database.yml', 'log']
 
-set :use_sudo, false
+desc "Push repository to the remote server"
+task :before_clone do
+  system "git push github #{branch}"
+end
 
-set :user, "developer"
+# Optional settings:
+#   set :user, 'foobar'    # Username in the server to SSH to.
+#   set :port, '30000'     # SSH port number.
 
-server "106.187.91.138", :web, :app, :db, primary: true
+# This task is the environment that is loaded for most commands, such as
+# `mina deploy` or `mina rake`.
+task :environment do
+  # If you're using rbenv, use this to load the rbenv environment.
+  # Be sure to commit your .rbenv-version to your repository.
+  invoke :'rbenv:load'
 
-namespace :deploy do
-  before "deploy", "deploy:check_revision"
-  after "deploy", "deploy:restart_unicorn"
-  after "deploy:restart_unicorn", "deploy:migrate_db"
-  after 'deploy:restart', 'deploy:cleanup'
-  task :restart_unicorn, roles: :web do
-    puts "stop the running unicorn process"
-    run "cd #{current_path} && bundle exec rake unicorn:stop"
-    puts "run the new unicorn process"
-    run "cd #{current_path} && bundle exec rake unicorn:run"
-  end
-  task :migrate_db, roles: :web do
-    run "cd #{current_path} && bundle exec rake db:migrate"
-  end
-  desc "Make sure local git is in sync with remote."
-  task :check_revision, roles: :web do
-    remote = `git remote`.strip
-    unless `git rev-parse HEAD` == `git rev-parse #{remote}/master`
-      puts "WARNING: HEAD is not the same as #{remote}/master"
-      puts "Run `git push` to sync changes."
-      exit
+  # For those using RVM, use this to load an RVM version@gemset.
+  # invoke :'rvm:use[ruby-1.9.3-p125@default]'
+end
+
+# Put any custom mkdir's in here for when `mina setup` is ran.
+# For Rails apps, we'll make some of the shared paths that are shared between
+# all releases.
+task :setup => :environment do
+  queue! %[mkdir -p "#{deploy_to}/shared/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/log"]
+
+  queue! %[mkdir -p "#{deploy_to}/shared/config"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/config"]
+
+  queue! %[touch "#{deploy_to}/shared/config/database.yml"]
+  queue  %[echo "-----> Be sure to edit 'shared/config/database.yml'."]
+end
+
+desc "Deploys the current version to the server."
+task :deploy => :environment do
+  deploy do
+    # Put things that will set up an empty directory into a fully set-up
+    # instance of your project.
+    invoke :before_clone
+    invoke :'git:clone'
+    invoke :'deploy:link_shared_paths'
+    invoke :'bundle:install'
+    invoke :'rails:db_migrate'
+    invoke :'rails:assets_precompile'
+
+    to :launch do
+      # queue "touch #{deploy_to}/tmp/restart.txt"
+      queue! "RAILS_ENV=production bundle exec rake restart_puma"
     end
-    run "ruby -v"
   end
 end
+
+# For help in making your deploy script, see the Mina documentation:
+#
+#  - http://nadarei.co/mina
+#  - http://nadarei.co/mina/tasks
+#  - http://nadarei.co/mina/settings
+#  - http://nadarei.co/mina/helpers
+

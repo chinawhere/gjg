@@ -1,27 +1,27 @@
 <% content_for :header do %>
 <%= javascript_include_tag "lib/coin-slider" %>
 <% end %>
+<script type="text/javascript">
+$(document).ready(function(){
+$('#best_topics').coinslider({width:750, height: 396, navigation: false, hoverPause: true, spw: 1, sph: 1});
+})
+</script>
 <div class="row ">
   <div class="col-md-8">
     <div id = "best_topics" class="inner jumbotron remove-padding-for-bootstrap">
-      
-      <a href="http://www.minininjas.com/" target="_blank">
-        <img src="http://m.tuniucdn.com/filebroker/cdn/olb/19/e7/19e79b445487a6f6ec443632095ab40a_w800_h0_c0_t0.jpg" alt="Mini Ninjas" />
+      <a href="http://www.baidu.com/" target="_blank">
+        <img src="<%= asset_path 'home/cb8065380cd791232c740ed1ad345982b3b780fb.jpg' %>" alt="旅游" />
         <span>
-        <b>组团去爬山</b><br />
-        Your quest to defeat the Evil Samurai Warlord has begun. Control the powers of nature, possess creatures, use your
-        furious Ninja skills to free your Ninja friends.
-        叫上伙伴,带上装备,我们球场见喽!
-        </span>
+        <b>我们去爬山吧</b><br />
+        爱旅行是一种病，而且得了就治不好,那..就让我们同病相怜吧^_^,9月3日,泰山三日游,加入我们!
+        </span> 
       </a>
-      
       <a href="http://www.princeofpersiagame.com/" target="_blank">
-        <img src="http://i3.hoopchina.com.cn/blogfile/201210/22/135087353028533.jpg" alt="Price of Persia" />
+        <img src="<%= asset_path 'home/135087353028533.jpg' %>" alt="运动" /> 
         <span>
         <b>一起去打球吧</b><br />
-        Your quest to defeat the Evil Samurai Warlord has begun. Control the powers of nature, possess creatures, use your
-        furious Ninja skills to free your Ninja friends.
-        叫上伙伴,带上装备,我们球场见喽!
+        打篮球可以认识许多志同道合的人，我们在一起过招，在一起切磋球技，这是很开心的事情。
+        如果有人愿意和我一起玩篮球，我会非常开心，欢迎加入我们!
         </span>
       </a>
       
