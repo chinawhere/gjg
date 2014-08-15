@@ -29,9 +29,6 @@ task :before_clone do
   system "git commit -m '#{Time.now.to_s}'"
   system "git push origin #{branch}"
 end
-task :clean_assets do
-  queue! "RAILS_ENV=production bundle exec rake assets:clean"
-end
 
 # Optional settings:
 #   set :user, 'foobar'    # Username in the server to SSH to.
@@ -68,11 +65,11 @@ task :deploy => :environment do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
     invoke :before_clone
-    invoke :clean_assets
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
+    queue! "RAILS_ENV=production bundle exec rake assets:clean"
     invoke :'rails:assets_precompile'
 
     to :launch do
