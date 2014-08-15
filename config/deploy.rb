@@ -1,4 +1,4 @@
-require 'mina/puma'
+# require 'mina/puma'
 require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'

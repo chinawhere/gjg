@@ -57,10 +57,10 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: china_where_production
+  database: chinawhere_production
   pool: 5
   username: chinawhere
-  password: lzj19880614
+  password: chinawhere
   # adapter: sqlite3
   # database: db/development.sqlite3
   # pool: 5

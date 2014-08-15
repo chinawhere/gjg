@@ -72,7 +72,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
-gem 'unicorn'
+# gem 'unicorn'
 group :development do
   gem 'capistrano', "~> 2.11.0"
   gem "net-ssh", "~> 2.7.0"
@@ -82,4 +82,5 @@ gem 'capistrano-rbenv'
 gem 'activeadmin'
 
 gem 'mina'
+gem 'puma'
 
