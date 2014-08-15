@@ -1,11 +1,15 @@
 <div class="row" style="margin-left:10px">
   <h3 style="border-bottom: 1px solid #ccc"><%= @event.name%></h3>
   <p class="pull-right" style="margin-top:-30px">
-    <%= link_to '活动图片', photos_event_path(@event), class: 'fa fa-photo'%>
-    <% if @event.user == @current_user%>
+    <% if @current_user and Apply.where(:user_id => @current_user, :event_id => @event.id).present? %>
+      <%= link_to '退出我们', not_apply_event_event_path(@event), class: 'btn btn-success',:confirm => "您确定要退出我们吗？"%>
+    <% elsif @event.user == @current_user %>
       <%= link_to '编辑', edit_event_path(@event), class: 'fa fa-pencil'%>
       <%= link_to '上传图片', uploader_event_path(@event), class: 'fa fa-upload'%>
-    <% end -%>
+    <% else %>  
+      <%= link_to '加入我们', apply_event_event_path(@event), class: 'btn btn-success'%>         
+    <%end%>
+    <%= link_to '活动图片', photos_event_path(@event), class: 'fa fa-photo'%>
   </p>
   <div class="row" style="margin-top: 15px">
     <div class="col-md-2"><%= image_tag @event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></div>

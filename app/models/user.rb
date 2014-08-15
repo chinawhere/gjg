@@ -9,5 +9,7 @@ class User < ActiveRecord::Base
   validates :password, presence: {message: '输入不能为空'}, length: { minimum: 2, maximum: 16, message: '请设置2-16位英文字母、数字、符号密码' }, confirmation: {message: '密码输入不一致'}
 
   has_many :events
+  has_many :applys
+  has_many :apply_events, :through => :applys, :source => :event
   mount_uploader :logo, UserLogoUploader
 end
