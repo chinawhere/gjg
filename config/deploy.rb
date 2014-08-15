@@ -25,6 +25,8 @@ set :shared_paths, ['config/database.yml', 'log']
 
 desc "Push repository to the remote server"
 task :before_clone do
+  system "git add . -A"
+  system "git commit -m '#{Time.now.to_s}'"
   system "git push origin #{branch}"
 end
 

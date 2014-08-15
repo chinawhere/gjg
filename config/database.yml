@@ -61,6 +61,8 @@ production:
   pool: 5
   username: chinawhere
   password: chinawhere
+  host: localhost
+  port: 5432
   # adapter: sqlite3
   # database: db/development.sqlite3
   # pool: 5
