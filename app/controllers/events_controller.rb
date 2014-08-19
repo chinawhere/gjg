@@ -44,6 +44,12 @@ class EventsController < ApplicationController
   end
 
   def photos
+    @photos = @event.photos
+  end
+
+  #活动日历
+  def calendar
+   render json: Event.events_calendar.to_json
   end
 
   def apply_event

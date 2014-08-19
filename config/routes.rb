@@ -29,6 +29,9 @@ ChinaWhere::Application.routes.draw do
       get :apply_event
       get :not_apply_event
     end
+    collection do
+      get :calendar
+    end
   end
   resources :photos, only: [:create, :destroy]
 

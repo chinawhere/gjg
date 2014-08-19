@@ -6,7 +6,8 @@
 }
 #calendar2 .calendar {
 	width:260px;
-	overflow: hidden; 
+	overflow: hidden;
+	margin-left: -10px;
 	_zoom: 1;
 }
 #calendar2 .calendar .nowDate span {
@@ -157,7 +158,7 @@
 }
 
 .calendar_tip {
-	padding:5px;
+	padding-left:2px;
 	border: 1px solid #ccc;
 	background-color: #fff;
 	border-radius: 5px; 

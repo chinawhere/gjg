@@ -1,14 +1,4 @@
-<style type="text/css">
-  a.a_left_btn{
-  }
-  a.a_left_btn.hover{
-    background-color: #ccc; 
-  }
-  a.a_right_btn{
-  }
-  a.a_left_btn.hover{
-  }
-</style>
+
 <div class="row" style="margin-left:10px">
   <h3 style="border-bottom: 1px solid #ccc"><%= link_to @event.name, event_path(@event), class: 'navbar-link'%>  图片</h3>
   <p class="pull-right" style="margin-top:-30px">
@@ -17,11 +7,11 @@
       <%= link_to '上传图片', uploader_event_path(@event), class: 'fa fa-upload'%>
     <% end -%>
   </p>
-  <% photo = @event.photos.first %>
+  <% photo = @photos[5] %>
   <div class="row">
     <div class="col-md-1">
       <a href="" class="pull-right" id="a_left_btn">
-        <img src="/images/left_btn_1.png" width="20" height="20"/>
+        <img src="/assets/left_btn_1.png" width="20" height="20"/>
       </a>
     </div>
     <div id="photo_content" class="col-md-10" style="text-align: center;">
@@ -29,7 +19,7 @@
     </div>
     <div class="col-md-1">
       <a href="" class="pull-left" id="a_right_btn">
-        <img src="/images/right_btn_1.png" width="20" height="20" class="pull-left"/>
+        <img src="/assets/right_btn_1.png" width="20" height="20" class="pull-left"/>
       </a>
     </div>
   </div>
@@ -37,11 +27,10 @@
 </div>
 
 <script>
-  // 检查浏览器是否支持拖放上传。
-    var photo_content = document.getElementById('photo_content');
-    console.log(photo_content);
-    var height = photo_content.style.height;
-    console.log(photo_content.style);
-    console.log(photo_content.style.height);
-
+  var photo_content = document.getElementById('photo_content');
+  var height = photo_content.offsetHeight;
+  var a_left_btn = document.getElementById('a_left_btn');
+  var a_right_btn = document.getElementById('a_right_btn');
+  if (a_left_btn) a_left_btn.style.marginTop = (height/2) + 'px';
+  if (a_right_btn) a_right_btn.style.marginTop = (height/2) + 'px';
 </script>

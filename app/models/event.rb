@@ -18,4 +18,20 @@ class Event < ActiveRecord::Base
     Event::FEE_TYPE[self.fee_type]
   end
 
+  class << self
+
+    #活动日历
+    def events_calendar
+      ret = []
+      Event.all.each do |event|
+        #最大活动间隔10天
+        start_date = [event.start_at.to_date, event.end_at.to_date - 20.days].max
+        start_date.upto(event.end_at.to_date) do |x|
+          ret << {date: x.strftime("%Y-%m-%d"), title: event.name, url: "#{$host}/events/#{event.id}"}
+        end
+      end
+      ret.group_by{|x| x.values.first}.map{|k, v| {date: k, title: v.flat_map{|x| x[:title]}, url: v.flat_map{|x| x[:url]}}}
+    end
+  end
+
 end

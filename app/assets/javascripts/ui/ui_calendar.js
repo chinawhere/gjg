@@ -14,7 +14,7 @@ $(function(){
       });
       $.ajax({
         type: "get",
-        url: "calendar.json",
+        url: "/events/calendar.json",
         dataType: "json",
         success: function(data){
           var activeDays = [],
@@ -49,13 +49,13 @@ $(function(){
                             links += "<a href="+activeUrl[index][k].toString()+">"+activeTitle[index][k].toString() +"</br>"+"</a>";
                         }
                         $oTip.html(links).css({
-                            top: pos.top - 10,
-                            left: pos.left + 20
+                            top: pos.top - 65,
+                            left: pos.left - 110
                         }).show();   
                     }else{
                       $oTip.html("<a href="+activeUrl[index]+">"+activeTitle[index]+"</a>").css({
-                        top: pos.top - 10,
-                        left: pos.left + 20
+                        top: pos.top - 65,
+                        left: pos.left - 110
                       }).show();
                     }
                   }
