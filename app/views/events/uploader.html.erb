@@ -130,21 +130,20 @@
         }
       }
     }
-
     function readfiles(files) {
-        debugger;
-        var formData = tests.formdata ? new FormData() : null;
-        var event_id = <%= @event.id %>;
-        var user_id = <%= @current_user.id %>;
-        formData.append('photo[event_id]', event_id);
-        formData.append('user_id', user_id);
-        for (var i = 0; i < files.length; i++){
-          if (tests.formdata) formData.append('photo[avatar]', files[i]);
-          previewfile(files[i]);
-        }
+      debugger;
+      var formData = tests.formdata ? new FormData() : null;
+      var event_id = <%= @event.id %>;
+      var user_id = <%= @current_user.id %>;
+      formData.append('photo[event_id]', event_id);
+      formData.append('user_id', user_id);
+      for (var i = 0; i < files.length; i++){
+        if (tests.formdata) formData.append('photo[avatar]', files[i]);
+        previewfile(files[i]);
         // now post a new XHR request
         if (tests.formdata) {
-          var xhr = new XMLHttpRequest();
+          xhr = new XMLHttpRequest();
+          // xhr.onreadystatechange = callback();
           xhr.open('POST', '/photos');
           xhr.onload = function() {
             progress.value = progress.innerHTML = 100;
@@ -160,6 +159,7 @@
           }
           xhr.send(formData)
         }
+      }
     }
 
     if (tests.dnd) {

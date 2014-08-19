@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
     photo = Photo.new(params[:photo])
     photo.name = params[:photo][:avatar].original_filename
     if photo.save
-      render json: {success: true}.to_json
+      render json: {success: true, thumbnail_url: photo.avatar_url}.to_json
     else
       render json: {success: false}.to_json
     end
