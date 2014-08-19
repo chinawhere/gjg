@@ -7,7 +7,6 @@
       <%= link_to '上传图片', uploader_event_path(@event), class: 'fa fa-upload'%>
     <% end -%>
   </p>
-  <% photo = @photos[5] %>
   <div class="row">
     <div class="col-md-1">
       <a href="" class="pull-right" id="a_left_btn">
@@ -15,7 +14,7 @@
       </a>
     </div>
     <div id="photo_content" class="col-md-10" style="text-align: center;">
-      <%= image_tag photo.avatar_url(:lager)%>
+      <%= image_tag @photo.avatar_url(:lager)%>
     </div>
     <div class="col-md-1">
       <a href="" class="pull-left" id="a_right_btn">
@@ -23,6 +22,7 @@
       </a>
     </div>
   </div>
+  <%= link_to '删除', photo_path(@photo), method: :delete, confirm: '你确定要删除吗？'%>
 
 </div>
 

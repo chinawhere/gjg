@@ -65,6 +65,7 @@
     acceptedTypes = {
       'image/png': true,
       'image/jpeg': true,
+      'image/jpg': true,
       'image/gif': true
     },
     progress = document.getElementById('uploadprogress'),
@@ -141,7 +142,6 @@
           if (tests.formdata) formData.append('photo[avatar]', files[i]);
           previewfile(files[i]);
         }
-
         // now post a new XHR request
         if (tests.formdata) {
           var xhr = new XMLHttpRequest();

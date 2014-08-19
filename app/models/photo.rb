@@ -5,7 +5,7 @@ class Photo < ActiveRecord::Base
   
   belongs_to :event
   after_save :set_event_photo_path
-
+  before_destroy :add_event_photos
   private
 
   def set_event_photo_path
@@ -17,6 +17,13 @@ class Photo < ActiveRecord::Base
       photo_array << self.id
       event.update_attributes(photos_path: photo_array.join(','))
     end
+  end
+
+  def add_event_photos
+    event = self.event
+    photo_array = event.photos_path.split(',') rescue []
+    photo_array -= [self.id.to_s]
+    event.update_attributes(photos_path: photo_array.join(','))
   end
   
 end

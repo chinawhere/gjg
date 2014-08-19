@@ -1,5 +1,6 @@
 #coding: utf-8
 class PhotosController < ApplicationController
+
   def create
     session[:user_id] = params[:user_id]
     photo = Photo.new(params[:photo])
@@ -14,9 +15,7 @@ class PhotosController < ApplicationController
   def destroy  
     @photo = Photo.find(params[:id])  
     @photo.destroy  
-    respond_to do |format|  
-      format.html { redirect_to event_photos_url(@album.id) }  
-      format.json { head :no_content }  
-    end  
+    redirect_to events_path
   end
+
 end

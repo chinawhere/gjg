@@ -44,7 +44,7 @@ class EventsController < ApplicationController
   end
 
   def photos
-    @photos = @event.photos
+    @photo = @event.photos.first
   end
 
   #活动日历
