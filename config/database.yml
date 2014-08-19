@@ -55,6 +55,14 @@ test:
   timeout: 5000
 
 production:
+  adapter: postgresql
+  encoding: unicode
+  database: chinawhere_production
+  pool: 5
+  username: postgres
+  password: postgres
+  host: localhost
+  port: 5432
   # adapter: postgresql
   # encoding: unicode
   # database: chinawhere_production

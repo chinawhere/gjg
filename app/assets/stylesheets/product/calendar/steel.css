@@ -2,16 +2,16 @@
 background-color: #fff;
 }
 .DynarchCalendar-topBar {
-background: url("/img/brushed-steel.jpg") no-repeat 50% 0;
+background: url("/assets/img/brushed-steel.jpg") no-repeat 50% 0;
 }
 .DynarchCalendar-bottomBar {
-background: url("/img/brushed-steel.jpg") no-repeat 50% 50%;
+background: url("/assets/img/brushed-steel.jpg") no-repeat 50% 50%;
 }
 .DynarchCalendar-hover-title,
 .DynarchCalendar-hover-navBtn,
 .DynarchCalendar-hover-bottomBar-today,
 .DynarchCalendar-menu table td div.DynarchCalendar-hover-navBtn {
-background: #dde url("/img/coolbg.png") repeat-x 0 50%;
+background: #dde url("/assets/img/coolbg.png") repeat-x 0 50%;
 }
 .DynarchCalendar-hover-title div,
 .DynarchCalendar-hover-navBtn div { background-color: transparent; }
@@ -19,21 +19,21 @@ background: #dde url("/img/coolbg.png") repeat-x 0 50%;
 .DynarchCalendar-pressed-navBtn,
 .DynarchCalendar-pressed-bottomBar-today,
 .DynarchCalendar-menu table td div.DynarchCalendar-pressed-navBtn {
-background: #445 url("/img/coolbg.png") repeat-x 0 50%;
+background: #445 url("/assets/img/coolbg.png") repeat-x 0 50%;
 }
 .DynarchCalendar-pressed-title div,
 .DynarchCalendar-pressed-navBtn div { background-color: transparent; }
 .DynarchCalendar-hover-week,
 .DynarchCalendar-focused .DynarchCalendar-hover-week {
-background: #ddd url("/img/coolbg.png") repeat-x 0 50%;
+background: #ddd url("/assets/img/coolbg.png") repeat-x 0 50%;
 }
 .DynarchCalendar {
-background: url("/img/steel.jpg") no-repeat 50% 30px;
+background: url("/assets/img/steel.jpg") no-repeat 50% 30px;
 }
 .DynarchCalendar-day-selected {
 background-color: #1864fc;
 color: #fff !important;
-background-image: url("/img/coolbg.png");
+background-image: url("/assets/img/coolbg.png");
 background-position: 0 50%;
 background-repeat: repeat-x;
 }
@@ -42,5 +42,5 @@ background-color: #1864fc;
 color: #fff !important;
 }
 .DynarchCalendar-focused .DynarchCalendar-body {
-background: url("/img/shadow-b.png") repeat-x 0 0;
+background: url("/assets/img/shadow-b.png") repeat-x 0 0;
 } 

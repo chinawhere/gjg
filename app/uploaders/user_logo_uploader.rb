@@ -15,7 +15,7 @@ class UserLogoUploader < CarrierWave::Uploader::Base
   # Provide a default URL as a default if there hasn't been a file uploaded:
 
   def default_url
-    "/images/logos/user/" + [version_name,"logo.png"].compact.join('_')
+    "/assets/logos/user/" + [version_name,"logo.png"].compact.join('_')
   end
 
   version :lager do
