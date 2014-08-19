@@ -6,6 +6,21 @@ class Photo < ActiveRecord::Base
   belongs_to :event
   after_save :set_event_photo_path
   before_destroy :add_event_photos
+
+  def previous_photo
+    Photo.where(event_id: self.event_id).
+      where('id > ? ', self.id).
+      order('id ASC').
+      first
+  end
+
+  def next_photo
+    Photo.where(event_id: self.event_id).
+      where('id < ? ', self.id).
+      order('id DESC').
+      first
+  end
+
   private
 
   def set_event_photo_path
@@ -25,5 +40,6 @@ class Photo < ActiveRecord::Base
     photo_array -= [self.id.to_s]
     event.update_attributes(photos_path: photo_array.join(','))
   end
+
   
 end

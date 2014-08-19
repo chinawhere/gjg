@@ -44,7 +44,9 @@ class EventsController < ApplicationController
   end
 
   def photos
-    @photo = @event.photos.first
+    @photo = Photo.find(params[:p_id]) rescue @event.photos.first
+    @previous_photo = @photo.previous_photo
+    @next_photo = @photo.next_photo
   end
 
   #活动日历

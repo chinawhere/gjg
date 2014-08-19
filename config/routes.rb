@@ -33,7 +33,11 @@ ChinaWhere::Application.routes.draw do
       get :calendar
     end
   end
-  resources :photos, only: [:create, :destroy]
+  resources :photos, only: [:create, :destroy] do
+    member do
+      
+    end
+  end
 
   namespace :admin do
     root to: "sessions#index"

@@ -7,30 +7,36 @@
       <%= link_to '上传图片', uploader_event_path(@event), class: 'fa fa-upload'%>
     <% end -%>
   </p>
-  <div class="row">
+  <div class="row" style="padding:5px">
     <div class="col-md-1">
-      <a href="" class="pull-right" id="a_left_btn">
+      <a href="<%= photos_event_path(id: @event.id, p_id: @next_photo.id) if @next_photo.present? %>" class="pull-right" id="a_left_btn">
         <img src="/assets/left_btn_1.png" width="20" height="20"/>
       </a>
     </div>
     <div id="photo_content" class="col-md-10" style="text-align: center;">
       <%= image_tag @photo.avatar_url(:lager)%>
+      <div>
+        <%= link_to '删除', photo_path(@photo), method: :delete, confirm: '你确定要删除吗？'%> ｜
+        <%= link_to '推荐图片', photo_path(@photo), confirm: '你确定要推荐吗？'%>
+      </div>
     </div>
     <div class="col-md-1">
-      <a href="" class="pull-left" id="a_right_btn">
+      <a href="<%= photos_event_path(id: @event.id, p_id: @previous_photo.id) if @previous_photo.present? %>" class="pull-left" id="a_right_btn">
         <img src="/assets/right_btn_1.png" width="20" height="20" class="pull-left"/>
       </a>
     </div>
   </div>
-  <%= link_to '删除', photo_path(@photo), method: :delete, confirm: '你确定要删除吗？'%>
-
+  
 </div>
 
-<script>
-  var photo_content = document.getElementById('photo_content');
-  var height = photo_content.offsetHeight;
-  var a_left_btn = document.getElementById('a_left_btn');
-  var a_right_btn = document.getElementById('a_right_btn');
-  if (a_left_btn) a_left_btn.style.marginTop = (height/2) + 'px';
-  if (a_right_btn) a_right_btn.style.marginTop = (height/2) + 'px';
+<script type="text/javascript">
+  window.onload=function(){set_btn_style();}
+  function set_btn_style(){
+    var photo_content = document.getElementById('photo_content');
+    var height = photo_content.offsetHeight;
+    var a_left_btn = document.getElementById('a_left_btn');
+    var a_right_btn = document.getElementById('a_right_btn');
+    if (a_left_btn) a_left_btn.style.marginTop = (height/2) + 'px';
+    if (a_right_btn) a_right_btn.style.marginTop = (height/2) + 'px';
+  }
 </script>
