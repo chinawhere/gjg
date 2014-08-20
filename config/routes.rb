@@ -35,7 +35,8 @@ ChinaWhere::Application.routes.draw do
   end
   resources :photos, only: [:create, :destroy] do
     member do
-      
+      get :show_original
+      put :recommend
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140807023548) do
+ActiveRecord::Schema.define(:version => 20140820093011) do
 
   create_table "applies", :force => true do |t|
     t.integer  "user_id"
@@ -36,6 +36,24 @@ ActiveRecord::Schema.define(:version => 20140807023548) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "to_user_id"
+    t.integer  "reply_to_user_id"
+    t.integer  "reply_to_comment_id"
+    t.text     "content"
+    t.integer  "p_user_id"
+    t.integer  "p_comment_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "comments", ["commentable_id", "commentable_type"], :name => "commentable"
+  add_index "comments", ["p_comment_id"], :name => "index_comments_on_p_comment_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "events", :force => true do |t|
     t.integer  "user_id"

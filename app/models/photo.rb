@@ -21,6 +21,14 @@ class Photo < ActiveRecord::Base
       first
   end
 
+  def recommend_event_photos
+    event = self.event
+    photo_array = event.photos_path.split(',') rescue []
+    photo_array -= [self.id.to_s]
+    photo_array.insert(0,self.id)
+    event.update_attributes(photos_path: photo_array[0,12].join(','))
+  end
+
   private
 
   def set_event_photo_path
@@ -30,7 +38,7 @@ class Photo < ActiveRecord::Base
     photo_array = photo_path.split(',') rescue []
     if photo_array.size < 12
       photo_array << self.id
-      event.update_attributes(photos_path: photo_array.join(','))
+      event.update_attributes(photos_path: photo_array[0,12].join(','))
     end
   end
 

@@ -28,7 +28,7 @@
     <h4>活动图片:</h4>
     <% @event.photos.each do |photo|%>
       <div class="col-md-2" style="padding:5px">
-        <%= image_tag photo.avatar_url(:medium), :class => 'img-thumbnail', size:"118x118"%>
+       <%= link_to (image_tag photo.avatar_url(:medium), :class => 'img-thumbnail', size:"118x118"), photos_event_path(id: @event.id, p_id: photo.id)%>
       </div>
     <% end -%>
   </div>

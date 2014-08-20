@@ -13,9 +13,20 @@ class PhotosController < ApplicationController
   end
 
   def destroy  
-    @photo = Photo.find(params[:id])  
+    @photo = Photo.find(params[:id])
     @photo.destroy  
     redirect_to events_path
+  end
+
+  def show_original
+    @photo = Photo.find(params[:id])
+    render :layout => false
+  end
+
+  def recommend
+    @photo = Photo.find(params[:id])
+    @photo.recommend_event_photos
+    redirect_to :back
   end
 
 end
