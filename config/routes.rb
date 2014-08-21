@@ -40,6 +40,12 @@ ChinaWhere::Application.routes.draw do
     end
   end
 
+  resources :comments, only:[:index, :create, :destroy] do
+    collection do
+      post :destroy_comment
+    end
+  end
+
   namespace :admin do
     root to: "sessions#index"
     scope controller: :sessions do

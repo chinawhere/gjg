@@ -1,0 +1,105 @@
+<div class="row comment_info commentPanel" style="margin-top: 15px" data-commentable_id="<%= commentable_id %>" data-commentable_type="<%= commentable_type%>" data-auto_load="<%= auto_load %>">
+  <div class="comment_list">
+    <span id="comment_num">评论（<%= 0 %>个评论）</span>
+  </div>
+  <div class="form-group">
+    <div class="col-md-2">
+      <%= image_tag @current_user.logo_url(:medium), class: 'pull-right img-thumbnail', size: '72x80'%>
+    </div>
+    <div class="col-md-10 reply_box" >
+      <%= text_area_tag :content, '', class: 'form-control', rows: '4'%>
+      <%= link_to '评论', 'javascript:;', class: 'btn green pull-right postCommentBtn', style: 'margin-top: 5px'%>
+    </div>
+  </div>
+</div>
+
+<script>
+  var current_user_id = <%= @current_user.id %>;
+  $(function(){
+    $(".comment_info").on('click', 'a.deleteComment', function(){
+      var $this = $(this),
+          comment_id = $this.data('reply_to_comment_id'),
+          $commentPanel = $this.closest('.commentPanel');
+      $.post('/comments/destroy_comment', { comment_id : comment_id, current_user_id: current_user_id }, function (data) {
+        if (data.success) {
+          $this.closest('ul.com_li').remove();
+          if ($commentPanel.find('ul.com_li').length == 0)
+            $commentPanel.find('.comment_list').empty().append('<p>暂无评论...</p>').show();
+        }
+      }, 'json');
+    });
+  });
+
+  $(function(){
+    $('.commentPanel').each(function () {
+      var $this = $(this);
+      var auto_load = $this.data('auto_load');
+      if (auto_load == 'on') loadComment($this);
+    });
+
+    function loadComment ($commentPanel) {
+      var commentable_id = $commentPanel.data('commentable_id'),
+          commentable_type = $commentPanel.data('commentable_type'),
+          paramters = { commentable_id : commentable_id, commentable_type : commentable_type };
+      
+      $commentPanel.find('textarea').val('');
+      if ($commentPanel.find('ul.com_li').length == 0) {
+        $.get('/comments', paramters, function (data) {
+          // if (data.html == '') {
+          //   $('.commentLoading').empty().append('<p>暂无评论...</p>');
+          // } else {
+          //   $('.commentLoading').hide();
+          // }
+          // if ($commentPanel.find('.commentsCount').length == 1)
+          //   $commentPanel.find('.commentsCount i').text(data.data.comments_count);
+          // $commentPanel.find('ul:first').empty().append($(data.html));
+          if (data.success){
+            $commentPanel.find('.comment_list').empty().append($(data.html));
+          }
+        }, 'json');
+      }
+    };
+  })
+  $(function(){
+    $(".comment_info").on('click', 'a.postCommentBtn', function(){
+      var $this = $(this);
+      if(!current_user_id ){
+        $("span.unload_warning").css("display","block");
+      }else{
+        var $commentPanel = $this.parents('.commentPanel');
+        var commentable_id = $commentPanel.data('commentable_id');
+        var commentable_type = $commentPanel.data('commentable_type');
+        var $content = $this.parents('.reply_box').find('textarea');
+
+        var content = $content.val(),
+            reply_to_user_id = $this.data('reply_to_user_id'),
+            p_comment_id = $this.data('p_comment_id'),
+            reply_to_comment_id = $this.data('reply_to_comment_id');
+        var paramters = { 
+          current_user_id: current_user_id,
+          commentable_id : commentable_id, 
+          commentable_type : commentable_type, 
+          content : content,
+          reply_to_user_id : reply_to_user_id,
+          reply_to_comment_id : reply_to_comment_id,
+          p_comment_id : p_comment_id 
+        };
+        if ($.trim(content).length < 1) return false;
+        // if ($('.commentLoading').length > 0) $('.commentLoading').hide();
+        $.post('/comments', paramters, function (data) {
+          console.log(data);
+          if (data.success) {
+            var $html = $(data.html);
+            if (p_comment_id == '' || p_comment_id == undefined) {
+              $commentPanel.find('.comment_list').append($html);
+            } else {
+              $this.closest('.reply_box').prev().append($html);
+            }
+            $content.val('').focus().keyup();
+          }
+        }, 'json');  
+      }
+      
+    });
+  })
+</script>

@@ -1,3 +1,6 @@
+<%= content_for :header do %>
+  <%= javascript_include_tag 'ui/ui_comment' %>
+<% end -%>
 <div class="row" style="margin-left:10px">
   <h3 style="border-bottom: 1px solid #ccc"><%= @event.name%></h3>
   <p class="pull-right" style="margin-top:-30px">
@@ -20,6 +23,8 @@
       <p>类型：<%= Event::EVENT_CATEGORY[@event.category_id] %></p>
     </div>
   </div>
+  <%p  'distance_of_time_in_words_to_now(@event.created_at)'%>
+  <%p  distance_of_time_in_words_to_now(@event.created_at)%>
   <div class="row" style="margin: 10px">
     <h4>活动详情:</h4>
     <p><%= @event.content.html_safe rescue ''%></p>
@@ -32,4 +37,5 @@
       </div>
     <% end -%>
   </div>
+  <%= render :partial => 'comments/comment_panel', :locals => { :commentable_id => @event.id, :commentable_type => 'Event', :auto_load => 'on' } %>
 </div>

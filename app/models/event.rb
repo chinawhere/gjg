@@ -5,6 +5,7 @@ class Event < ActiveRecord::Base
   has_many :photos
 
   belongs_to :user
+  has_many :comments, as: :commentable
 
   EVENT_CATEGORY = Hash[Category.where(status: 'event').map{|c| [c.id,c.name]}]
 
