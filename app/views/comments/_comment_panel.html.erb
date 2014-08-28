@@ -1,6 +1,10 @@
 <div class="row comment_info commentPanel" style="margin-top: 15px" data-commentable_id="<%= commentable_id %>" data-commentable_type="<%= commentable_type%>" data-auto_load="<%= auto_load %>">
   <div class="comment_list">
-    <span id="comment_num">评论（<%= 0 %>个评论）</span>
+    <div class="commentLoading">
+      <%= image_tag '/assets/loading.gif' %>
+    </div>
+    <ul class="media-list">
+    </ul>
   </div>
   <% if @current_user %>
     <div class="form-group">
@@ -23,9 +27,11 @@
           $commentPanel = $this.closest('.commentPanel');
       $.post('/comments/destroy_comment', { comment_id : comment_id, current_user_id: Chinawhere.current_user_id }, function (data) {
         if (data.success) {
-          $this.closest('li.reply_li').remove();
-          if ($commentPanel.find('ul.com_li').length == 0)
-            $commentPanel.find('.comment_list').empty().append('<p>暂无评论...</p>').show();
+          $this.closest('li').remove();
+          console.log($commentPanel.find('ul:first li'));
+          console.log($commentPanel.find('ul:first li').length == 0);
+          if ($commentPanel.find('ul:first li').length == 0)
+            $commentPanel.find('.commentLoading').empty().append('<p>暂无评论...</p>').show();
         }
       }, 'json');
     });
@@ -42,20 +48,18 @@
       var commentable_id = $commentPanel.data('commentable_id'),
           commentable_type = $commentPanel.data('commentable_type'),
           paramters = { commentable_id : commentable_id, commentable_type : commentable_type };
-      
       $commentPanel.find('textarea').val('');
-      if ($commentPanel.find('ul.com_li').length == 0) {
+      if ($commentPanel.find('ul.comment_li').length == 0) {
         $.get('/comments', paramters, function (data) {
-          // if (data.html == '') {
-          //   $('.commentLoading').empty().append('<p>暂无评论...</p>');
-          // } else {
-          //   $('.commentLoading').hide();
-          // }
+          if (data.success){
+            if (data.html == '') {
+              $('.commentLoading').empty().append('<p>暂无评论...</p>');
+            } else {
+              $('.commentLoading').hide();
+            }
           // if ($commentPanel.find('.commentsCount').length == 1)
           //   $commentPanel.find('.commentsCount i').text(data.data.comments_count);
-          // $commentPanel.find('ul:first').empty().append($(data.html));
-          if (data.success){
-            $commentPanel.find('.comment_list').empty().append($(data.html));
+            $commentPanel.find('ul:first').empty().append($(data.html));
           }
         }, 'json');
       }
@@ -100,13 +104,13 @@
           p_comment_id : p_comment_id 
         };
         if ($.trim(content).length < 1) return false;
-        // if ($('.commentLoading').length > 0) $('.commentLoading').hide();
+        if ($('.commentLoading').length > 0) $('.commentLoading').hide();
         $.post('/comments', paramters, function (data) {
           console.log(data);
           if (data.success) {
             var $html = $(data.html);
             if (p_comment_id == '' || p_comment_id == undefined) {
-              $commentPanel.find('.comment_list').append($html);
+              $commentPanel.find('ul:first').append($html);
             } else {
               $this.closest('.reply_box').prev().append($html);
             }

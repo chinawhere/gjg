@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   before_filter :init_commentable, only: [:index, :create]
 
   def index
-    @current_user = User.find(session[:user_id])
     p_comments = @commentable.comments.p_comments.includes(:user)
     html_str = render_to_string(:partial => 'comments/comment_list', :locals => { :p_comments => p_comments })
     render text: {success: true, html: html_str}.to_json
