@@ -2,27 +2,28 @@
   <div class="comment_list">
     <span id="comment_num">评论（<%= 0 %>个评论）</span>
   </div>
-  <div class="form-group">
-    <div class="col-md-2">
-      <%= image_tag @current_user.logo_url(:medium), class: 'pull-right img-thumbnail', size: '72x80'%>
+  <% if @current_user %>
+    <div class="form-group">
+      <div class="col-md-2">
+        <%= image_tag @current_user.logo_url(:medium), class: 'pull-right img-thumbnail', size: '72x80'%>
+      </div>
+      <div class="col-md-10 reply_box" >
+        <%= text_area_tag :content, '', class: 'form-control', rows: '4'%>
+        <%= link_to '评论', 'javascript:;', class: 'btn green pull-right postCommentBtn', style: 'margin-top: 5px'%>
+      </div>
     </div>
-    <div class="col-md-10 reply_box" >
-      <%= text_area_tag :content, '', class: 'form-control', rows: '4'%>
-      <%= link_to '评论', 'javascript:;', class: 'btn green pull-right postCommentBtn', style: 'margin-top: 5px'%>
-    </div>
-  </div>
+  <% end -%>
 </div>
 
 <script>
-  var current_user_id = <%= @current_user.id %>;
   $(function(){
     $(".comment_info").on('click', 'a.deleteComment', function(){
       var $this = $(this),
           comment_id = $this.data('reply_to_comment_id'),
           $commentPanel = $this.closest('.commentPanel');
-      $.post('/comments/destroy_comment', { comment_id : comment_id, current_user_id: current_user_id }, function (data) {
+      $.post('/comments/destroy_comment', { comment_id : comment_id, current_user_id: Chinawhere.current_user_id }, function (data) {
         if (data.success) {
-          $this.closest('ul.com_li').remove();
+          $this.closest('li.reply_li').remove();
           if ($commentPanel.find('ul.com_li').length == 0)
             $commentPanel.find('.comment_list').empty().append('<p>暂无评论...</p>').show();
         }
@@ -61,9 +62,23 @@
     };
   })
   $(function(){
+    $('.comment_info').on('click', 'a.replyToComment', function () {
+      var $this = $(this);
+      var $reply = $this.parents('.content').parents('.com_li');
+      var $replyBox = $reply.find('.reply_box');
+      var user_name = $this.data('user_name'), 
+          reply_to_user_id = $this.data('reply_to_user_id'),
+          reply_to_comment_id = $this.data('reply_to_comment_id');
+      var reply_text = '回复' + user_name + '：';
+      $replyBox.find('.postCommentBtn').attr('data-reply_to_user_id', reply_to_user_id)
+        .attr('data-reply_to_comment_id', reply_to_comment_id);
+      if ($reply.is(':hidden')) $reply.show();
+      $replyBox.show().find('textarea').val('').focus().val(reply_text);
+    });
+
     $(".comment_info").on('click', 'a.postCommentBtn', function(){
       var $this = $(this);
-      if(!current_user_id ){
+      if(!Chinawhere.current_user_id ){
         $("span.unload_warning").css("display","block");
       }else{
         var $commentPanel = $this.parents('.commentPanel');
@@ -76,7 +91,7 @@
             p_comment_id = $this.data('p_comment_id'),
             reply_to_comment_id = $this.data('reply_to_comment_id');
         var paramters = { 
-          current_user_id: current_user_id,
+          current_user_id: Chinawhere.current_user_id,
           commentable_id : commentable_id, 
           commentable_type : commentable_type, 
           content : content,

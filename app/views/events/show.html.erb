@@ -23,8 +23,6 @@
       <p>类型：<%= Event::EVENT_CATEGORY[@event.category_id] %></p>
     </div>
   </div>
-  <%p  'distance_of_time_in_words_to_now(@event.created_at)'%>
-  <%p  distance_of_time_in_words_to_now(@event.created_at)%>
   <div class="row" style="margin: 10px">
     <h4>活动详情:</h4>
     <p><%= @event.content.html_safe rescue ''%></p>

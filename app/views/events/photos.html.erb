@@ -16,9 +16,11 @@
     <div id="photo_content" class="col-md-10" style="text-align: center;">
       <%= image_tag @photo.avatar_url(:lager)%>
       <div>
-        <%= link_to '推荐图片', recommend_photo_path(@photo), method: :put, confirm: '你确定要推荐吗？'%> ｜
         <%= link_to '查看原图', show_original_photo_path(@photo), target: 'blank' %> ｜
-        <%= link_to '删除', photo_path(@photo), method: :delete, confirm: '你确定要删除吗？'%>
+        <% if @event.user == @current_user%>
+          <%= link_to '推荐图片', recommend_photo_path(@photo), method: :put, confirm: '你确定要推荐吗？'%> ｜
+          <%= link_to '删除', photo_path(@photo), method: :delete, confirm: '你确定要删除吗？'%>
+        <% end -%>
       </div>
     </div>
     <div class="col-md-1">

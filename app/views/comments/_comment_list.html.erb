@@ -1,10 +1,11 @@
-<% users = User.where(id: comments.map(&:user_id))%>
-<% comments.each do |comment|%>
+<% users = User.where(id: p_comments.map(&:user_id))%>
+
   <ul class="media-list com_li">
-    <li class="media">
+  <% p_comments.each do |comment|%>
+    <li class="media reply_li">
       <% user = users.select{|u| u.id == comment.user_id}.first %>
-      <%= link_to (image_tag user.logo_url(:medium), class: 'img-thumbnail media-object', size: '72x80'), 'user_profile', class: 'pull-left'%>
-      <div class="media-body">
+      <div class="media-body content">
+        <%= link_to (image_tag user.logo_url(:medium), class: 'img-thumbnail media-object', size: '72x80'), 'user_profile', class: 'pull-left'%>
         <p class="media-heading">
           <%= link_to user.name, 'user_profile', style: 'padding: 5px;'%>
           <span style="font-size: 12px;"><%= distance_of_time_in_words_to_now(comment.created_at)%></span>
@@ -17,8 +18,8 @@
           </p>
         </p>
         <%= comment.content.html_safe %>
-        
+        <%= render :partial => 'comments/r_comment_list', :locals => { :comment => comment } %>
       </div>
     </li>
+    <% end -%>
   </ul>
-<% end -%>
