@@ -64,7 +64,7 @@
   $(function(){
     $('.comment_info').on('click', 'a.replyToComment', function () {
       var $this = $(this);
-      var $reply = $this.parents('.content').parents('.media-body');
+      var $reply = $this.parents('.content').parents('.com_li');
       var $replyBox = $reply.find('.reply_box');
       var user_name = $this.data('user_name'), 
           reply_to_user_id = $this.data('reply_to_user_id'),
