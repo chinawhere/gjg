@@ -1,0 +1,14 @@
+<% user = comment.user%>
+<%= link_to (image_tag user.logo_url(:medium), class: 'img-thumbnail media-object', size: '72x80'), 'user_profile', class: 'pull-left'%>
+<p class="media-heading">
+  <%= link_to user.name, 'user_profile', style: 'padding: 5px;'%>
+  <span style="font-size: 12px;"><%= distance_of_time_in_words_to_now(comment.created_at)%></span>
+  <p class="pull-right">
+    <% if @current_user.present? and @current_user == user%>
+      <%= link_to '删除', 'javascript:;', class: 'deleteComment', 'data-reply_to_comment_id' => "#{comment.id}"%>
+    <%else%>
+      <%= link_to '回复', 'javascript:;', class: 'replyToComment', 'data-user_name' => "#{user.name}", 'data-reply_to_user_id' => "#{user.id}", 'data-reply_to_comment_id' => "#{comment.id}"%>
+    <% end -%>
+  </p>
+</p>
+<%= comment.content.html_safe %>
