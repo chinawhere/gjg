@@ -3,10 +3,9 @@
     <%r_comments = comment.r_comments %>
     <% users = User.where(id: r_comments.map(&:user_id))%>
     <% r_comments.each do |r_comment| %>
-      <li class="media com_li">
+      <li class="media reply_li">
         <% user = users.select{|u| u.id == r_comment.user_id}.first %>
         <%= link_to (image_tag user.logo_url(:medium), class: 'img-thumbnail media-object', size: '72x80'), 'user_profile', class: 'pull-left'%>
-        <div class="media-body content">
           <p class="media-heading">
             <%= link_to user.name, 'user_profile', style: 'padding: 5px;'%>
             <span style="font-size: 12px;"><%= distance_of_time_in_words_to_now(r_comment.created_at)%></span>
@@ -19,7 +18,6 @@
             </p>
           </p>
           <%= r_comment.content.html_safe %>
-        </div>
       </li>
     <% end -%>
   </ul>

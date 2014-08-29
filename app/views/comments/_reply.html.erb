@@ -1,5 +1,5 @@
+<% user = User.find(comment.user_id) %>
 <li class="media reply_li">
-  <% user = User.find(comment.user_id) %>
   <%= link_to (image_tag user.logo_url(:medium), class: 'img-thumbnail media-object', size: '72x80'), 'user_profile', class: 'pull-left'%>
   <div class="media-body content">
     <p class="media-heading">
