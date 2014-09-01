@@ -57,6 +57,10 @@ ChinaWhere::Application.routes.draw do
     resources :users
 
     resources :roles
+
+    resources :events
+
+    resources :applies
   end
 
 

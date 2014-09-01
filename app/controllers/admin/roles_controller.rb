@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::RolesController < Admin::ApplicationController
   def index
-    @roles = Role.all
+    @roles = Role.paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
   end
 
   def new

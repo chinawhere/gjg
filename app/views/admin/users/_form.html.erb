@@ -8,6 +8,7 @@
         <%= form_text_field(text_label: '确认密码', text_name: 'user[password_confirmation]', text_type: 'password') %>
       <% end -%>
       <%= form_text_field(text_label: '手机号码', text_name: 'user[mobile]', text_value: f.object.mobile, text_class: 'fa-phone-square') %>
+      <%= form_text_field(text_label: '爱好', text_name: 'user[hobby]', text_value: f.object.hobby) %>
       <%= form_text_field(text_label: '职位名称', text_name: 'user[position]', text_value: f.object.position) %>
       <%= form_text_field(text_label: '年龄', text_name: 'user[age]', text_value: f.object.age) %>
       <%= form_text_field(text_label: 'qq', text_name: 'user[qq]', text_value: f.object.qq, text_class: 'fa-qq') %>

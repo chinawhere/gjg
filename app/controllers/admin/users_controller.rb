@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::ApplicationController
 
   def index
     @user = User.first
-    @users = User.all
+    @users = User.paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
   end
 
   def new

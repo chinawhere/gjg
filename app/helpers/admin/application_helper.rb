@@ -14,14 +14,20 @@ module Admin::ApplicationHelper
   end
 
   def form_select_field option = {}
+    text_class = option[:text_class] || 'fa-user'
     str = ''
     str += '<div class="form-group">'
     str += "<label>#{option[:text_label]}</label>"
+    str += "<div class='input-group'><span class='input-group-addon'><i class='fa #{text_class}'></i></span>"
     str += "<select class='form-control input-medium' name='#{option[:text_name]}'>"
     option[:text_option].each do |k, v|
-      str += "<option value=#{k} selected='selected'>#{v}</option>"
+      if option[:text_value] == k
+        str += "<option value=#{k} selected='selected'>#{v}</option>"
+      else
+        str += "<option value=#{k}>#{v}</option>"
+      end
     end
-    str += '</select></div>'
+    str += '</select></div></div>'
     str.html_safe
   end
 end

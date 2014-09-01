@@ -1,6 +1,5 @@
 # coding: utf-8
 class Event < ActiveRecord::Base
-  attr_accessible :category_id, :name, :address, :start_at, :end_at, :fee_type, :fee, :max_count, :min_count, :content, :logo, :photos_path
   mount_uploader :logo, EventLogoUploader
   has_many :photos
 
@@ -10,6 +9,7 @@ class Event < ActiveRecord::Base
   EVENT_CATEGORY = Hash[Category.where(status: 'event').map{|c| [c.id,c.name]}]
 
   FEE_TYPE = {0 => '免费', 1 => '自费', 2 => '付费', 3 => 'AA'}
+  APPROVED = {0 => '正常', 2 => '取消', 6 => '结束'}
 
   def photo_ids
     self.photos_path.split(',') rescue []
@@ -32,6 +32,14 @@ class Event < ActiveRecord::Base
         end
       end
       ret.group_by{|x| x.values.first}.map{|k, v| {date: k, title: v.flat_map{|x| x[:title]}, url: v.flat_map{|x| x[:url]}}}
+    end
+
+    def search params
+      if params[:search_name].present?
+        Event.where("name like ?", "%#{params[:search_name]}%").order('created_at desc')
+      else
+        Event.order('created_at desc')
+      end
     end
   end
 

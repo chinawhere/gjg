@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>优购咨询站</title>
+  <title>chinawhere</title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "ui/ui_header" %>
+  <%= yield :header %>
   <%= csrf_meta_tags %>
   <style type="text/css">
 
@@ -92,7 +93,7 @@
             <i class="fa fa-cogs"></i>
             <span class="title">
             <%= menu["name"] %></span>
-            <span class="arrow <%= 'open' if index == 0 %>">
+            <span class="arrow <%= 'open' %>">
             </span>
             <span class="selected"></span>
             </a>

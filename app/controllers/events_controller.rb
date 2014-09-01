@@ -2,15 +2,16 @@
 class EventsController < ApplicationController
   before_filter :require_login, except: [:index, :show, :photos]
   before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader, :photos]
-  layout 'home'
+  layout 'event'
   def index
-    @events = Event.paginate(page: params[:page] || 1, per_page: params[:per_page] || 2)
+    @events = Event.search(params).paginate(page: params[:page] || 1, per_page: params[:per_page] || 10)
     photo_ids = @events.map(&:photos_path).compact.join(',').split(',') rescue []
     @photos = Photo.where(id: photo_ids)
   end
 
   def new
     @event = Event.new
+    render layout: 'home'
   end
 
   def create
@@ -34,12 +35,14 @@ class EventsController < ApplicationController
   end
 
   def edit
+    render layout: 'home'
   end
 
   def destroy
   end
 
   def uploader
+    render layout: 'home'
   end
 
   def photos

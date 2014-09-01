@@ -1,7 +1,6 @@
 # coding: utf-8
 class User < ActiveRecord::Base
   rolify
-  attr_accessible :name, :email, :password, :sex, :mobile, :position, :age, :qq, :logo, :password_confirmation
   # validates :email, :presence => { :message => "请填写联系邮箱" }
   # validates :password, :confirmation => true, :presence => { :message => '请填写密码'}
   validates :name, presence: {message: '输入不能为空'}, uniqueness: {message: '名字已被占用'}
@@ -12,4 +11,8 @@ class User < ActiveRecord::Base
   has_many :applys
   has_many :apply_events, :through => :applys, :source => :event
   mount_uploader :logo, UserLogoUploader
+
+  def display_sex
+    self.sex == 'F' ? '女' : '男'
+  end
 end

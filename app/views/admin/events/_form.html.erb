@@ -1,0 +1,65 @@
+<%= content_for :header do %>
+  <%= stylesheet_link_tag    'product/calendar/jscal2','product/calendar/border-radius','product/calendar/steel' %>
+  <%= javascript_include_tag 'product/calendar/jscal2',  'product/calendar/cn'%>
+<% end -%>
+<div class="portlet-body form">
+  <%= form_for @event, url: defined?(url) ? url : admin_events_path, methods: :post do |f|%>
+    <div class="form-body">
+      <%= form_text_field(text_label: '名称', text_name: 'event[name]', text_value: f.object.name) %>
+      <%= form_text_field(text_label: '用户id', text_name: 'event[user_id]', text_value: f.object.user_id, text_class: 'fa-user') %>
+      <%= form_text_field(text_label: '地址', text_name: 'event[address]', text_value: f.object.address, text_class: 'fa-suitcase') %>
+      <%= form_select_field(text_label: '类型', text_name: 'event[category_id]', text_option: Category.where(status: 'event').map{|c| [c.id,c.name]}, text_class: 'fa-angle-down', text_value: f.object.category_id) %>
+      <div class="form-group">
+        <label>开始时间</label>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </span>
+          <%= f.text_field :start_at, :class => 'form-control input-medium', value: (@event.start_at.strftime('%F %T') rescue '')%>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>结束时间</label>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-calendar"></i>
+          </span>
+          <%= f.text_field :end_at, :class => 'form-control input-medium', value: (@event.end_at.strftime('%F %T') rescue '')%>
+        </div>
+      </div>
+      <%= form_select_field(text_label: '收费类型', text_name: 'event[fee_type]', text_option: Event::FEE_TYPE.map{|c| [c[0],c[1]]}, text_value: f.object.fee_type, text_class: 'fa-angle-down') %>
+      <%= form_text_field(text_label: '费用', text_name: 'event[fee]', text_value: f.object.fee, text_class: 'fa-cny') %>
+      <%= form_text_field(text_label: '上限人数', text_name: 'event[max_count]', text_value: f.object.max_count, text_class: 'fa-picture-o') %>
+      <%= form_text_field(text_label: '下限人数', text_name: 'event[min_count]', text_value: f.object.min_count, text_class: 'fa-group') %>
+      <%= form_text_field(text_label: '推荐图片id', text_name: 'event[photos_path]', text_value: f.object.photos_path, text_class: 'fa-group') %>
+      <%= form_select_field(text_label: '活动状态', text_name: 'event[approved]', text_option: Event::APPROVED.map{|c| [c[0],c[1]]}, text_value: f.object.approved, text_class: 'fa-angle-down') %>
+      <div class="form-group">
+        <label>活动描述</label>
+        <div class="input-group">
+          <%= f.kindeditor :content, :simple_mode => true, :class => 'form-control'%>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>上传图片</label>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-upload"></i>
+          </span>
+          <%= f.file_field :logo, :class => 'form-control input-medium' %>
+        </div>
+      </div>
+      <%= f.submit '添加', :class => 'btn blue'%>
+      <%= link_to '取消', admin_events_path, :class => 'btn default'%>
+    </div>
+  <% end -%>
+</div>
+<script type="text/javascript">
+
+      var cal = Calendar.setup({
+          onSelect: function(cal) { cal.hide() },
+          showTime: true
+      });
+      cal.manageFields("event_start_at", "event_start_at", "%Y-%m-%d %H:%M:%S");
+      cal.manageFields("event_end_at", "event_end_at", "%Y-%m-%d %H:%M:%S");
+
+</script>

@@ -1,3 +1,12 @@
+<div class="row" style="padding-bottom:15px">
+  <div class="col-sm-12">
+      <%= form_tag events_path, method: :get do %>
+            <%= text_field_tag :search_name, params[:search_name], class: "form-control input-large input-inline",placeholder: "活动名称"  %>
+            <%= submit_tag '查找', class: 'btn green' %>
+      <% end %>
+  </div>
+</div>
+
 <% @events.each do |event| %>
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -17,7 +26,7 @@
           <div class="col-md-2"><%= image_tag event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></div>
           <div class="col-md-6">
             <p><%= link_to event.name, event_path(event)%></p>
-            <p>时间：<%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
+            <p>时间：<%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" rescue '' %></p>
             <p>地点：<%= event.address %></p>
             <p>类型：<%= Event::EVENT_CATEGORY[event.category_id] %></p>
           </div>
