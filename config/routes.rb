@@ -13,13 +13,13 @@ ChinaWhere::Application.routes.draw do
 
   get 'home', to: 'home#index', as: :home
 
-  # scope controller: :home do
-  #   get :login
-  #   get :register
-  #   get :logout
-  #   post :sessions
-  #   post :sign_up
-  # end
+  resources :setting, as: :settings, only: [] do
+    collection do
+      get :account
+      put :basic
+      get :password
+    end
+  end
 
   resources :articles
   resources :events do

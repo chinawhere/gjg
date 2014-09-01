@@ -2,16 +2,6 @@
   <%= stylesheet_link_tag    'product/calendar/jscal2','product/calendar/border-radius','product/calendar/steel' %>
   <%= javascript_include_tag 'product/calendar/jscal2',  'product/calendar/cn'%>
 <% end -%>
-<style type="text/css">
-  .val_error{
-    color: #e4020c;
-    padding-left: 70px;
-    clear: left;
-  }
-  .add-on{
-    border-radius: 0 4px 4px 0;
-  }
-</style>
 <%= form_for @event, methods: :post, html: {:class => 'talen_two_f'} do |f| %>
   <div class="input-group">
     <span class="input-group-addon">活动标题：</span>

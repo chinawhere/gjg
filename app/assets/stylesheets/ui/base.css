@@ -17,3 +17,13 @@
 .remove-padding-for-bootstrap{
 	padding: 0;
 }
+
+/*form validat*/
+.val_error{
+  color: #e4020c;
+  padding-left: 70px;
+  clear: left;
+}
+.add-on{
+  border-radius: 0 4px 4px 0;
+}
