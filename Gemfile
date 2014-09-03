@@ -87,4 +87,5 @@ gem 'mina'
 gem 'puma'
 
 gem 'grape'
+gem 'grape-swagger'
 

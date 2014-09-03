@@ -3,7 +3,7 @@ module Twitter
   class API < Grape::API
     version 'v2', using: :header, vendor: 'twitter'
     format :json
-    # content_type :json, "application/json;charset=utf-8"
+    content_type :json, "application/json;charset=utf-8"
 
     resource :api_events do
       desc "Return events by page and per_page"
