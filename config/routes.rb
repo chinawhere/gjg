@@ -10,6 +10,8 @@ ChinaWhere::Application.routes.draw do
     post :sessions
     post :sign_up
   end
+  
+  mount Twitter::API => '/'
 
   get 'home', to: 'home#index', as: :home
 
