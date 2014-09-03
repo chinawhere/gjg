@@ -73,6 +73,7 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     # invoke :'bundle:install'
+    queue! "RAILS_ENV=production bundle"
     invoke :'rails:db_migrate'
     # queue! "RAILS_ENV=production bundle exec rake assets:clean"
     # queue! "RAILS_ENV=production bundle exec rake assets:precompile"
