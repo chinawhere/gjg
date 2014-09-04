@@ -12,10 +12,13 @@ require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 # set :domain, 'foobar.com'
-set :user, 'developer'
-set :domain, 'starroom_main'
+# set :user, 'developer'
+set :user, "root"
+set :domain, "shop_test"
+# set :domain, 'starroom_main'
 # set :domain, 'ubuntu'
-set :deploy_to,  '/home/developer/chinawhere'
+# set :deploy_to,  '/home/developer/chinawhere'
+set :deploy_to, "/opt/project/chinawhere"
 set :repository, 'git@github.com:chinawhere/chinawhere.git'
 set :branch, 'master'
 
