@@ -1,11 +1,11 @@
 #!/usr/bin/env puma
 
 environment "production"
-basedir = "/home/developer/chinawhere"
+basedir = "/opt/project/chinawhere"
 daemonize true
 threads 2,16
 
-bind  "unix:///home/developer/chinawhere/current/tmp/sockets/puma.sock"
+bind  "unix:///opt/project/chinawhere/tmp/puma.sock"
 pidfile  "#{basedir}/tmp/puma.pid"
 state_path "#{basedir}/current/tmp/puma.state"
 preload_app!
