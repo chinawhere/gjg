@@ -1,6 +1,7 @@
 #coding: utf-8
 class WelcomeController < ApplicationController
   def index
+  	render :text => 'helloworld!' and return
   	@events = Event.limit(10)
   end
 
