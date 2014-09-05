@@ -14,7 +14,7 @@ require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 # set :domain, 'foobar.com'
 # set :user, 'developer'
 set :user, "root"
-set :domain, "shop_test"
+set :domain, "192.168.130.56"
 # set :domain, 'starroom_main'
 # set :domain, 'ubuntu'
 # set :deploy_to,  '/home/developer/chinawhere'
