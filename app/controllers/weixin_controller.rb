@@ -12,7 +12,7 @@ class WeixinController < ApplicationController
 		}
 		parsed_json = JSON.parse res.body
 		# render :text => parsed_json['access_token']
-		session[:weixin_id] = parsed_json[:openid]
+		session[:weixin_id] = parsed_json['openid']
 		render :text => session[:weixin_id]
   end
 end
