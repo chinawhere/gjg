@@ -1,4 +1,7 @@
 class WeixinController < ApplicationController
+
+	layout false
+
   def index
   	render :text => params[:echostr]
   end
@@ -15,4 +18,7 @@ class WeixinController < ApplicationController
 		session[:weixin_id] = parsed_json['openid']
 		render :text => session[:weixin_id]
   end
+
+
+
 end
