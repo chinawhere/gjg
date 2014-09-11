@@ -21,9 +21,9 @@ class WeixinController < ApplicationController
 
 		if user
 			session[:user_id] = user.id
-			render :text => '绑定页面'
+			render :text => 'bangding'
 		else
-			render :text => '注册页面'
+			render :text => 'zhuce'
 		end
 
   end
