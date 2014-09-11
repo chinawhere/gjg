@@ -2,7 +2,7 @@
 ChinaWhere::Application.routes.draw do
 
 
-  get "weixin/index"
+  post "weixin/index"
 
   get "weixin/code"
 

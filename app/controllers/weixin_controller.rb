@@ -11,7 +11,8 @@ class WeixinController < ApplicationController
   			:code => params[:code],
   			:grant_type => "authorization_code"
   		}
-  		render :text => res.body
+  		parsed_json = JSON.parse res.body
+  		render :text => parsed_json['access_token']
   	else
   		redirect_to "http://www.baidu.com"
   	end
