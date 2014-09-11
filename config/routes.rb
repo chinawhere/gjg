@@ -6,6 +6,8 @@ ChinaWhere::Application.routes.draw do
 
   get "weixin/code"
 
+  post "weixin/register"
+
   root to: 'welcome#index'
   get 'test', to: 'welcome#test', as: :test
   scope controller: :sessions do
