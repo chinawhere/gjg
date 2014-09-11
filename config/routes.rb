@@ -1,6 +1,10 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
+  get "weixin/index"
+
+  get "weixin/code"
+
   root to: 'welcome#index'
   get 'test', to: 'welcome#test', as: :test
   scope controller: :sessions do
