@@ -21,9 +21,9 @@ class WeixinController < ApplicationController
 
 		if user
 			session[:user_id] = user.id
-			render :text => 'bangding'
+			render partial: 'bind'
 		else
-			render :text => 'zhuce'
+			render partial: 'register'
 		end
 
   end
