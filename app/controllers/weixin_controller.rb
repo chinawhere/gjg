@@ -1,6 +1,6 @@
 class WeixinController < ApplicationController
   def index
-  	render :text => "hello"
+  	render :text => params[:echostr]
   end
 
   def code
