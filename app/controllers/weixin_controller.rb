@@ -25,7 +25,7 @@ class WeixinController < ApplicationController
 			@user.weixin_id = parsed_json['openid']
 			render partial: 'bind'
 		else
-			render partial: 'register'
+			render partial: 'register', object: @user
 		end
 
   end
