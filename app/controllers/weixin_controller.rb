@@ -15,9 +15,9 @@ class WeixinController < ApplicationController
 		}
 		parsed_json = JSON.parse res.body
 		# render :text => parsed_json['access_token']
-		session[:weixin_id] = parsed_json['openid']
+		# session[:weixin_id] = parsed_json['openid']
 
-		user = User.first
+		user = User.find_by_weixin_id(parsed_json['openid'])
 
 		if user
 			session[:user_id] = user.id

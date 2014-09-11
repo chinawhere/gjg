@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140901055408) do
+ActiveRecord::Schema.define(:version => 20140911084237) do
 
   create_table "applies", :force => true do |t|
     t.integer  "user_id"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20140901055408) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "hobby"
+    t.string   "weixin_id"
   end
 
   add_index "users", ["email", "password"], :name => "index_users_on_email_and_password"
