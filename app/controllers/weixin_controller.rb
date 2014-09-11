@@ -17,15 +17,15 @@ class WeixinController < ApplicationController
 		# render :text => parsed_json['access_token']
 		# session[:weixin_id] = parsed_json['openid']
 
-		user = User.find_by_weixin_id(parsed_json['openid'])
+		@user = User.find_by_weixin_id(parsed_json['openid'])
 
-		if user
+		if @user
 			session[:user_id] = user.id
-			@user = User.new
-			@user.weixin_id = parsed_json['openid']
 			render partial: 'bind'
 		else
-			render partial: 'register', object: @user
+			@user = User.new
+			@user.weixin_id = parsed_json['openid']
+			render partial: 'register'
 		end
 
   end
