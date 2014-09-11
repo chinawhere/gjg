@@ -30,4 +30,8 @@ class WeixinController < ApplicationController
 
   end
 
+  def register
+  	user = User.create params[:user]
+  end
+
 end
