@@ -32,6 +32,7 @@ class WeixinController < ApplicationController
 
   def register
   	user = User.create params[:user]
+  	render :text => 'register success'
   end
 
 end
