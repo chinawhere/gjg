@@ -21,6 +21,8 @@ class WeixinController < ApplicationController
 
 		if user
 			session[:user_id] = user.id
+			@user = User.new
+			@user.weixin_id = parsed_json['openid']
 			render partial: 'bind'
 		else
 			render partial: 'register'
