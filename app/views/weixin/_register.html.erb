@@ -1,4 +1,4 @@
 <%= form_for @user, url:{action:'register'} do |f| %>
-	<%= f.input :weixin_id %>
+	<%= f.text_field :weixin_id %>
 	<%= f.submit  %>
 <% end %>
