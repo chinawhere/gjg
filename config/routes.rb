@@ -1,6 +1,7 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
+
   get "weixin/index"
 
   get "weixin/code"
