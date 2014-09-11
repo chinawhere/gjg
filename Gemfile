@@ -90,3 +90,4 @@ gem 'grape'
 gem 'grape-swagger'
 
 gem 'mysql2'
+gem 'faraday'
