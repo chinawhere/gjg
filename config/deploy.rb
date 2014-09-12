@@ -19,7 +19,8 @@ set :domain, "192.168.130.56"
 # set :domain, 'ubuntu'
 # set :deploy_to,  '/home/developer/chinawhere'
 set :deploy_to, "/opt/project/chinawhere"
-set :repository, 'git@github.com:chinawhere/chinawhere.git'
+# set :repository, 'git@github.com:chinawhere/chinawhere.git'
+set :repository, 'root@shop_test:/opt/project/chinawhere.git'
 set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
