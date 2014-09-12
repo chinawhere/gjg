@@ -31,7 +31,7 @@ desc "Push repository to the remote server"
 task :before_clone do
   system "git add . -A"
   system "git commit -m '#{Time.now.to_s}'"
-  system "git push origin #{branch}"
+  system "git push local #{branch}"
 end
 
 desc "run db:seed"
