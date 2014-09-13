@@ -1,1 +1,7 @@
-helloworld!
+<header class="bar bar-nav">
+  <h1 class="title">Title</h1>
+</header>
+<%= form_for @user, url:{action:'register'} do |f| %>
+	<%= f.text_field :weixin_id %>
+	<%= f.submit  %>
+<% end %>
