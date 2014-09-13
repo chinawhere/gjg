@@ -80,8 +80,8 @@ task :deploy => :environment do
     queue! "RAILS_ENV=production bundle"
     invoke :'rails:db_migrate'
     # queue! "RAILS_ENV=production bundle exec rake assets:clean"
-    queue! "RAILS_ENV=production bundle exec rake assets:precompile"
-    # invoke :'rails:assets_precompile'
+    # queue! "RAILS_ENV=production bundle exec rake assets:precompile"
+    invoke :'rails:assets_precompile'
 
     to :launch do
       # queue "touch #{deploy_to}/tmp/restart.txt"
