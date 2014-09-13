@@ -1,4 +1,13 @@
 <%= form_for @user, url:{action:'register'} do |f| %>
-	<%= f.text_field :weixin_id %>
-	<%= f.submit  %>
+	<%= f.text_field :weixin_id, placeholder:"微信id" %>
+	<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
 <% end %>
+
+<!--
+<form>
+  <input type="text" placeholder="Full name">
+  <input type="search" placeholder="Search">
+  <textarea rows="5"></textarea>
+  <button class="btn btn-positive btn-block">Choose existing</button>
+</form>
+-->
