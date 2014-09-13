@@ -1,6 +1,6 @@
 class WeixinController < ApplicationController
 
-	layout false
+	# layout false
 
   def index
   	render :text => params[:echostr]
