@@ -32,7 +32,12 @@ class WeixinController < ApplicationController
 
   def register
   	user = User.create params[:user]
-  	render :text => 'register success'
+  	# render :text => 'register success'
+  	redirect_to :topics
+  end
+
+  def topics
+  	
   end
 
 end
