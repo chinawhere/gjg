@@ -16,37 +16,50 @@
 			<h1 class="title">注册新用户</h1>
 		</header>
 		<div class="content">
-
 			<div class="segmented-control">
-			  <a class="control-item active" href="#item1mobile">
-			    Thing one
-			  </a>
-			  <a class="control-item" href="#item2mobile">
-			    Thing two
-			  </a>
-			  <a class="control-item" href="#item3mobile">
-			    Thing three
-			  </a>
+				<a class="control-item active" href="#item1mobile">
+					注册新用户
+				</a>
+				<a class="control-item" href="#item2mobile">
+					绑定已有用户
+				</a>
 			</div>
 			<div class="card">
-			  <span id="item1mobile" class="control-content active">Item 1</span>
-			  <span id="item2mobile" class="control-content">Item 2</span>
-			  <span id="item3mobile" class="control-content">Item 3</span>
+				<span id="item1mobile" class="control-content active">
+				<%= form_for @user, url:{action:'register'}, class:"input-group" do |f| %>
+				<%= f.hidden_field :weixin_id %>
+				<%= f.hidden_field :name %>
+				<div class="input-row">
+					<label>邮箱</label>
+					<%= f.text_field :email, placeholder:"请输入邮箱" %>
+				</div>
+				<div class="input-row">
+					<label>密码</label>
+					<%= f.password_field :password, placeholder:"请输入密码" %>
+				</div>
+				<div class="input-row">
+					<label>确认密码</label>
+					<%= f.password_field :password, placeholder:"请再次输入密码" %>
+				</div>
+				<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
+				<% end %>
+				</span>
+				<span id="item2mobile" class="control-content">
+				<%= form_for @user, url:{action:'register'}, class:"input-group" do |f| %>
+				<%= f.hidden_field :weixin_id %>
+				<%= f.hidden_field :name %>
+				<div class="input-row">
+					<label>邮箱</label>
+					<%= f.text_field :email, placeholder:"请输入邮箱" %>
+				</div>
+				<div class="input-row">
+					<label>密码</label>
+					<%= f.password_field :password, placeholder:"请输入密码" %>
+				</div>
+				<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
+				<% end %>
+				</span>
 			</div>
-			
-			<%= form_for @user, url:{action:'register'}, class:"input-group" do |f| %>
-			<%= f.hidden_field :weixin_id %>
-			<%= f.hidden_field :name %>
-			<div class="input-row">
-				<label>邮箱</label>
-				<%= f.text_field :email, placeholder:"请输入邮箱" %>
-			</div>	
-			<div class="input-row">
-				<label>密码</label>
-				<%= f.password_field :password, placeholder:"请输入密码" %>
-			</div>	
-			<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
-			<% end %>
 		</div>
 	</body>
 </html>
