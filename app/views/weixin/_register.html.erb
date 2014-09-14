@@ -22,6 +22,10 @@
 				<label>邮箱</label>
 				<%= f.text_field :email, placeholder:"请输入邮箱" %>
 			</div>	
+			<div class="input-row">
+				<label>密码</label>
+				<%= f.text_field :email, as: 'password', placeholder:"请输入密码" %>
+			</div>	
 			<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
 			<% end %>
 		</div>
