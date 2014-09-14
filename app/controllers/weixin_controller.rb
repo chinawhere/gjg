@@ -20,7 +20,7 @@ class WeixinController < ApplicationController
 		@user = User.find_by_weixin_id(parsed_json['openid'])
 
 		if @user
-			session[:user_id] = user.id
+			session[:user_id] = @user.id
 			render partial: 'bind'
 		else
 			@user = User.new
@@ -33,7 +33,7 @@ class WeixinController < ApplicationController
 
   def register
   	user = User.create! params[:user]
-  	# render :text => 'register success'
+  	session[:user_id] = user.id
   	redirect_to action: :topics
   end
 
