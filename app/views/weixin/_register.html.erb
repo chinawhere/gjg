@@ -11,14 +11,15 @@
 	</head>
 	<body>
 		<div class="content">
-				<div class="segmented-control">
-					<a class="control-item active" href="#item1mobile">
-						注册新用户
-					</a>
-					<a class="control-item" href="#item2mobile">
-						绑定已有用户
-					</a>
-				</div>
+			<div class="segmented-control">
+				<a class="control-item active" href="#item1mobile">
+					注册新用户
+				</a>
+				<a class="control-item" href="#item2mobile">
+					绑定已有用户
+				</a>
+			</div>
+			<div class="card">
 				<span id="item1mobile" class="control-content active">
 				<%= form_for @user, url:{action:'register'} do |f| %>
 				<%= f.hidden_field :weixin_id %>
@@ -38,6 +39,7 @@
 				<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
 				<% end %>
 				</span>
+			</div>
 		</div>
 	</body>
 </html>
