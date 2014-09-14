@@ -21,6 +21,7 @@
 					</a>
 				</div>
 			</nav>
+			<div class="bar bar-standard bar-header-secondary">
 				<span id="item1mobile" class="control-content active">
 				<%= form_for @user, url:{action:'register'}, class:"input-group" do |f| %>
 				<%= f.hidden_field :weixin_id %>
@@ -55,6 +56,7 @@
 				<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
 				<% end %>
 				</span>
+			</div>
 		</div>
 	</body>
 </html>
