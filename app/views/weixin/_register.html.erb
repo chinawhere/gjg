@@ -19,7 +19,7 @@
 					绑定已有用户
 				</a>
 			</div>
-			<div class="card">
+			<div class="card" style="border:none;">
 				<span id="item1mobile" class="control-content active">
 				<%= form_for @user, url:{action:'register'} do |f| %>
 				<%= f.hidden_field :weixin_id %>
