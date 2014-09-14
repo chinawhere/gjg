@@ -23,36 +23,21 @@
 			</nav>
 			<div class="bar bar-standard bar-header-secondary">
 				<span id="item1mobile" class="control-content active">
-				<%= form_for @user, url:{action:'register'}, class:"input-group" do |f| %>
+				<%= form_for @user, url:{action:'register'} do |f| %>
 				<%= f.hidden_field :weixin_id %>
 				<%= f.hidden_field :name %>
-				<div class="input-row">
-					<label>邮箱</label>
-					<%= f.text_field :email%>
-				</div>
-				<div class="input-row">
-					<label>密码</label>
-					<%= f.password_field :password %>
-				</div>
-				<div class="input-row">
-					<label>确认密码</label>
-					<%= f.password_field :password %>
-				</div>
+				<%= f.text_field :email, placeholder:"请输入邮箱" %>
+				<%= f.password_field :password, placeholder:"请输入密码" %>
+				<%= f.password_field :password, placeholder:"请再次输入密码" %>
 				<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
 				<% end %>
 				</span>
 				<span id="item2mobile" class="control-content">
-				<%= form_for @user, url:{action:'register'}, class:"input-group" do |f| %>
+				<%= form_for @user, url:{action:'register'} do |f| %>
 				<%= f.hidden_field :weixin_id %>
 				<%= f.hidden_field :name %>
-				<div class="input-row">
-					<label>邮箱</label>
-					<%= f.text_field :email%>
-				</div>
-				<div class="input-row">
-					<label>密码</label>
-					<%= f.password_field :password%>
-				</div>
+				<%= f.text_field :email, placeholder:"请输入邮箱" %>
+				<%= f.password_field :password, placeholder:"请输入密码" %>
 				<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
 				<% end %>
 				</span>
