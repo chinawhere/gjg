@@ -25,6 +25,7 @@ class WeixinController < ApplicationController
 		else
 			@user = User.new
 			@user.weixin_id = parsed_json['openid']
+			@user.name = "littlell"
 			render partial: 'register'
 		end
 
