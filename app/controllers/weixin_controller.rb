@@ -33,7 +33,7 @@ class WeixinController < ApplicationController
   def register
   	user = User.create params[:user]
   	# render :text => 'register success'
-  	redirect_to :topics
+  	redirect_to action: :topics
   end
 
   def topics
