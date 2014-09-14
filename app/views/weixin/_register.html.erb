@@ -13,11 +13,15 @@
 		<header class="bar bar-nav">
 			<a href="##" class="icon icon-bars pull-left"></a>
 			<a href="##" class="icon icon-search pull-right"></a>
-			<h1 class="title">W3cplus</h1>
+			<h1 class="title">注册新用户</h1>
 		</header>
 		<div class="content">
-			<%= form_for @user, url:{action:'register'} do |f| %>
-			<%= f.text_field :weixin_id, placeholder:"微信id" %>
+			<%= form_for @user, url:{action:'register'}, class:"input-group" do |f| %>
+			<%= f.hidden_field :weixin_id %>
+			<div class="input-row">
+				<label>邮箱</label>
+				<%= f.text_field :email, placeholder:"请输入邮箱" %>
+			</div>	
 			<%= f.submit '提交', class:"btn btn-positive btn-block"  %>
 			<% end %>
 		</div>
