@@ -38,7 +38,12 @@ class WeixinController < ApplicationController
   end
 
   def bind
-  	
+  	@user = User.find_by_email_and_password(params[:email],params[:password])
+  	if @user
+  		redirect_to action: :topics
+  	else
+  		render :text => "error email or password"
+  	end
   end
 
   def topics
