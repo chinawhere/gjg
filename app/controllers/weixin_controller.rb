@@ -38,10 +38,10 @@ class WeixinController < ApplicationController
   end
 
   def bind
-  	@user = User.find_by_email_and_password(params[:email],params[:password])
+  	@user = User.find_by_email_and_password(params[:user][:email],params[:user][:password])
 
   	if @user
-	  	@user.weixin_id = params[:weixin_id]
+	  	@user.weixin_id = params[:user][:weixin_id]
 	  	@user.save!
   		redirect_to action: :topics
   	else
