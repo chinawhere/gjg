@@ -1,6 +1,11 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
+  get "weixin/profile"
+
+  get "weixin/topics"
+
+  get "weixin/test"
 
   post "weixin/index"
 
