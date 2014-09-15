@@ -39,7 +39,10 @@ class WeixinController < ApplicationController
 
   def bind
   	@user = User.find_by_email_and_password(params[:email],params[:password])
+
   	if @user
+	  	@user.weixin_id = params[:weixin_id]
+	  	@user.save!
   		redirect_to action: :topics
   	else
   		render :text => "error email or password"
