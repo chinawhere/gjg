@@ -37,6 +37,10 @@ class WeixinController < ApplicationController
   	redirect_to action: :topics
   end
 
+  def bind
+  	
+  end
+
   def topics
   	
   end

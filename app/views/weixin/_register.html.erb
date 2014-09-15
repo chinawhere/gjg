@@ -31,7 +31,7 @@
 				<% end %>
 				</span>
 				<span id="item2mobile" class="control-content">
-				<%= form_for @user, url:{action:'register'} do |f| %>
+				<%= form_for @user, url:{action:'bind'} do |f| %>
 				<%= f.hidden_field :weixin_id %>
 				<%= f.hidden_field :name %>
 				<%= f.text_field :email, placeholder:"请输入邮箱" %>
