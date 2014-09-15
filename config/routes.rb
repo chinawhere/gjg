@@ -13,6 +13,8 @@ ChinaWhere::Application.routes.draw do
 
   post "weixin/register"
 
+  post "weixin/bind"
+
   root to: 'welcome#index'
   get 'test', to: 'welcome#test', as: :test
   scope controller: :sessions do
