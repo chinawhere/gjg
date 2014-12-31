@@ -31,8 +31,9 @@
   </div>
   <div class="row" style="margin: 10px">
     <h4>活动详情:</h4>
-    <p><%= @event.content.html_safe rescue ''%></p>
+    <p><%= raw(@event.content.to_s.html_safe) rescue ''%></p>
   </div>
+
   <div class="row" style="margin: 10px">
     <h4>活动图片:</h4>
     <% @event.photos.each do |photo|%>

@@ -68,6 +68,7 @@ ChinaWhere::Application.routes.draw do
       get :login
       get :logout
       post :sessions
+      post :set_tab
     end
 
     resources :users
@@ -77,6 +78,10 @@ ChinaWhere::Application.routes.draw do
     resources :events
 
     resources :applies
+
+    resources :question_classifies
+
+    resources :questions
   end
 
 
