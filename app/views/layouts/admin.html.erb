@@ -26,9 +26,9 @@
     <!-- BEGIN HEADER INNER -->
     <div class="page-header-inner">
       <!-- BEGIN LOGO -->
-      <div class="page-logo">
-        <a href="/index">
-          <img src="/assets/logo.png" alt="logo" class="logo-default" style="width:100px;height:21px" />
+      <div class="page-logo" style="margin-top: -8px;margin-left:15px">
+        <a href="/admin">
+          <img src="/assets/logo.png" alt="logo" class="logo-default" style="width:138px;height:33px" />
         </a>
 
       </div>
@@ -86,9 +86,10 @@
           </form>
           <!-- END RESPONSIVE QUICK SEARCH FORM -->
         </li>
+        <% tab = session[:tab].to_i %>
         <% menus = YAML.load_file("config/admin.yml").symbolize_keys[:admin] %>
         <% menus.each_with_index do |menu, index| %>
-          <li class="<%= 'start active open' if index == 0%>">
+          <li class="<%= 'start active open' if index == tab%>" tab="<%= index%>">
             <a href="javascript:;">
             <i class="fa fa-cogs"></i>
             <span class="title">
@@ -137,6 +138,8 @@
         $(this).children("a").children("span.arrow").addClass("open");
         $(this).siblings('li').removeClass("start active open");
         $(this).siblings('li').children("a").children("span.arrow").removeClass("open");
+        $.post("<%= admin_set_tab_path%>",{tab: $(this).attr("tab")}, function(data){
+        })
       });
     })
   </script>

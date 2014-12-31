@@ -1,6 +1,6 @@
 # coding: utf-8
 class Admin::SessionsController < Admin::ApplicationController
-  skip_before_filter :admin_access_denied, except: [:index]
+  skip_before_filter :admin_access_denied, except: [:index, :set_tab]
 
   def index
     @user = User.first
@@ -25,6 +25,11 @@ class Admin::SessionsController < Admin::ApplicationController
       flash[:notic] = true
       redirect_to admin_login_path
     end
+  end
+
+  def set_tab
+    session[:tab] = params[:tab]
+    render :text => session[:tab]
   end
 
 end

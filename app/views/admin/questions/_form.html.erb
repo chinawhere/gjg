@@ -1,0 +1,15 @@
+<div class="portlet-body form">
+  <%= form_for @question, url: defined?(url) ? url : admin_questions_path, methods: :post do |f|%>
+    <div class="form-body">
+    	<%= form_select_field(text_label: '分类', text_name: 'question[question_classify_id]', text_option: QuestionClassify.top_category.collect{|c| [c.id,c.name]}) %>
+      <%= form_text_field(text_label: '题目', text_name: 'question[title]', text_value: f.object.title) %>
+			<%= form_text_field(text_label: 'A', text_name: 'question[a]', text_value: f.object.a) %>
+			<%= form_text_field(text_label: 'B', text_name: 'question[b]', text_value: f.object.b) %>
+			<%= form_text_field(text_label: 'C', text_name: 'question[c]', text_value: f.object.c) %>
+			<%= form_text_field(text_label: 'D', text_name: 'question[d]', text_value: f.object.d) %>
+			<%= form_select_field(text_label: '答案', text_name: 'question[answer]', text_option: Question::ANSWER) %>
+      <%= f.submit '添加', :class => 'btn blue'%>
+      <%= link_to '取消', admin_questions_path, :class => 'btn default'%>
+    </div>
+  <% end -%>
+</div>
