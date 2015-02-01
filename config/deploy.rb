@@ -14,7 +14,7 @@ require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 # set :domain, 'foobar.com'
 # set :user, 'developer'
 set :user, "root"
-set :domain, "192.168.130.56"
+set :domain, "123.56.102.78"
 # set :domain, 'starroom_main'
 # set :domain, 'ubuntu'
 # set :deploy_to,  '/home/developer/chinawhere'
@@ -89,11 +89,3 @@ task :deploy => :environment do
     end
   end
 end
-
-# For help in making your deploy script, see the Mina documentation:
-#
-#  - http://nadarei.co/mina
-#  - http://nadarei.co/mina/tasks
-#  - http://nadarei.co/mina/settings
-#  - http://nadarei.co/mina/helpers
-
