@@ -45,14 +45,14 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'rails:db_migrate'
-    invoke :'rails:assets_precompile'
-    invoke :'deploy:cleanup'
+    # invoke :'rails:assets_precompile'
+    # invoke :'deploy:cleanup'
 
     to :launch do
-      queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
+      # queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       # queue! "RAILS_ENV=production bundle exec rake restart_puma"
-      queue! "bundle exec rake restart_unicorn"
-      queue! "ln -sv #{deploy_to}/#{shared_path}/public/spree #{deploy_to}/#{current_path}/public/spree"
+      # queue! "bundle exec rake restart_unicorn"
+      # queue! "ln -sv #{deploy_to}/#{shared_path}/public/spree #{deploy_to}/#{current_path}/public/spree"
     end
   end
 end
