@@ -7,6 +7,6 @@ threads 2,16
 
 bind  "unix:///opt/project/chinawhere/tmp/puma.sock"
 pidfile  "#{basedir}/tmp/puma.pid"
-state_path "#{basedir}/current/tmp/puma.state"
+state_path "#{basedir}/tmp/puma.state"
 preload_app!
 activate_control_app
