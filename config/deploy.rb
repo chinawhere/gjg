@@ -14,7 +14,7 @@ require 'mina/rbenv'  # for rbenv support. (http://rbenv.org)
 # set :domain, 'foobar.com'
 # set :user, 'developer'
 set :user, "root"
-set :domain, "192.168.130.56"
+set :domain, "123.56.102.78"
 # set :domain, 'starroom_main'
 # set :domain, 'ubuntu'
 # set :deploy_to,  '/home/developer/chinawhere'
@@ -31,7 +31,7 @@ desc "Push repository to the remote server"
 task :before_clone do
   system "git add . -A"
   system "git commit -m '#{Time.now.to_s}'"
-  system "git push local #{branch}"
+  system "git push chinawhere #{branch}"
 end
 
 desc "run db:seed"
