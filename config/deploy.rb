@@ -8,22 +8,11 @@ require 'mina/rbenv'
 #   deploy_to    - Path to deploy into.
 #   repository   - Git repo to clone from. (needed by mina/git)
 #   branch       - Branch name to deploy. (needed by mina/git)
-<<<<<<< HEAD
 
-# set :domain, 'foobar.com'
-# set :user, 'developer'
-set :user, "root"
-set :domain, "123.56.102.78"
-# set :domain, 'starroom_main'
-# set :domain, 'ubuntu'
-# set :deploy_to,  '/home/developer/chinawhere'
-set :deploy_to, "/opt/project/chinawhere"
-# set :repository, 'git@github.com:chinawhere/chinawhere.git'
-=======
 set :user , 'root'
 set :domain, '123.56.102.78'
 set :deploy_to, '/opt/project/chinawhere'
->>>>>>> f14fe3277d8041a2763b852f61ced777a94b25fd
+
 set :repository, '/opt/project/chinawhere.git'
 set :branch, 'master'
 
@@ -69,7 +58,3 @@ task :deploy => :environment do
     end
   end
 end
-<<<<<<< HEAD
-=======
-
->>>>>>> f14fe3277d8041a2763b852f61ced777a94b25fd
