@@ -2,6 +2,7 @@
 class PhotosController < ApplicationController
 
   def create
+    params.permit!
     session[:user_id] = params[:user_id]
     photo = Photo.new(params[:photo])
     photo.name = params[:photo][:avatar].original_filename

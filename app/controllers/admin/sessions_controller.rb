@@ -18,10 +18,13 @@ class Admin::SessionsController < Admin::ApplicationController
 
   def sessions
     @user = User.where(name: params[:name], password: params[:password]).first
+    puts '**********'
     if @user.present?
+      puts '2'*100
       session[:staffer_id] = @user.id
       redirect_to admin_root_path
     else
+      puts '3'*100
       flash[:notic] = true
       redirect_to admin_login_path
     end

@@ -11,6 +11,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    params.permit!
     session[:user_id] = params[:current_user_id]
     @current_user = User.find(session[:user_id])
     comment = @commentable.comments.build(

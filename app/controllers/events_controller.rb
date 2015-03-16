@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   end
 
   def create
+    params.permit!
     @events = @current_user.events.build(params[:event])
     if @events.save
       redirect_to events_path
@@ -27,6 +28,7 @@ class EventsController < ApplicationController
   end
 
   def update
+    params.permit!
     if @event.update_attributes(params[:event])
       redirect_to events_path
     else
