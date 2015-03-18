@@ -4,7 +4,7 @@ class Comment < ActiveRecord::Base
   belongs_to :commentable, polymorphic: true
 
   belongs_to :user
-  # scope :p_comments, where(:p_comment_id => nil)
+  scope :p_comments, where(:p_comment_id => nil)
 
   def p_comment_user_id
     self.class.find(self.p_comment_id).try(:user_id) rescue nil
