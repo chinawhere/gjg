@@ -9,35 +9,35 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141230090610) do
+ActiveRecord::Schema.define(version: 20141230090610) do
 
-  create_table "applies", :force => true do |t|
+  create_table "applies", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
     t.string   "name"
     t.string   "email"
     t.integer  "age"
     t.string   "sex"
-    t.integer  "approved",   :default => 0
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.integer  "approved",   default: 0
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "articles", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "articles", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "categories", :force => true do |t|
+  create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "status"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "comments", :force => true do |t|
+  create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "to_user_id"
     t.integer  "reply_to_user_id"
@@ -47,15 +47,15 @@ ActiveRecord::Schema.define(:version => 20141230090610) do
     t.integer  "p_comment_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "comments", ["commentable_id", "commentable_type"], :name => "commentable"
-  add_index "comments", ["p_comment_id"], :name => "index_comments_on_p_comment_id"
-  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
+  add_index "comments", ["commentable_id", "commentable_type"], name: "commentable"
+  add_index "comments", ["p_comment_id"], name: "index_comments_on_p_comment_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "events", :force => true do |t|
+  create_table "events", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
     t.string   "name"
@@ -67,37 +67,37 @@ ActiveRecord::Schema.define(:version => 20141230090610) do
     t.string   "fee"
     t.integer  "max_count"
     t.integer  "min_count"
-    t.integer  "approved",    :default => 0
+    t.integer  "approved",    default: 0
     t.text     "content"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "photos_path"
   end
 
-  create_table "photos", :force => true do |t|
+  create_table "photos", force: :cascade do |t|
     t.integer  "event_id"
     t.string   "name"
     t.string   "avatar"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "pictures", :force => true do |t|
+  create_table "pictures", force: :cascade do |t|
     t.string   "name"
     t.integer  "imageable_id"
     t.string   "imageable_type"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "question_classifies", :force => true do |t|
+  create_table "question_classifies", force: :cascade do |t|
     t.string   "name"
     t.integer  "parent_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "questions", :force => true do |t|
+  create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.integer  "question_classify_id"
     t.string   "a"
@@ -105,22 +105,22 @@ ActiveRecord::Schema.define(:version => 20141230090610) do
     t.string   "c"
     t.string   "d"
     t.string   "answer"
-    t.datetime "created_at",           :null => false
-    t.datetime "updated_at",           :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "roles", :force => true do |t|
+  create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
     t.string   "resource_type"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
-  add_index "roles", ["name"], :name => "index_roles_on_name"
+  add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
+  add_index "roles", ["name"], name: "index_roles_on_name"
 
-  create_table "users", :force => true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
     t.string   "password"
@@ -130,19 +130,19 @@ ActiveRecord::Schema.define(:version => 20141230090610) do
     t.string   "position"
     t.integer  "age"
     t.string   "qq"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "hobby"
     t.string   "weixin_id"
   end
 
-  add_index "users", ["email", "password"], :name => "index_users_on_email_and_password"
+  add_index "users", ["email", "password"], name: "index_users_on_email_and_password"
 
-  create_table "users_roles", :id => false, :force => true do |t|
+  create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
   end
 
-  add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+  add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
 
 end
