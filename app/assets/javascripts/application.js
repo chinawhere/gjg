@@ -13,14 +13,4 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
-$(document).ready(function(){
-  $(".nav-first-level").bind('click', function(){
-    $('.menu_active').not(this).siblings('.nav-second-level').hide();
-    $('.menu_active').not(this).children('span').removeClass('glyphicon-menu-down');
-    $('.menu_active').not(this).removeClass('menu_active');
-    $(this).children('span').toggleClass('glyphicon-menu-down');
-    $(this).siblings('.nav-second-level').first().toggle();
-    $(this).toggleClass('menu_active');
-  })
-})
+// require_tree .

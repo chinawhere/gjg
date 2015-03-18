@@ -1,20 +1,6 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
-  get "weixin/profile"
-
-  get "weixin/topics"
-
-  get "weixin/test"
-
-  post "weixin/index"
-
-  get "weixin/code"
-
-  post "weixin/register"
-
-  post "weixin/bind"
-
   root to: 'welcome#index'
   get 'test', to: 'welcome#test', as: :test
   scope controller: :sessions do
@@ -24,7 +10,7 @@ ChinaWhere::Application.routes.draw do
     post :sessions
     post :sign_up
   end
-  
+
   mount Twitter::API => '/'
 
   get 'home', to: 'home#index', as: :home
