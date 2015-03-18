@@ -2,7 +2,7 @@
 
 environment "production"
 basedir = "/opt/project/chinawhere"
-# daemonize true
+daemonize true
 threads 2,16
 
 bind  "unix:///tmp/puma.sock"
