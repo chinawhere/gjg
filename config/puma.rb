@@ -8,5 +8,4 @@ threads 2,16
 bind  "unix:///tmp/puma.sock"
 pidfile  "#{basedir}/tmp/puma.pid"
 state_path "#{basedir}/tmp/puma.state"
-preload_app!
 activate_control_app

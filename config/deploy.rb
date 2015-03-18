@@ -39,11 +39,18 @@ task :setup => :environment do
   queue  %[echo "-----> Be sure to edit '#{deploy_to}/#{shared_path}/config/database.yml'."]
 end
 
+task :submit_git do
+  system 'git add . -A'
+  system 'git commit -m "' + Time.now.to_s + '"'
+  system 'git push'
+end
+
 desc "Deploys the current version to the server."
 task :deploy => :environment do
   deploy do
     # Put things that will set up an empty directory into a fully set-up
     # instance of your project.
+    invoke :submit_git
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
