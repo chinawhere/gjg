@@ -7,11 +7,15 @@
   <%= stylesheet_link_tag    'bootstrap_extra' %>
   <%= stylesheet_link_tag    'font-awesome'%>
   <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'bootstrap.min'%>
   <%= yield :header %>
   <%= csrf_meta_tags %>
   <script>
     var Chinawhere = new Object;
     Chinawhere.current_user_id = <%= @current_user.try(:id) || false %>;
+    $(document).ready(function(){
+      $('.dropdown-toggle').dropdown();
+    })
   </script>
 </head>
 <body>
