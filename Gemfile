@@ -44,10 +44,6 @@ group :development, :test do
   gem 'spring'
 end
 
-
-
-
-
 gem 'rails_kindeditor'
 
 gem 'bootstrap3-rails'
