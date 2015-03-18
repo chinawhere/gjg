@@ -65,4 +65,6 @@ ChinaWhere::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
   config.eager_load = true
+
+  config.log_level = :info
 end
