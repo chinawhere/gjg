@@ -19,6 +19,7 @@ ChinaWhere::Application.routes.draw do
     collection do
       get :account
       put :basic
+      patch :basic
       get :password
     end
   end
