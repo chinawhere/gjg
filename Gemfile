@@ -44,10 +44,6 @@ group :development, :test do
   gem 'spring'
 end
 
-
-
-
-
 gem 'rails_kindeditor'
 
 gem 'bootstrap3-rails'
@@ -72,4 +68,5 @@ gem 'grape'
 gem 'grape-swagger'
 
 gem 'mysql2'
+
 gem 'faraday'

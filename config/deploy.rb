@@ -61,7 +61,7 @@ task :deploy => :environment do
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue! "RAILS_ENV=production bundle exec rake restart_puma"
-      queue! "ln -sv #{deploy_to}/#{shared_path}/public/upload #{deploy_to}/#{current_path}/public/upload"
+      queue! "ln -sv #{deploy_to}/#{shared_path}/public/upload #{deploy_to}/#{current_path}/public"
     end
   end
 end
