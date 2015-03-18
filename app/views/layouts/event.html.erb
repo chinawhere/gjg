@@ -2,7 +2,10 @@
 <html>
 <head>
   <title>ChinaWhere</title>
-  <%= stylesheet_link_tag    'application', media: "all" %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'bootstrap.min'%>
+  <%= stylesheet_link_tag    'bootstrap_extra' %>
+  <%= stylesheet_link_tag    'font-awesome'%>
   <%= stylesheet_link_tag    'ui/scaffolds', 'ui/base' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'ui/ui_header' %>
