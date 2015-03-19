@@ -11,6 +11,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def create
+    params.permit!
     @user = User.new(params[:user])
     if @user.save
       redirect_to admin_users_path
@@ -24,6 +25,7 @@ class Admin::UsersController < Admin::ApplicationController
   end
 
   def update
+    params.permit!
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to admin_users_path
