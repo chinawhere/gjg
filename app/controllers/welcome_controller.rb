@@ -1,5 +1,6 @@
 #coding: utf-8
 class WelcomeController < ApplicationController
+
   def index
   	@events = Event.limit(10)
   end
@@ -7,7 +8,5 @@ class WelcomeController < ApplicationController
   def test
   	render :layout => false
   end
-
-  def geo
-  end
+  
 end
