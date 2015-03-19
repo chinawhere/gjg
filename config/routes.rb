@@ -2,6 +2,7 @@
 ChinaWhere::Application.routes.draw do
 
   root to: 'welcome#index'
+  post 'geo', to:'welcome#geo'
   get 'test', to: 'welcome#test', as: :test
   scope controller: :sessions do
     get :login
@@ -69,6 +70,12 @@ ChinaWhere::Application.routes.draw do
     resources :question_classifies
 
     resources :questions
+  end
+
+  resources :cities do
+    member do
+      post 'pick'
+    end
   end
 
 

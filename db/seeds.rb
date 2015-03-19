@@ -24,3 +24,8 @@ User.where( name:     '唐玲',
   {:name=>"会议展览", :status=>"event"},{:name=>"社会公益", :status=>"event"},{:name=>"其他", :status=>"event"}].each do |k|
     Category.where(name: k[:name], status: k[:status]).first_or_create
   end
+
+City.find_or_create_by(name: '北京')
+City.find_or_create_by(name: '上海')
+City.find_or_create_by(name: '广州')
+City.find_or_create_by(name: '重庆')

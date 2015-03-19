@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   before_filter :current_user
+  helper_method :current_city
 
   def current_user
     @current_user = User.find(session[:user_id]) if session[:user_id].present?
@@ -29,4 +30,11 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
     @current_user = nil
   end
+
+  def current_city
+    cookies.signed[:city_id] = 1 unless cookies.signed[:city_id]
+    @current_city ||= City.find(cookies.signed[:city_id])
+    @current_city
+  end
+
 end

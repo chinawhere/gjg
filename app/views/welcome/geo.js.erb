@@ -1,0 +1,4 @@
+$('#myModal #myModalLabel').html('请选择城市');
+$('#myModal .modal-body').html("<%= j render('layouts/city_form') %>");
+$('#myModal .modal-footer').remove();
+$('#myModal').modal();

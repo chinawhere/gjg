@@ -3,9 +3,9 @@
 <head>
   <title>Chinawhere</title>
   <%= stylesheet_link_tag    'application', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag    'bootstrap.min'%>
+  <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'bootstrap_extra' %>
-  <%= stylesheet_link_tag    'font-awesome'%>
+  <%= stylesheet_link_tag    'font-awesome.min'%>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'bootstrap.min'%>
   <%= yield :header %>
@@ -15,6 +15,7 @@
     Chinawhere.current_user_id = <%= @current_user.try(:id) || false %>;
     $(document).ready(function(){
       $('.dropdown-toggle').dropdown();
+      $('[data-toggle="popover"]').popover();
     })
   </script>
 </head>
@@ -24,6 +25,7 @@
   <div class="container" id="main">
     <%= yield %>
   </div>
+  <%= render '/layouts/popup' %>
   <div id="footer">
     <div class="container">
       <p class="text-muted">Place sticky footer content here.</p>

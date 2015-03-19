@@ -7,4 +7,7 @@ class WelcomeController < ApplicationController
   def test
   	render :layout => false
   end
+
+  def geo
+  end
 end

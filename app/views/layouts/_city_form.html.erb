@@ -1,0 +1,5 @@
+<%= form_tag 'http://www.baidu.com' do %>
+  <% City.find_each do |city| %>
+    <%= link_to city.name, pick_city_path(city), class:'btn btn-default', remote: true, method: 'post' %>
+  <% end %>
+<% end %>
