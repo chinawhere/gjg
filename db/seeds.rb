@@ -25,7 +25,7 @@ User.where( name:     '唐玲',
     Category.where(name: k[:name], status: k[:status]).first_or_create
   end
 
-City.find_or_create_by(name: '北京')
-City.find_or_create_by(name: '上海')
-City.find_or_create_by(name: '广州')
-City.find_or_create_by(name: '重庆')
+City.find_or_create_by(name: '北京', code:'100000')
+City.find_or_create_by(name: '上海', code:'200000')
+City.find_or_create_by(name: '广州', code:'510000')
+City.find_or_create_by(name: '重庆', code:'630000')
