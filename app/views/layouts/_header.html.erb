@@ -19,7 +19,7 @@
         <li><a href="#contact">联系我们</a></li>
         <li>
           <p class="navbar-text">
-            <span class="glyphicon glyphicon-map-marker"></span> <span id="nav_city"><%= current_city.name %></span>
+            <span class="glyphicon glyphicon-map-marker"></span> <span id="nav_city"><%= current_city.try(:name) %></span>
             <%= link_to '切换城市', geo_path, class:'navbar-link', remote: true, method: 'post' %>
           <p>
         </li>
