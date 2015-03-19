@@ -14,10 +14,10 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
-          <li <%= 'class=active' if params[:controller] == 'home' %>><%= link_to '个人中心', home_path, target: "_blank" %></li>
           <li <%= 'class=active' if params[:controller] == 'events' %>><%= link_to '活动', events_path%></li>
-          <li><a href="#contact">Contact</a></li>
-          <li class="dropdown">
+          <li <%= 'class=active' if params[:controller] == 'home' %>><%= link_to '个人中心', home_path, target: "_blank" %></li>
+          <li><a href="#contact">联系我们</a></li>
+<!--           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
             <ul class="dropdown-menu">
               <li><a href="#">Action</a></li>
@@ -28,7 +28,7 @@
               <li><a href="#">Separated link</a></li>
               <li><a href="#">One more separated link</a></li>
             </ul>
-          </li>
+          </li> -->
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
@@ -42,7 +42,7 @@
           </li>
           <% if @current_user.present? %>
             <li class="active dropdown-user">
-              <a href="./" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+              <a style="padding: 10px;" href="./" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                 <%= image_tag @current_user.logo_url(:feed), size: '30x30', :class => 'img-circle' %>
                 <span class="username"><%= @current_user.try(:name)%></span>
                 <i class="fa fa-angle-down"></i>
@@ -74,6 +74,12 @@
               <%= link_to '注册', register_path %>
             </li>
           <% end -%>
+          <li>
+              <a href="<%= new_event_path%>" target="_blank"  >
+                <%= image_tag "create.png", size: '18x18'%>
+                <span class="username">新建活动</span>
+              </a>
+          </li>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
