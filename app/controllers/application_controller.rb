@@ -32,8 +32,19 @@ class ApplicationController < ActionController::Base
   end
 
   def current_city
-    cookies.signed[:city_id] = 1 unless cookies.signed[:city_id]
-    @current_city ||= City.find(cookies.signed[:city_id])
+    if cookies.signed[:city_id]
+      @current_city ||= City.find(cookies.signed[:city_id])
+    else
+      res = Faraday.get %{http://ip.taobao.com/service/getIpInfo.php?ip=#{request.ip}}
+      if res.status == 200
+        parsed_json = JSON.parse res.body
+        # return 0 represents success
+        if parsed_json['code'] == 0
+          @current_city = City.find_by(code: parsed_json['data']['city_id'])
+        end
+      end
+    end
+    @current_city ||= City.first
     @current_city
   end
 

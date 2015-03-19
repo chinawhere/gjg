@@ -39,9 +39,12 @@ ActiveRecord::Schema.define(version: 20150319060457) do
 
   create_table "cities", force: :cascade do |t|
     t.string   "name"
+    t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "cities", ["code"], name: "index_cities_on_code", unique: true
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
