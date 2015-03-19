@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     res = Faraday.get %{http://ip.taobao.com/service/getIpInfo.php?ip=#{request.ip}}
-    render text: res.inspect and return
+    render text: res.body and return
   	@events = Event.limit(10)
   end
 
