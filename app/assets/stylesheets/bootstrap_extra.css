@@ -1,15 +1,9 @@
-/*.row{
-  margin-left: -30px;
-}*/
-a{
-  color: black;
-}
 .navbar .glyphicon{
   top: 2px;
 }
-.no-padding-right{
+div{
   padding-right: 0px;
 }
-div{
+.no-padding-right{
   padding-right: 0px;
 }
