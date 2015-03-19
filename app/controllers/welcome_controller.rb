@@ -3,8 +3,13 @@ class WelcomeController < ApplicationController
 
   def index
     res = Faraday.get %{http://ip.taobao.com/service/getIpInfo.php?ip=#{request.ip}}
-    parsed_json = JSON.parse res.body
-    render text: parsed_json and return
+    if res.code == 200
+      parsed_json = JSON.parse res.body
+      if parsed_json['code'] == 0
+        render text: parsed_json['data']['city_id'] and return
+      end
+    end
+    render text: 'error' and return
   	@events = Event.limit(10)
   end
 
