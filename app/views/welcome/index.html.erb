@@ -11,6 +11,9 @@
       $(this).siblings('.nav-second-level').first().toggle();
       $(this).toggleClass('menu_active');
     })
+    $(".nav li").click(function(){
+      $(this).addClass("active").siblings().removeClass("active");
+    })
   })
 </script>
 <div class="row">
@@ -155,4 +158,5 @@
     </div>
   </div>
 </div>
-<%= render 'second_level' %>
+
+<%= render :partial => "second_level", :locals => {:events => @events} %>

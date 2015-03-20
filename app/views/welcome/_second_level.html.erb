@@ -1,24 +1,10 @@
 <div class="row">
   <ul class="nav nav-pills">
-    <li role="presentation" class="active"><a href="#">未开始</a></li>
-    <li role="presentation"><a href="#">进行中</a></li>
-    <li role="presentation"><a href="#">已结束</a></li>
+    <li role="presentation" class="active">
+      <%= link_to '即将开始', show_events_path(state: "new"), remote: true,  method: 'post' %>
+    </li>
+    <li role="presentation"><%= link_to '进行中', show_events_path(state: 'progress'), remote: true,  method: 'post' %></li>
+    <li role="presentation"><%= link_to '已结束', show_events_path(state: 'end'), remote: true,  method: 'post' %></li>
   </ul>
 </div>
-<div class="row">
-  <% @events.each do |event|%>
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <a href="<%= event_path(event)%>" target="_blank"><img data-src="holder.js/100%x200" alt="100%x200" src="<%= event.logo_url%>" data-holder-rendered="true" style="height: 150px; width: 100%; display: block;"></a>
-      <div class="caption">
-        <h4>
-        <%= truncate(event.name,:length => 12)%>
-        </h4>
-        <p><%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
-        <p>地点：<%= event.address %></p>
-        <p><a href="#" class="btn btn-primary" role="button">查看</a> <a href="#" class="btn btn-default" role="button">加入</a></p>
-      </div>
-    </div>
-  </div>
-  <% end %>
-</div>
+<%= render :partial => "layouts/shared/events", :locals => {:events => events}%>
