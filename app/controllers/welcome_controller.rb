@@ -2,7 +2,7 @@
 class WelcomeController < ApplicationController
 
   def index
-  	@events = Event.limit(10)
+  	@events = Event.where(city_code: current_city.code).limit(8)
   end
 
 end

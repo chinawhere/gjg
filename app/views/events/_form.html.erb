@@ -8,8 +8,12 @@
     <%= f.text_field :name, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 20],'name':'活动标题'}", :class => 'form-control'%>
   </div>
   <div class="input-group">
-    <span class="input-group-addon">活动地址：</span>
-    <%= f.text_field :address, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 100],'name':'活动地址'}", :class => 'form-control'%>
+    <span class="input-group-addon">活动城市：</span>
+    <%= f.select :city_code, options_for_select(City.all.map{|c| [c.name,c.code]}, selected:[current_city.code]), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">详细地址：</span>
+    <%= f.text_field :address, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 100],'name':'详细地址'}", :class => 'form-control'%>
   </div>
   <div class="input-group">
     <span class="input-group-addon">活动类型：</span>

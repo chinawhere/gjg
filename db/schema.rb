@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319060457) do
+ActiveRecord::Schema.define(version: 20150320020520) do
 
   create_table "applies", force: :cascade do |t|
     t.integer  "user_id"
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150319060457) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "photos_path", limit: 255
+    t.string   "city_code"
   end
 
   create_table "photos", force: :cascade do |t|
