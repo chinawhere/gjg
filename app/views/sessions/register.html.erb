@@ -2,7 +2,7 @@
   <div class="panel-body">
     <div class="col-md-6 sign-up-form">
       <div class="content" style="width:350px">
-        <%= form_tag sign_up_path, method: 'post', class:'form-horizontal' %>
+        <%= form_tag sign_up_path, method: 'post', class:'form-horizontal' do %>
           <div class="form-group">
             <h4 class="form-title col-sm-8 col-sm-offset-3 text-center">注册新用户</h4>
           </div>
@@ -56,7 +56,7 @@
       </div>
     </div>
     <div class="col-md-6">
-    <div class="reg_side">
+      <div class="reg_side">
         <p>
           已经注册？
           <%= link_to '马上登录！', login_path, title: '马上登录！', :class => 'green'%>
