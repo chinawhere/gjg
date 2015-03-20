@@ -2,7 +2,6 @@
 class EventsController < ApplicationController
   before_filter :require_login, except: [:index, :show, :photos]
   before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader, :photos]
-  layout 'event'
   def index
     @events = Event.search(params).paginate(page: params[:page] || 1, per_page: params[:per_page] || 10)
     photo_ids = @events.map(&:photos_path).compact.join(',').split(',') rescue []
