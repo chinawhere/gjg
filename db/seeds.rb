@@ -16,6 +16,14 @@ User.where( name:     '唐玲',
             position: 'ruby工程师',
             age:      26,
             qq:       '361771529').first_or_create.add_role :admin
+User.where( name:     '夏雷',
+            email:    'littlell@126.com',
+            password: '88688142',
+            sex:      'M',
+            mobile:   '18901031876',
+            position: 'ruby工程师',
+            age:      31,
+            qq:       '279596262').first_or_create.add_role :admin
 
 
 
