@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to root_path
     else
-      flash[:notice] = true
+      flash.now[:notice] = true
       render :login
     end
   end
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
       session[:user_id] = @user.id
       redirect_to root_path
     else
-      flash[:notice] = @user.errors.messages.values.join(',')
+      flash.now[:notice] = @user.errors.messages.values.join(',')
       render :register
     end
   end
