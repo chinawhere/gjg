@@ -9,7 +9,7 @@
   </div>
   <div class="input-group">
     <span class="input-group-addon">活动城市：</span>
-    <%= f.select :city_code, options_for_select(City.all.map{|c| [c.name,c.code]}, selected:[current_city.code]), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
+    <%= f.select :city_code, options_for_select(City.all.map{|c| [c.name,c.code]}, selected:[@event.city_code]), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
   </div>
   <div class="input-group">
     <span class="input-group-addon">详细地址：</span>
