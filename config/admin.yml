@@ -20,3 +20,7 @@ admin:
         href: /admin/question_classifies
       - name: 试题
         href: /admin/questions
+  - name: 分类管理
+    menus:
+      - name: 分类层级
+        href: /admin/taxons

@@ -10,6 +10,7 @@
   <%= javascript_include_tag 'bootstrap.min'%>
   <%= yield :header %>
   <%= csrf_meta_tags %>
+  <%= include_gon %>
   <script>
     var Chinawhere = new Object;
     Chinawhere.current_user_id = <%= @current_user.try(:id) || false %>;
@@ -20,7 +21,6 @@
   </script>
 </head>
 <body>
-
   <%= render '/layouts/header' %>
   <div class="container" id="main">
     <%= yield %>

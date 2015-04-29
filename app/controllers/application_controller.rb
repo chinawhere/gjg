@@ -2,11 +2,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_filter :current_user
+  before_action :current_user, :check_location
   helper_method :current_city
 
   def current_user
     @current_user = User.find(session[:user_id]) if session[:user_id].present?
+  end
+
+  def check_location
+    gon.city_id = cookies.signed[:city_id]
   end
 
   def require_login
@@ -35,18 +39,18 @@ class ApplicationController < ActionController::Base
     if cookies.signed[:city_id]
       @current_city ||= City.find(cookies.signed[:city_id])
     else
-      if request.ip != '127.0.0.1'
-        res = Faraday.get %{http://ip.taobao.com/service/getIpInfo.php?ip=#{request.ip}}
-        if res.status == 200
-          parsed_json = JSON.parse res.body
-          # return 0 represents success
-          if parsed_json['code'] == 0
-            @current_city = City.find_by(code: parsed_json['data']['city_id'])
-          end
-        end
-      end
+      @current_city = City.first
+      # if request.ip != '127.0.0.1'
+      #   res = Faraday.get %{http://ip.taobao.com/service/getIpInfo.php?ip=#{request.ip}}
+      #   if res.status == 200
+      #     parsed_json = JSON.parse res.body
+      #     # return 0 represents success
+      #     if parsed_json['code'] == 0
+      #       @current_city = City.find_by(code: parsed_json['data']['city_id'])
+      #     end
+      #   end
+      # end
     end
-    @current_city ||= City.first
     @current_city
   end
 

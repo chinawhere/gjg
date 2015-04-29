@@ -71,11 +71,22 @@ ChinaWhere::Application.routes.draw do
     resources :question_classifies
 
     resources :questions
+
+    resources :taxons do
+      collection do
+        post :position
+      end
+      resources :sub_menus
+    end
+
   end
 
   resources :cities do
     member do
       post 'pick'
+    end
+    collection do
+      get 'select'
     end
   end
 

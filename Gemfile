@@ -70,3 +70,7 @@ gem 'grape-swagger'
 gem 'mysql2'
 
 gem 'faraday'
+
+gem 'simple_form'
+
+gem 'gon'

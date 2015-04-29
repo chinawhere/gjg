@@ -19,7 +19,24 @@
 <div class="row">
   <div class="col-md-2">
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-bottom: 5px; display: block; position: static;">
-      <li><a href="#">全部</a></li>
+      <% @taxons.each do |taxon| %>
+        <% sub_menus = taxon.sub_menus %>
+        <li class="<%= sub_menus.empty? ? '' : 'dropdown-submenu' %>">
+          <a href="#"><%= taxon.name %></a>
+          <% unless sub_menus.empty? %>
+            <ul class="dropdown-menu">
+              <% taxon.sub_menus.each_with_index do |sm, index| %>
+                <% if index == 0 %>
+                  <li><a tabindex="-1" href="#"><%= sm.name %></a></li>
+                <% else %>
+                  <li><a href="#"><%= sm.name %></a></li>
+                <% end %>
+              <% end %>
+            </ul>
+          <% end %>
+        </li>
+      <% end %>
+      <!--
       <li class="dropdown-submenu">
         <a tabindex="-1" href="#">旅行</a>
         <ul class="dropdown-menu">
@@ -31,6 +48,7 @@
         <a tabindex="-1" href="#">户外健身</a>
         <ul class="dropdown-menu">
           <li><a tabindex="-1" href="#">登山</a></li>
+          -->
           <!--
           <li class="dropdown-submenu">
             <a href="#">More..</a>
@@ -40,6 +58,7 @@
             </ul>
           </li>
           -->
+          <!--
           <li><a href="#">球类</a></li>
           <li><a href="#">跑步</a></li>
           <li><a href="#">骑行</a></li>
@@ -59,9 +78,11 @@
           <li><a href="#">小型现场</a></li>
         </ul>
       </li>
+      -->
       <!--
       <li class="divider"></li>
       -->
+      <!--
       <li class="dropdown-submenu">
         <a tabindex="-1" href="#">戏剧</a>
         <ul class="dropdown-menu">
@@ -120,6 +141,7 @@
           <li><a href="#">主题活动</a></li>
         </ul>
       </li>
+      -->
     </ul>
   </div>
   <div class="col-md-10 no-padding-right">

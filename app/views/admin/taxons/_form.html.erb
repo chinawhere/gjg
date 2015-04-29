@@ -1,0 +1,6 @@
+<%= simple_form_for [:admin, @taxon] do |f| %>
+  <div class="form-group">
+    <%= f.input :name, class:'form-control', placeholder: '请输入分类名称', label:false %>
+  </div>
+  <%= f.submit '创建', class:'btn btn-default btn-primary' %>
+<% end %>

@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
   	# @events = Event.where(city_code: current_city.code).limit(8)
   	@events = Event.where("city_code= ? and start_at > ?", current_city.code, Time.now).limit(8)
   	# @events = Event.where("start_at > ?", Time.now).limit(8)
+    @taxons = Taxon.roots
   end
   def show_events
   	now_time = Time.now
