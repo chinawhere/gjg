@@ -71,6 +71,8 @@ gem 'mysql2'
 
 gem 'faraday'
 
+gem 'faraday'
+
 gem 'simple_form'
 
 gem 'gon'
