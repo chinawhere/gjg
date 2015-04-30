@@ -10,6 +10,7 @@
   <%= javascript_include_tag "bootstrap.min" %>
   <%= yield :header %>
   <%= csrf_meta_tags %>
+  <%= include_gon %>
   <style type="text/css">
     body {background-color: #3d3d3d;}
     .dataTable {
