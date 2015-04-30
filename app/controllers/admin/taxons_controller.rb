@@ -1,5 +1,7 @@
 class Admin::TaxonsController < Admin::ApplicationController
 
+  respond_to :html
+
   def index
     @taxons = Taxon.roots
   end
@@ -10,11 +12,8 @@ class Admin::TaxonsController < Admin::ApplicationController
 
   def create
     @taxon = Taxon.new(taxon_params)
-    if @taxon.save
-      redirect_to admin_taxons_path
-    else
-      render :new
-    end
+    flash[:notice] = "创建成功."
+    respond_with(:admin, @taxon)
   end
 
   def edit

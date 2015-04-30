@@ -76,3 +76,5 @@ gem 'faraday'
 gem 'simple_form'
 
 gem 'gon'
+
+gem 'responders'

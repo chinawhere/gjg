@@ -18,7 +18,6 @@
         <% if @current_user.present? %>
           <li <%= 'class=active' if params[:controller] == 'home' %>><%= link_to '个人中心', home_path %></li>
         <% end %>
-        <li><a href="#contact">联系我们</a></li>
         <li>
           <p class="navbar-text">
             <span class="glyphicon glyphicon-map-marker"></span> <span id="nav_city"><%= current_city.try(:name) %></span>
