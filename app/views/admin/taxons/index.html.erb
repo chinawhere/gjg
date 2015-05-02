@@ -1,8 +1,8 @@
 <%= content_for :header do %>
   <%= javascript_include_tag 'jquery.sortable' %>
   <style>
-    .row{
-      margin-bottom: 15px;
+    div.well{
+      margin-top: 15px;
     }
     h1{
     	font-size:24px;
@@ -36,15 +36,21 @@
     	width: 370px;
     	margin: 10px;
     }
-    div.alert{
+    div.sort_change_alert{
       display:none;
     }
   </style>
 <% end %>
 <div class="row">
-  <%= link_to '新建分类', new_admin_taxon_path, class:'btn btn-default btn-primary row' %>
+  <%= link_to '新建分类', new_admin_taxon_path, class:'btn btn-default btn-primary' %>
   <div class="well well-sm">上下拖动排序, 从上倒下在前台按次序显示</div>
-  <div class="alert alert-warning alert-dismissible  well-sm" role="alert">
+  <% if flash.notice %>
+    <div class="alert alert-warning alert-dismissible  well-sm data_change_alert" role="alert">
+      <%= flash.notice %>
+      <a href="javascript:void(0);" class="pull-right close_info">x</a>
+    </div>
+  <% end %>
+  <div class="alert alert-warning alert-dismissible  well-sm sort_change_alert" role="alert">
     更新成功
     <a href="javascript:void(0);" class="pull-right close_info">x</a>
   </div>
@@ -68,14 +74,17 @@
         }).get();
         console.log(ordered_list);
         $.post("<%= position_admin_taxons_path%>", {'positions': ordered_list}, function(data){
-          $("div.alert").show();
+          $("div.sort_change_alert").show();
         })
         $(".taxons_list li").css('border-bottom', '1px solid #CCC');
         $(".taxons_list li:last").css('border-bottom', 'none');
       });
       $(".taxons_list li:last").css('border-bottom', 'none');
       $("a.close_info").bind('click', function(){
-        $("div.alert").hide();
+        $("div.sort_change_alert").hide();
+      });
+      $("div.data_change_alert a").bind('click', function(){
+        $(this).parent().hide();
       })
     })
   </script>

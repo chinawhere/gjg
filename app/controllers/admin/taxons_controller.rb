@@ -1,5 +1,7 @@
 class Admin::TaxonsController < Admin::ApplicationController
 
+  responders :flash
+
   respond_to :html
 
   def index
@@ -12,8 +14,8 @@ class Admin::TaxonsController < Admin::ApplicationController
 
   def create
     @taxon = Taxon.new(taxon_params)
-    flash[:notice] = "创建成功."
-    respond_with(:admin, @taxon)
+    @taxon.save
+    respond_with(@taxon, location: admin_taxons_path)
   end
 
   def edit
@@ -22,17 +24,14 @@ class Admin::TaxonsController < Admin::ApplicationController
 
   def update
     @taxon = Taxon.find(params[:id])
-    if @taxon.update(taxon_params)
-      redirect_to admin_taxons_path
-    else
-      render :edit
-    end
+    @taxon.update(taxon_params)
+    respond_with(@taxon, location: admin_taxons_path)
   end
 
   def destroy
     @taxon = Taxon.find(params[:id])
     @taxon.destroy
-    redirect_to admin_taxons_path
+    respond_with(:admin, @taxon)
   end
 
   def position
