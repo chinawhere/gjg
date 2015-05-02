@@ -25,3 +25,4 @@
 .rvmrc
 *.rdb
 /tmp
+.settings/
