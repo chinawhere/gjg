@@ -4,7 +4,7 @@
       <div class="content" style="width:350px">
         <%= form_tag sign_up_path, method: 'post', class:'form-horizontal' do %>
           <div class="form-group">
-            <h4 class="form-title col-sm-8 col-sm-offset-3 text-center">注册新用户</h4>
+            <h4 class="form-title col-sm-8 col-sm-offset-3 text-center">注册“去哪儿玩”帐号</h4>
           </div>
           <% if flash[:notice] %>
             <div class="alert alert-danger alert-dismissible" role="alert">
@@ -13,7 +13,7 @@
             </div>
           <% end %>
           <div class="form-group">
-            <label for="name" class="col-sm-3 control-label pull-left">用户名</label>
+            <label for="name" class="col-sm-3 control-label pull-left">昵称</label>
             <div class="col-sm-9">
               <input type="text" class="form-control" id="name" placeholder="请输入用户名" name="user[name]" value="<%= @user.name %>" required>
             </div>
@@ -36,17 +36,15 @@
               <input type="password" class="form-control" id="password" placeholder="请再次输入密码" name="user[password_confirmation]" required>
             </div>
           </div>
-          <!--
           <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
+            <div class="col-sm-offset-3 col-sm-10">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox"> 记住我
+                  <input type="checkbox" required> 我已阅读并接受《去哪儿玩用户协议》
                 </label>
               </div>
             </div>
           </div>
-          -->
           <div class="form-group">
             <div class="col-sm-offset-3 col-sm-9">
               <button type="submit" class="btn btn-default btn-primary btn-block">注册</button>

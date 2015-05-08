@@ -19,17 +19,18 @@
 <div class="row">
   <div class="col-md-2">
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-bottom: 5px; display: block; position: static;">
+      <li><a href="#">全部</a></li>
       <% @taxons.each do |taxon| %>
         <% sub_menus = taxon.sub_menus %>
         <li class="<%= sub_menus.empty? ? '' : 'dropdown-submenu' %>">
-          <a href="#"><%= taxon.name %></a>
+          <a href="<%= list_taxon_path(taxon)%>"><%= taxon.name %></a>
           <% unless sub_menus.empty? %>
             <ul class="dropdown-menu">
               <% taxon.sub_menus.each_with_index do |sm, index| %>
                 <% if index == 0 %>
-                  <li><a tabindex="-1" href="#"><%= sm.name %></a></li>
+                  <li><a tabindex="-1" href="<%= list_taxon_path(sm) %>"><%= sm.name %></a></li>
                 <% else %>
-                  <li><a href="#"><%= sm.name %></a></li>
+                  <li><a href="<%= list_taxon_path(sm) %>"><%= sm.name %></a></li>
                 <% end %>
               <% end %>
             </ul>

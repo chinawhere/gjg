@@ -1,12 +1,19 @@
 zh:
   activerecord:
     errors:
+      messages:
+        record_invalid: 格式不正确
       models:
+        event:
+          attributes:
+            name:
+              blank: 名称不能为空
+            address:
+              blank: 地址不能为空
         taxon:
           attributes:
             name:
               blank: 分类名不能为空
-  direction: ltr
   date:
     formats:
       # Use the strftime parameters for formats.

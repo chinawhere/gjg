@@ -1,7 +1,10 @@
 # coding: utf-8
 class Event < ActiveRecord::Base
+  validates_presence_of :name, :address
   mount_uploader :logo, EventLogoUploader
   has_many :photos
+  belongs_to :city
+  belongs_to :taxon, foreign_key:'category_id'
 
   belongs_to :user
   has_many :comments, as: :commentable
@@ -40,6 +43,10 @@ class Event < ActiveRecord::Base
       else
         Event.order('created_at desc')
       end
+    end
+
+    def fee_type_options
+      FEE_TYPE.map{|k, v| [v, k]}
     end
   end
 

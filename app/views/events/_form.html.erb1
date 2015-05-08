@@ -1,0 +1,67 @@
+<%= content_for :header do %>
+  <%= stylesheet_link_tag    'product/calendar/jscal2','product/calendar/border-radius','product/calendar/steel' %>
+  <%= javascript_include_tag 'product/calendar/jscal2',  'product/calendar/cn'%>
+<% end -%>
+<%= form_for @event, methods: :post, html: {:class => 'talen_two_f'} do |f| %>
+  <div class="input-group">
+    <span class="input-group-addon">活动标题：</span>
+    <%= f.text_field :name, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 20],'name':'活动标题'}", :class => 'form-control'%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">活动城市：</span>
+    <%= f.select :city_code, options_for_select(City.all.map{|c| [c.name,c.code]}, selected:[@event.city_code]), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">详细地址：</span>
+    <%= f.text_field :address, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 100],'name':'详细地址'}", :class => 'form-control'%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">活动类型：</span>
+    <%= f.select :category_id, options_for_select(Category.where(status: 'event').map{|c| [c.name,c.id]}, selected:[@event.category_id]), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">开始时间：</span>
+    <%= f.text_field :start_at, :class => 'form-control', value: (@event.start_at.strftime('%F %T') rescue ''), 'validation-config' => "{'checking':['required'],'init':[true],'name':'开始时间'}" %>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">结束时间：</span>
+    <%= f.text_field :end_at, :class => 'form-control', value: (@event.end_at.strftime('%F %T') rescue ''), 'validation-config' => "{'checking':['required'],'init':[true],'name':'结束时间'}" %>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">费用类型：</span>
+    <%= f.select :fee_type, options_for_select(Event::FEE_TYPE.map{|c| [c[1],c[0]]}, selected:[@event.fee_type]), {},:class => 'form-control', 'data-style' => "btn-primary"%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">活动金额：</span>
+    <%= f.text_field :fee, :class => 'form-control'%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">上限人数：</span>
+    <%= f.text_field :max_count, :class => 'form-control', 'validation-config' => "{'checking':['min','max'],'init':[1,9999],'name':'上限人数'}"%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">下限人数：</span>
+    <%= f.text_field :min_count, :class => 'form-control', 'validation-config' => "{'checking':['min', 'max'],'init':[1, 9999],'name':'下限人数'}"%>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">活动描述：</span>
+    <%= f.kindeditor :content, :simple_mode => true, :class => 'form-control' %>
+  </div>
+  <div class="input-group">
+    <span class="input-group-addon">活动图片：</span>
+    <%= f.file_field :logo, :class => 'form-control' %>
+  </div>
+  <div class="btn-group">
+    <%= f.submit '完成', :class => 'btn btn-default'%>
+  </div>
+<% end -%>
+<script type="text/javascript">//<![CDATA[
+
+      var cal = Calendar.setup({
+          onSelect: function(cal) { cal.hide() },
+          showTime: true
+      });
+      cal.manageFields("event_start_at", "event_start_at", "%Y-%m-%d %H:%M:%S");
+      cal.manageFields("event_end_at", "event_end_at", "%Y-%m-%d %H:%M:%S");
+
+    //]]></script>

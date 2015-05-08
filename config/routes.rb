@@ -26,7 +26,6 @@ ChinaWhere::Application.routes.draw do
     end
   end
 
-  resources :articles
   resources :events do
     member do
       get :uploader
@@ -50,7 +49,13 @@ ChinaWhere::Application.routes.draw do
       post :destroy_comment
     end
   end
-
+  
+  resources :taxons, only:[] do
+    member do
+      get :list
+    end
+  end
+  
   namespace :admin do
     root to: "sessions#index"
     scope controller: :sessions do

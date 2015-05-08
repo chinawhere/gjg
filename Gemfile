@@ -1,6 +1,4 @@
 source 'http://ruby.taobao.org'
-# source 'https://rubygems.org'
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -78,3 +76,5 @@ gem 'simple_form'
 gem 'gon'
 
 gem 'responders'
+
+gem 'ransack'

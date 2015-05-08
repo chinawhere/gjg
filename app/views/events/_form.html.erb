@@ -1,67 +1,150 @@
-<%= content_for :header do %>
-  <%= stylesheet_link_tag    'product/calendar/jscal2','product/calendar/border-radius','product/calendar/steel' %>
-  <%= javascript_include_tag 'product/calendar/jscal2',  'product/calendar/cn'%>
-<% end -%>
-<%= form_for @event, methods: :post, html: {:class => 'talen_two_f'} do |f| %>
-  <div class="input-group">
-    <span class="input-group-addon">活动标题：</span>
-    <%= f.text_field :name, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 20],'name':'活动标题'}", :class => 'form-control'%>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">活动城市：</span>
-    <%= f.select :city_code, options_for_select(City.all.map{|c| [c.name,c.code]}, selected:[@event.city_code]), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">详细地址：</span>
-    <%= f.text_field :address, 'validation-config' => "{'checking':['required', 'maxSize'],'init':[true, 100],'name':'详细地址'}", :class => 'form-control'%>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">活动类型：</span>
-    <%= f.select :category_id, options_for_select(Category.where(status: 'event').map{|c| [c.name,c.id]}, selected:[@event.category_id]), {}, :class => 'form-control', 'data-style' => "btn-primary"%>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">开始时间：</span>
-    <%= f.text_field :start_at, :class => 'form-control', value: (@event.start_at.strftime('%F %T') rescue ''), 'validation-config' => "{'checking':['required'],'init':[true],'name':'开始时间'}" %>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">结束时间：</span>
-    <%= f.text_field :end_at, :class => 'form-control', value: (@event.end_at.strftime('%F %T') rescue ''), 'validation-config' => "{'checking':['required'],'init':[true],'name':'结束时间'}" %>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">费用类型：</span>
-    <%= f.select :fee_type, options_for_select(Event::FEE_TYPE.map{|c| [c[1],c[0]]}, selected:[@event.fee_type]), {},:class => 'form-control', 'data-style' => "btn-primary"%>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">活动金额：</span>
-    <%= f.text_field :fee, :class => 'form-control'%>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">上限人数：</span>
-    <%= f.text_field :max_count, :class => 'form-control', 'validation-config' => "{'checking':['min','max'],'init':[1,9999],'name':'上限人数'}"%>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">下限人数：</span>
-    <%= f.text_field :min_count, :class => 'form-control', 'validation-config' => "{'checking':['min', 'max'],'init':[1, 9999],'name':'下限人数'}"%>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">活动描述：</span>
-    <%= f.kindeditor :content, :simple_mode => true, :class => 'form-control' %>
-  </div>
-  <div class="input-group">
-    <span class="input-group-addon">活动图片：</span>
-    <%= f.file_field :logo, :class => 'form-control' %>
-  </div>
-  <div class="btn-group">
-    <%= f.submit '完成', :class => 'btn btn-default'%>
-  </div>
-<% end -%>
-<script type="text/javascript">//<![CDATA[
+<% content_for :header do %>
+  <%= stylesheet_link_tag 'bootstrap-datetimepicker.min' %>
+  <%= stylesheet_link_tag 'bootstrap-select.min'%>
+  <%= javascript_include_tag 'bootstrap-datetimepicker.min'%>
+  <%= javascript_include_tag 'bootstrap-datetimepicker.zh-CN'%>
+  <%= javascript_include_tag 'bootstrap-wysiwyg.min'%>
+  <%= javascript_include_tag 'bootstrap-select.min' %>
+<% end %>
+<%= simple_form_for @event, html: { class: 'form-horizontal' }  do |f| %>
+<fieldset>
 
-      var cal = Calendar.setup({
-          onSelect: function(cal) { cal.hide() },
-          showTime: true
-      });
-      cal.manageFields("event_start_at", "event_start_at", "%Y-%m-%d %H:%M:%S");
-      cal.manageFields("event_end_at", "event_end_at", "%Y-%m-%d %H:%M:%S");
+<!-- Form Name -->
+<legend>创建新的活动</legend>
 
-    //]]></script>
+<!-- Text input-->
+<div class="form-group required-control">
+  <label class="col-md-3 control-label" for="textinput">活动标题</label>
+  <div class="col-md-6">
+    <%= f.input :name, input_html:{class:'form-control', placeholder: '请输入活动标题'}, label:false, required: true %>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-3 control-label" for="selectbasic">城市</label>
+  <div class="col-md-2">
+    <%= f.association :city, input_html:{class: 'form-control selectpicker'}, label: false, include_blank: false %>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group required-control">
+  <label class="col-md-3 control-label" for="textinput">详细地址</label>
+  <div class="col-md-6">
+    <%= f.input :address, input_html:{class:'form-control', required: 'required', placeholder:'请输入活动地址'}, label:false%>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-3 control-label" for="selectbasic">活动类型</label>
+  <div class="col-md-2">
+    <%= f.association :taxon, collection: Taxon.select_options, input_html:{class:'selectpicker', 'data-live-search': 'true'}, label: false, include_blank: false %>
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group required-control">
+  <label class="col-md-3 control-label" for="textinput">开始时间</label>
+  <div class="col-md-6">
+    <%= f.input :start_at, as:'string', input_html:{class:'form-control', required: 'required', placeholder:'请输入活动开始时间', value: Time.now.strftime('%Y-%m-%d %H:%M:%S')}, label:false %>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group required-control">
+  <label class="col-md-3 control-label" for="textinput">结束时间</label>
+  <div class="col-md-6">
+    	<%= f.input :end_at, as:'string', input_html:{class:'form-control', required: 'required', placeholder:'请输入活动开始时间', value: (Time.now + 24 * 60 * 60).strftime('%Y-%m-%d %H:%M:%S')}, label:false %>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-3 control-label" for="selectbasic">消费类型</label>
+  <div class="col-md-2">
+    <%= f.input :fee_type, as:'select', collection: Event.fee_type_options, input_html:{class: 'form-control selectpicker'}, label:false, include_blank: false %>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-3 control-label" for="fee">活动金额</label>
+  <div class="col-md-6">
+    <%= f.input :fee, input_html:{class:'form-control', placeholder: '请输入活动金额'}, label: false %>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group required-control">
+  <label class="col-md-3 control-label" for="min_count">下限人数</label>
+  <div class="col-md-6">
+    <%= f.input :min_count, input_html:{class:'form-control', placeholder: '请输入活动下限人数'}, label: false %>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group required-control">
+  <label class="col-md-3 control-label" for="max_count">上限人数</label>
+  <div class="col-md-6">
+    <%= f.input :max_count, input_html:{class:'form-control', placeholder: '请输入活动上限人数'}, label: false %>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group required-control">
+  <label class="col-md-3 control-label" for="max_count">活动LOGO</label>
+  <div class="col-md-6">
+    <%= f.input :logo, input_html:{class:'form-control', placeholder: '请上传活动logo'}, label: false %>
+  </div>
+</div>
+
+
+<!-- Text input-->
+<div class="form-group required-control">
+  <label class="col-md-3 control-label" for="content">活动描述</label>
+  <div class="col-md-6">
+    <%= f.input :content, :as => :kindeditor, :label => false, :input_html => { :width => 800, :height => 300 } %>
+  </div>
+</div>
+
+
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-3 control-label" for="singlebutton"></label>
+  <div class="col-lg-6">
+    <button id="singlebutton" name="singlebutton" class="btn btn-primary">提交</button>
+  </div>
+</div>
+
+</fieldset>
+<% end %>
+<script>
+  $(document).ready(function(){
+    $('#event_start_at').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+    		autoclose: 1,
+    		todayHighlight: 1,
+    		startView: 2,
+    		forceParse: 0
+    });
+    $('#event_end_at').datetimepicker({
+        language:  'zh-CN',
+        weekStart: 1,
+        todayBtn:  1,
+    		autoclose: 1,
+    		todayHighlight: 1,
+    		startView: 2,
+    		forceParse: 0,
+        showMeridian: 1
+    });
+    $('#editor').wysiwyg();
+    $('.selectpicker').selectpicker({
+      size: 8
+    });
+  });
+</script>

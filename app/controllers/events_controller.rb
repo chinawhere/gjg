@@ -2,6 +2,8 @@
 class EventsController < ApplicationController
   before_filter :require_login, except: [:index, :show, :photos]
   before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader, :photos]
+
+  respond_to :html
   def index
     @events = Event.search(params).paginate(page: params[:page] || 1, per_page: params[:per_page] || 10)
     photo_ids = @events.map(&:photos_path).compact.join(',').split(',') rescue []
@@ -9,18 +11,15 @@ class EventsController < ApplicationController
   end
 
   def new
+    @taxons = Taxon.select_options
     @event = Event.new
-    render layout: 'home'
   end
 
   def create
     params.permit!
-    @events = @current_user.events.build(params[:event])
-    if @events.save
-      redirect_to events_path
-    else
-      render :new
-    end
+    @event = @current_user.events.build(params[:event])
+    @event.save
+    respond_with(@event, location: events_path)
   end
 
   def show
@@ -28,15 +27,11 @@ class EventsController < ApplicationController
 
   def update
     params.permit!
-    if @event.update_attributes(params[:event])
-      redirect_to events_path
-    else
-      render :edit
-    end
+    @event.update(params[:event])
+    respond_with(@event, location: events_path)
   end
 
   def edit
-    render layout: 'home'
   end
 
   def destroy
