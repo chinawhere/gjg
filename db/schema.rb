@@ -16,25 +16,25 @@ ActiveRecord::Schema.define(version: 20150329113627) do
   create_table "applies", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_id"
-    t.string   "name"
-    t.string   "email"
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
     t.integer  "age"
-    t.string   "sex"
-    t.integer  "approved",   default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "sex",        limit: 255
+    t.integer  "approved",               default: 0
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "articles", force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name",       limit: 255
+    t.string   "status",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "cities", force: :cascade do |t|
@@ -55,9 +55,9 @@ ActiveRecord::Schema.define(version: 20150329113627) do
     t.integer  "p_user_id"
     t.integer  "p_comment_id"
     t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "commentable_type",    limit: 255
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   add_index "comments", ["commentable_id", "commentable_type"], name: "commentable"
@@ -67,64 +67,64 @@ ActiveRecord::Schema.define(version: 20150329113627) do
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
-    t.string   "name"
-    t.string   "address"
-    t.string   "logo"
+    t.string   "name",        limit: 255
+    t.string   "address",     limit: 255
+    t.string   "logo",        limit: 255
     t.datetime "start_at"
     t.datetime "end_at"
     t.integer  "fee_type"
-    t.string   "fee"
+    t.string   "fee",         limit: 255
     t.integer  "max_count"
     t.integer  "min_count"
-    t.integer  "approved",    default: 0
+    t.integer  "approved",                default: 0
     t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "photos_path"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "photos_path", limit: 255
     t.string   "city_code"
   end
 
   create_table "photos", force: :cascade do |t|
     t.integer  "event_id"
-    t.string   "name"
-    t.string   "avatar"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "name",       limit: 255
+    t.string   "avatar",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "pictures", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",           limit: 255
     t.integer  "imageable_id"
-    t.string   "imageable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "imageable_type", limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "question_classifies", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string   "title"
+    t.string   "title",                limit: 255
     t.integer  "question_classify_id"
-    t.string   "a"
-    t.string   "b"
-    t.string   "c"
-    t.string   "d"
-    t.string   "answer"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "a",                    limit: 255
+    t.string   "b",                    limit: 255
+    t.string   "c",                    limit: 255
+    t.string   "d",                    limit: 255
+    t.string   "answer",               limit: 255
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
   end
 
   create_table "roles", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",          limit: 255
     t.integer  "resource_id"
-    t.string   "resource_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string   "resource_type", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
@@ -139,19 +139,19 @@ ActiveRecord::Schema.define(version: 20150329113627) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password"
-    t.string   "sex"
-    t.string   "mobile"
-    t.string   "logo"
-    t.string   "position"
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "password",   limit: 255
+    t.string   "sex",        limit: 255
+    t.string   "mobile",     limit: 255
+    t.string   "logo",       limit: 255
+    t.string   "position",   limit: 255
     t.integer  "age"
-    t.string   "qq"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "hobby"
-    t.string   "weixin_id"
+    t.string   "qq",         limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "hobby",      limit: 255
+    t.string   "weixin_id",  limit: 255
   end
 
   add_index "users", ["email", "password"], name: "index_users_on_email_and_password"

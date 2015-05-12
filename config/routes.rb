@@ -90,7 +90,14 @@ ChinaWhere::Application.routes.draw do
     end
   end
 
-
+  resources :trade do
+    member do
+      post 'pick'
+    end
+    collection do
+      get 'index'
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
