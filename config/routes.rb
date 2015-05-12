@@ -96,6 +96,8 @@ ChinaWhere::Application.routes.draw do
     end
     collection do
       get 'index'
+      get 'call_back'
+      post 'call_back'
     end
   end
   # The priority is based upon order of creation:
