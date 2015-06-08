@@ -1,5 +1,5 @@
 require 'open-uri'
-require 'rest_client'
+# require 'rest_client'
 class TradeController < ApplicationController
 	skip_before_filter :verify_authenticity_token
 	before_filter :check_weixin_legality, only: ['lzj']
@@ -128,7 +128,7 @@ class TradeController < ApplicationController
 </xml> 
     "
 
-    response = RestClient.post "https://api.mch.weixin.qq.com/pay/unifiedorder", xml_content, :content_type => "text/xml"
+    # response = RestClient.post "https://api.mch.weixin.qq.com/pay/unifiedorder", xml_content, :content_type => "text/xml"
     xml_str = response
     xml = Hash.from_xml xml_str
     @prepay_id = response["xml"]["prepay_id"]
