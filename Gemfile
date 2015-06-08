@@ -78,3 +78,4 @@ gem 'simple_form'
 gem 'gon'
 
 gem 'responders'
+gem 'actionpack-xml_parser'
