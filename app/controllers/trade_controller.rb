@@ -1,6 +1,6 @@
 class TradeController < ApplicationController
 	skip_before_filter :verify_authenticity_token
-	before_filter :check_weixin_legality
+	before_filter :check_weixin_legality, only: ['call_back']
   def index
   	render :text => "index"
   end
