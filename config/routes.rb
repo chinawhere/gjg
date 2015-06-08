@@ -94,18 +94,10 @@ ChinaWhere::Application.routes.draw do
     member do
       post 'pick'
     end
-    collection do 
+    collection do
       get 'index'
-      get 'lzj'
-      get 'get_access_token'
-      get 'get_weixin_ip'
-      get 'get_all_user_name'
-      post 'lzj'
-      get 'erweima'
-      get 'native'
-      post 'native'
-      get 'notify_url'
-      post 'notify_url'
+      get 'call_back'
+      post 'call_back'
     end
   end
   # The priority is based upon order of creation:
