@@ -1,5 +1,5 @@
 require File.expand_path('../boot', __FILE__)
-require 'action_dispatch/xml_params_parser'
+# require 'action_dispatch/xml_params_parser'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -26,6 +26,6 @@ module ChinaWhere
     config.weixin_token = "shop"
     config.app_id = "wxf7e700310bb9220f"
     config.app_secrete = "30103e168e7cd52a8443fc3bf30eb524"
-    config.middleware.insert_after ActionDispatch::ParamsParser, ActionDispatch::XmlParamsParser
+    # config.middleware.insert_after ActionDispatch::ParamsParser, ActionDispatch::XmlParamsParser
   end
 end
