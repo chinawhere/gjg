@@ -1,5 +1,5 @@
 require 'open-uri'
-# require 'rest_client'
+require 'rest_client'
 class TradeController < ApplicationController
 	skip_before_filter :verify_authenticity_token
 	before_filter :check_weixin_legality, only: ['lzj']
@@ -54,61 +54,21 @@ class TradeController < ApplicationController
     #   render "lzj", :formats => :xml
     # end
   end
-
-  def erweima
-    
-    appid = 'wxf7e700310bb9220f'
-    mch_id = '1234542402'
-    # nonce_str = SecureRandom.hex(20)
-    nonce_str = '5K8264ILTKCH16CQ2502SI8ZNMTM67VS'
-    product_id = 1
-    time_stamp = Time.now.to_i
-    key = 'ac1a663793021ba50c992c6d76d8390d'
-    str = "appid=#{appid}&mch_id=#{mch_id}&nonce_str=#{nonce_str}&product_id=#{product_id}&time_stamp=#{time_stamp}&key=#{key}"
-    sign = Digest::MD5.hexdigest(str).upcase 
-
-    @qr_code = "weixin://wxpay/bizpayurl?appid=#{appid}&mch_id=#{mch_id}&nonce_str=#{nonce_str}&product_id=#{product_id}&time_stamp=#{time_stamp}&sign=#{sign}"
-    # @qr_image = get_qr_image(@qr_code)
-    # redirect_to @qr_image
-    render :text => @qr_code
-  end
-
+  layout false
   def native
     key = 'ac1a663793021ba50c992c6d76d8390d'
     appid = 'wxf7e700310bb9220f'
-    @appid = appid
     mch_id = '1234542402'
-    @mch_id = mch_id
     nonce_str = '5K8264ILTKCH16CQ2502SI8ZNMTM67VS'
-    @nonce_str = nonce_str
-    notify_url = 'https://blooming-waters-9993.herokuapp.com/weixins/notify_url'
-    openid = 'ou9q2sylh21awOVW8VYtL7oC9Sps'
-    #openid = params[:xml][:openid]
-    out_trade_no = '12345'
+    # openid = 'ou9q2sylh21awOVW8VYtL7oC9Sps'
+    out_trade_no = '1111'
     product_id = '1'
     spbill_create_ip = '14.23.150.211'
     attach = 'test'
     body = 'test'
-    str = "appid=#{appid}&attach=#{attach}&body=#{body}&mch_id=#{mch_id}&nonce_str=#{nonce_str}&notify_url=#{notify_url}&openid=#{openid}&out_trade_no=#{out_trade_no}&product_id=#{product_id}&spbill_create_ip=#{spbill_create_ip}&total_fee=1&trade_type=NATIVE&key=#{key}"
+    notify_url = 'http://www.baidu.com'
+    str = "appid=#{appid}&attach=#{attach}&body=#{body}&mch_id=#{mch_id}&nonce_str=#{nonce_str}&notify_url=#{notify_url}&out_trade_no=#{out_trade_no}&product_id=#{product_id}&spbill_create_ip=#{spbill_create_ip}&total_fee=1&trade_type=NATIVE&key=#{key}"
     sign = Digest::MD5.hexdigest(str).upcase
-
-#     xml_content = '
-# <xml>
-#   <appid>wxf7e700310bb9220f</appid>
-#   <attach>test</attach>
-#   <body>test</body>
-#   <mch_id>1234542402</mch_id>
-#   <nonce_str>SHfpUuq8K4xEfeff</nonce_str>
-#   <notify_url>https://blooming-waters-9993.herokuapp.com/weixins/notify_url</notify_url>
-#   <openid>ou9q2sylh21awOVW8VYtL7oC9Sps</openid>
-#   <out_trade_no>12345</out_trade_no>
-#   <product_id>1</product_id>
-#   <spbill_create_ip>14.23.150.211</spbill_create_ip>
-#   <total_fee>1</total_fee>
-#   <trade_type>NATIVE</trade_type>
-#   <sign>56C81AEEAA350431D4123B6FF1E61B8E</sign>
-# </xml>
-#     '
 
     xml_content = "
 <xml>
@@ -117,8 +77,7 @@ class TradeController < ApplicationController
    <body>#{body}</body>
    <mch_id>#{mch_id}</mch_id>
    <nonce_str>#{nonce_str}</nonce_str>
-   <notify_url>https://blooming-waters-9993.herokuapp.com/weixins/notify_url</notify_url>
-   <openid>#{openid}</openid>
+   <notify_url>#{notify_url}</notify_url>
    <out_trade_no>#{out_trade_no}</out_trade_no>
    <product_id>#{product_id}</product_id>
    <spbill_create_ip>#{spbill_create_ip}</spbill_create_ip>
@@ -128,13 +87,12 @@ class TradeController < ApplicationController
 </xml> 
     "
 
-    # response = RestClient.post "https://api.mch.weixin.qq.com/pay/unifiedorder", xml_content, :content_type => "text/xml"
+    response = RestClient.post "https://api.mch.weixin.qq.com/pay/unifiedorder", xml_content, :content_type => "text/xml"
     xml_str = response
     xml = Hash.from_xml xml_str
-    @prepay_id = response["xml"]["prepay_id"]
-    Log.create(content: @prepay_id)
-    str = "appid=#{appid}&mch_id=#{mch_id}&nonce_str=#{nonce_str}&prepay_id=@prepay_id&result_code=SUCCESS&return_code=SUCCESS&key=#{key}"
-    @sign = Digest::MD5.hexdigest(str).upcase
+    @code_url = xml["xml"]["code_url"]
+
+    render :text => "error" and return if @code_url.blank?
   end
 
   def notify_url

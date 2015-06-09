@@ -96,12 +96,11 @@ ChinaWhere::Application.routes.draw do
     end
     collection do 
       get 'index'
-      get 'lzj'
       get 'get_access_token'
       get 'get_weixin_ip'
       get 'get_all_user_name'
+      get 'lzj'
       post 'lzj'
-      get 'erweima'
       get 'native'
       post 'native'
       get 'notify_url'
