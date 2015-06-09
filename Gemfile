@@ -79,4 +79,4 @@ gem 'gon'
 
 gem 'responders'
 gem 'actionpack-xml_parser'
-gem 'rest-client'
+# gem 'rest-client'
