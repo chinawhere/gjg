@@ -5,9 +5,7 @@ class EventsController < ApplicationController
 
   respond_to :html
   def index
-    @events = Event.search(params).paginate(page: params[:page] || 1, per_page: params[:per_page] || 10)
-    photo_ids = @events.map(&:photos_path).compact.join(',').split(',') rescue []
-    @photos = Photo.where(id: photo_ids)
+    @events = @q.result.paginate(page: params[:page] || 1)
   end
 
   def new
@@ -23,6 +21,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @event.update_attributes(weight: @event.weight + 1)
   end
 
   def update

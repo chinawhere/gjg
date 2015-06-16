@@ -2,7 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_action :current_user, :check_location
+  before_action :current_user, :check_location, :set_ransack
   helper_method :current_city
 
   def current_user
@@ -52,6 +52,10 @@ class ApplicationController < ActionController::Base
       # end
     end
     @current_city
+  end
+
+  def set_ransack
+    @q ||= Event.ransack(params[:q])
   end
 
 end

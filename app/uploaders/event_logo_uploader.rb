@@ -13,9 +13,9 @@ class EventLogoUploader < CarrierWave::Uploader::Base
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   #"/images/company_login/logo.png"
-  # end
+  def default_url
+    "default_list_logo.jpg"
+  end
 
   version :lager do
     process :resize_to_fill => [300, 300]

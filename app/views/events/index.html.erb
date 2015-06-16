@@ -1,30 +1,20 @@
-<% @events.each do |event| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= link_to event.name, event_path(event) %></h3>
-      <p class="pull-right" style="margin-top:-20px">
-        <%= link_to '活动图片', photos_event_path(event), class: 'fa fa-photo'%>
-        <% if event.user == @current_user%>
-          <%= link_to '编辑', edit_event_path(event), class: 'fa fa-pencil'%>
-          <%= link_to '上传图片', uploader_event_path(event), class: 'fa fa-upload'%>
-        <% end -%>
-      </p>
-    </div>
+<%= render 'filter' %>
 
-    <ul class="list-group">
-      <li class="list-group-item">
-        <div class="row">
-          <div class="col-md-2"><%= image_tag event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></div>
-          <div class="col-md-6">
-            <p><%= link_to event.name, event_path(event)%></p>
-            <p>时间：<%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" rescue '' %></p>
-            <p>地点：<%= event.address %></p>
-            <p>类型：<%= Event::EVENT_CATEGORY[event.category_id] %></p>
+<% @events.in_groups_of(4, false) do |events| %>
+  <div class="row">
+    <% for event in events %>
+      <div class="col-xs-3">
+          <div class="thumbnail">
+              <img src="<%= asset_path event.logo_url(:medium) %>" alt="Sample Image"/>
+              <div class="caption">
+                  <h3><%= event.name %></h3>
+                  <p>description</p>
+                  <p><a href="<%= event_path(event)%>" class="btn btn-primary">查看</a> <a href="#" class="btn btn-default">加入</a></p>
+              </div>
           </div>
-        </div>
-        <%= render partial: 'photos_list', locals: {event: event} %>
-      </li>
-    </ul>
+      </div>
+    <% end %>
   </div>
-<% end -%>
-<%= will_paginate @events, :previous_label=> '« 上一页', :next_label => '下一页 »'%>
+<% end %>
+
+<%= will_paginate @events, renderer: BootstrapPagination::Rails,inner_window: 1 %>

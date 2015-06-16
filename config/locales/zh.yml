@@ -1,4 +1,8 @@
 zh:
+  will_paginate:
+    previous_label: "上页"
+    next_label: "下页"
+    page_gap: "&hellip;"
   activerecord:
     errors:
       messages:

@@ -69,8 +69,6 @@ gem 'mysql2'
 
 gem 'faraday'
 
-gem 'faraday'
-
 gem 'simple_form'
 
 gem 'gon'
@@ -78,3 +76,5 @@ gem 'gon'
 gem 'responders'
 
 gem 'ransack'
+
+gem 'will_paginate-bootstrap'
