@@ -78,3 +78,5 @@ gem 'responders'
 gem 'ransack'
 
 gem 'will_paginate-bootstrap'
+
+gem 'rest-client'
