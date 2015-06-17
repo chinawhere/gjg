@@ -95,7 +95,23 @@ ChinaWhere::Application.routes.draw do
     end
   end
 
-
+  resources :trade do
+    member do
+      post 'pick'
+    end
+    collection do 
+      get 'index'
+      get 'get_access_token'
+      get 'get_weixin_ip'
+      get 'get_all_user_name'
+      get 'lzj'
+      post 'lzj'
+      get 'native'
+      post 'native'
+      get 'notify_url'
+      post 'notify_url'
+    end
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

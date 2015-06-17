@@ -74,9 +74,14 @@ gem 'simple_form'
 gem 'gon'
 
 gem 'responders'
+<<<<<<< HEAD
 
 gem 'ransack'
 
 gem 'will_paginate-bootstrap'
 
 gem 'rest-client'
+=======
+# gem 'actionpack-xml_parser'
+# gem 'rest-client'
+>>>>>>> 1efe996f6d5bf34f60098940162c80ac876b8308
