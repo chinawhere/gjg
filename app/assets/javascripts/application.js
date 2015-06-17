@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ckeditor/init
 
 $(document).ready(function(){
   // 如果没有城市信息， 提示用户选择

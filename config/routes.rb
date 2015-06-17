@@ -1,6 +1,7 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   root to: 'welcome#index'
   post 'geo', to:'welcome#geo'
   post 'show_events', to:'welcome#show_events'

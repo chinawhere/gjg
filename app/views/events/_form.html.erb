@@ -4,6 +4,7 @@
   <%= javascript_include_tag 'bootstrap-datetimepicker.min'%>
   <%= javascript_include_tag 'bootstrap-datetimepicker.zh-CN'%>
   <%= javascript_include_tag 'bootstrap-select.min' %>
+  <%= javascript_include_tag 'ckeditor/ckeditor' %>
 <% end %>
 <%= simple_form_for @event, html: { class: 'form-horizontal' }  do |f| %>
 <fieldset>
@@ -104,11 +105,9 @@
 <div class="form-group required-control">
   <label class="col-md-3 control-label" for="content">活动描述</label>
   <div class="col-md-8">
-    <%= f.input :content, :label => false, input_html:{ style:"width: 100%;", class: 'textarea'} %>
+    <%= f.input :content, :as => :ckeditor,label: false, :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
   </div>
 </div>
-
-
 
 <!-- Button -->
 <div class="form-group">
