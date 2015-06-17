@@ -251,7 +251,6 @@ DEPENDENCIES
   bootstrap3-rails
   byebug
   carrierwave
-  coffee-rails (~> 4.1.0)
   faraday
   gon
   grape
