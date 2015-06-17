@@ -12,10 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap-wysihtml5/wysihtml5x-toolbar.js
-//= require bootstrap-wysihtml5/minimum
-//= require bootstrap-wysihtml5/locales/zh-CN
-// require turbolinks
 
 $(document).ready(function(){
   // 如果没有城市信息， 提示用户选择

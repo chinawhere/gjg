@@ -66,4 +66,3 @@ gem 'will_paginate-bootstrap'
 
 gem 'actionpack-xml_parser'
 gem 'rest-client'
-gem 'bootstrap-wysihtml5-rails'

@@ -45,8 +45,6 @@ GEM
       thread_safe (~> 0.3, >= 0.3.1)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-wysihtml5-rails (0.3.3.7)
-      railties (>= 3.0)
     bootstrap3-rails (3.2.0)
       rails (>= 4.0.0)
     builder (3.2.2)
@@ -239,7 +237,6 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-xml_parser
-  bootstrap-wysihtml5-rails
   bootstrap3-rails
   byebug
   carrierwave
