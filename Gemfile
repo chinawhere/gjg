@@ -79,6 +79,5 @@ gem 'ransack'
 
 gem 'will_paginate-bootstrap'
 
-gem 'rest-client'
 gem 'actionpack-xml_parser'
 gem 'rest-client'
