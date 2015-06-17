@@ -104,8 +104,8 @@
 <!-- Text input-->
 <div class="form-group required-control">
   <label class="col-md-3 control-label" for="content">活动描述</label>
-  <div class="col-md-6">
-    <%= f.input :content, :as => :kindeditor, :label => false, :input_html => { :width => 800, :height => 300 } %>
+  <div class="col-md-8">
+    <%= f.input :content, :as => :wysihtml5, :label => false, input_html:{ style:"width: 100%;"} %>
   </div>
 </div>
 

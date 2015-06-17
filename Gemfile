@@ -32,8 +32,6 @@ group :development, :test do
   gem 'mina'
 end
 
-gem 'rails_kindeditor'
-
 gem 'bootstrap3-rails'
 
 # 文件和图片处理
@@ -46,8 +44,6 @@ gem "rolify"
 
 # 分页
 gem 'will_paginate'
-
-# gem 'activeadmin'
 
 gem 'puma'
 
@@ -70,3 +66,4 @@ gem 'will_paginate-bootstrap'
 
 gem 'actionpack-xml_parser'
 gem 'rest-client'
+gem 'bootstrap-wysihtml5-rails'
