@@ -37,112 +37,6 @@
           <% end %>
         </li>
       <% end %>
-      <!--
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">旅行</a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">周边游</a></li>
-          <li><a href="#">长途旅行</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">户外健身</a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">登山</a></li>
-          -->
-          <!--
-          <li class="dropdown-submenu">
-            <a href="#">More..</a>
-            <ul class="dropdown-menu">
-            	<li><a href="#">3rd level</a></li>
-            	<li><a href="#">3rd level</a></li>
-            </ul>
-          </li>
-          -->
-          <!--
-          <li><a href="#">球类</a></li>
-          <li><a href="#">跑步</a></li>
-          <li><a href="#">骑行</a></li>
-          <li><a href="#">舞蹈</a></li>
-          <li><a href="#">垂钓</a></li>
-          <li><a href="#">攀岩</a></li>
-          <li><a href="#">射击</a></li>
-          <li><a href="#">滑雪</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">音乐</a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">音乐会</a></li>
-          <li><a href="#">演唱会</a></li>
-          <li><a href="#">音乐节</a></li>
-          <li><a href="#">小型现场</a></li>
-        </ul>
-      </li>
-      -->
-      <!--
-      <li class="divider"></li>
-      -->
-      <!--
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">戏剧</a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">话剧</a></li>
-          <li><a href="#">歌剧</a></li>
-          <li><a href="#">舞剧</a></li>
-          <li><a href="#">戏曲</a></li>
-          <li><a href="#">歌舞剧</a></li>
-          <li><a href="#">哑剧</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">聚会</a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">摄影</a></li>
-          <li><a href="#">外语</a></li>
-          <li><a href="#">桌游</a></li>
-          <li><a href="#">交友</a></li>
-          <li><a href="#">集市</a></li>
-          <li><a href="#">夜店</a></li>
-          <li><a href="#">其他</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">展览</a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">美术</a></li>
-          <li><a href="#">图书</a></li>
-          <li><a href="#">动漫</a></li>
-          <li><a href="#">摄影</a></li>
-          <li><a href="#">艺术</a></li>
-          <li><a href="#">服装</a></li>
-          <li><a href="#">汽车</a></li>
-          <li><a href="#">个人</a></li>
-          <li><a href="#">主题教育</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">讲座</a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">互联网</a></li>
-          <li><a href="#">观影会</a></li>
-          <li><a href="#">艺术</a></li>
-          <li><a href="#">心理</a></li>
-          <li><a href="#">文化</a></li>
-          <li><a href="#">行业</a></li>
-        </ul>
-      </li>
-      <li class="dropdown-submenu">
-        <a tabindex="-1" href="#">亲子</a>
-        <ul class="dropdown-menu">
-          <li><a tabindex="-1" href="#">户外亲子游</a></li>
-          <li><a href="#">亲子运动会</a></li>
-          <li><a href="#">亲子体验</a></li>
-          <li><a href="#">家庭游戏</a></li>
-          <li><a href="#">主题活动</a></li>
-        </ul>
-      </li>
-      -->
     </ul>
   </div>
   <div class="col-md-10 no-padding-right">
@@ -155,6 +49,19 @@
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
+        <% @hot_events.each_with_index do |he, index| %>
+          <% if index == 0 %>
+          <div class="item active">
+          <% else %>
+          <div class="item">
+          <% end %>
+            <img src="<%= he.logo_url(:lager)%>" alt="图片1"/>
+            <div class="carousel-caption">
+              图片1
+            </div>
+          </div>
+        <% end %>
+        <!--
         <div class="item active">
           <img src="http://layout.ruby-world.com/img/3.jpg" alt="图片1">
           <div class="carousel-caption">
@@ -167,6 +74,7 @@
             图片2
           </div>
         </div>
+        -->
       </div>
 
       <!-- Controls -->
