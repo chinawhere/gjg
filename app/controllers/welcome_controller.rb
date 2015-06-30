@@ -19,5 +19,6 @@ class WelcomeController < ApplicationController
   	else
   		@events = Event.where("city_code= ?",current_city).limit(8)
   	end
+    puts @events.count
   end
 end

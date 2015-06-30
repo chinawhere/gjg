@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :created_events, class_name: 'Event'
   has_many :applys
-  has_and_belongs_to_many :joined_events, class_name:'Event'
+  has_many :events
+  # has_and_belongs_to_many :joined_events, class_name:'Event'
+  has_many :apply_events, :through => :applys, :source => :event
   mount_uploader :logo, UserLogoUploader
 
   def display_sex

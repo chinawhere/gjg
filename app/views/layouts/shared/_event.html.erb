@@ -7,7 +7,13 @@
         </h4>
         <p><%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
         <p>地点：<%= event.address %></p>
-        <p><a href="#" class="btn btn-primary" role="button">查看</a> <a href="#" class="btn btn-default" role="button">加入</a></p>
+        <p>
+          <a href="<%= event_path(event)%>" target="_blank" class="btn btn-primary" role="button">查看</a> 
+          <% if @current_user and Apply.where(:user_id => @current_user, :event_id => event.id).present? %>
+            <%= link_to '退出我们', not_apply_event_event_path(event), class: 'btn btn-success',:confirm => "您确定要退出我们吗？"%>
+          <% else %>
+            <%= link_to '加入我们', apply_event_event_path(event), class: 'btn btn-success'%>
+          <%end%>
       </div>
     </div>
   </div>

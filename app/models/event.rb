@@ -5,11 +5,13 @@ class Event < ActiveRecord::Base
   has_many :photos
   belongs_to :city
   belongs_to :taxon, foreign_key:'category_id'
-
+  belongs_to :user
   belongs_to :sponsor, class_name:'User', foreign_key: 'user_id'
   has_and_belongs_to_many :participators, class_name:'User'
   has_many :comments, as: :commentable
-
+  before_save :add_city_code
+  
+  # EVENT_CATEGORY = Hash[Category.where(status: 'event').map{|c| [c.id,c.name]}]
   FEE_TYPE = {0 => '免费', 1 => '自费', 2 => '付费', 3 => 'AA'}
   APPROVED = {0 => '正常', 2 => '取消', 6 => '结束'}
 
@@ -49,6 +51,10 @@ class Event < ActiveRecord::Base
     def fee_type_options
       FEE_TYPE.map{|k, v| [v, k]}
     end
+  end
+
+  def add_city_code
+    self.city_code = City.find(self.city_id).try(:code)
   end
 
 end

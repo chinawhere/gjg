@@ -43,12 +43,18 @@
   </div>
 </div>
 
+<%
+  start_at = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+  end_at = (Time.now + 24 * 60 * 60).strftime('%Y-%m-%d %H:%M:%S')
 
+  start_at = @event.start_at.strftime('%Y-%m-%d %H:%M:%S') if @event.start_at.present?
+  end_at = @event.end_at.strftime('%Y-%m-%d %H:%M:%S') if @event.end_at.present?
+%>
 <!-- Text input-->
 <div class="form-group required-control">
   <label class="col-md-3 control-label" for="textinput">开始时间</label>
   <div class="col-md-6">
-    <%= f.input :start_at, as:'string', input_html:{class:'form-control', required: 'required', placeholder:'请输入活动开始时间', value: Time.now.strftime('%Y-%m-%d %H:%M:%S')}, label:false %>
+    <%= f.input :start_at, as:'string', input_html:{class:'form-control', required: 'required', placeholder:'请输入活动开始时间', value: start_at}, label:false %>
   </div>
 </div>
 
@@ -56,7 +62,7 @@
 <div class="form-group required-control">
   <label class="col-md-3 control-label" for="textinput">结束时间</label>
   <div class="col-md-6">
-    	<%= f.input :end_at, as:'string', input_html:{class:'form-control', required: 'required', placeholder:'请输入活动开始时间', value: (Time.now + 24 * 60 * 60).strftime('%Y-%m-%d %H:%M:%S')}, label:false %>
+    	<%= f.input :end_at, as:'string', input_html:{class:'form-control', required: 'required', placeholder:'请输入活动开始时间', value: end_at}, label:false %>
   </div>
 </div>
 

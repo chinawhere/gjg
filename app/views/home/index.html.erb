@@ -9,7 +9,6 @@
             <p><%= link_to event.name, event_path(event)%></p>
             <p>时间：<%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
             <p>地点：<%= event.address %></p>
-            <p>类型：<%= Event::EVENT_CATEGORY[event.category_id] %></p>
           </div>
         </div>
         <%= render partial: 'events/photos_list', locals: {event: event} %>
@@ -30,7 +29,7 @@
             <p><%= link_to event.name, event_path(event)%></p>
             <p>时间：<%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
             <p>地点：<%= event.address %></p>
-            <p>类型：<%= Event::EVENT_CATEGORY[event.category_id] %></p>
+
           </div>
         </div>
         <%= render partial: 'events/photos_list', locals: {event: event} %>
