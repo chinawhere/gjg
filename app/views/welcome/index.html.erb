@@ -49,32 +49,18 @@
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
-        <% @hot_events.each_with_index do |he, index| %>
-          <% if index == 0 %>
-          <div class="item active">
-          <% else %>
-          <div class="item">
-          <% end %>
-            <img src="<%= he.logo_url(:lager)%>" alt="图片1"/>
-            <div class="carousel-caption">
-              图片1
-            </div>
-          </div>
-        <% end %>
-        <!--
         <div class="item active">
-          <img src="http://layout.ruby-world.com/img/3.jpg" alt="图片1">
+          <img src="<%= asset_path 'home_ad/1.jpg'%>" alt="图片1">
           <div class="carousel-caption">
-            图片1
+            五月， 赏西塘美景
           </div>
         </div>
         <div class="item">
-          <img src="http://layout.ruby-world.com/img/3.jpg" alt="图片2">
+          <img src="<%= asset_path 'home_ad/2.jpg'%>" alt="图片2">
           <div class="carousel-caption">
-            图片2
+            西塘美景续
           </div>
         </div>
-        -->
       </div>
 
       <!-- Controls -->
