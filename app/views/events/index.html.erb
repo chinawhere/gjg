@@ -5,7 +5,7 @@
     <% for event in events %>
       <div class="col-xs-3">
           <div class="thumbnail">
-              <img src="<%= asset_path event.logo_url(:medium) %>" alt="Sample Image" style="width: 242px;height: 200px;"/>
+              <%= link_to image_tag(asset_path(event.logo_url(:medium)), style:"width:242px; height: 200px;"), event_path(event) %>
               <div class="caption">
                   <h3><%= event.name %></h3>
                   <p>description</p>
