@@ -6,6 +6,11 @@
     text-align: center;
   }
 </style>
+<script>
+  $(document).ready(function(){
+    $("img").addClass("img-responsive");
+  })
+</script>
 <div class="row" style="margin-left:10px">
   <h3 style="border-bottom: 1px solid #ccc"><%= @event.name%></h3>
   <p class="pull-right" style="margin-top:-30px">
