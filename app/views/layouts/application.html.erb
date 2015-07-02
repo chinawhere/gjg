@@ -23,6 +23,7 @@
 <body>
   <%= render '/layouts/header' %>
   <div class="container" id="main">
+      <%= request.env["HTTP_USER_AGENT"]%>
     <%= yield %>
   </div>
   <%= render '/layouts/popup' %>
