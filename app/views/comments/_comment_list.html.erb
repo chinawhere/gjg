@@ -1,25 +1,29 @@
 <% p_comments.each do |comment|%>
-  <li class="media com_li">
-    <%= render :partial => 'comments/comment_detail', :locals => { :comment => comment} %>
-    <div class="media-body" style="margin-top: 30px">
-      <ul class="media-list">
-        <% comment.r_comments.each do |r_comment| %>
-          <li class="media reply_li">
-            <%= render :partial => 'comments/comment_detail', :locals => { :comment => r_comment} %>
-          </li>
+<div class="row">
+  <div class="col-sm-9">
+    <li class="media com_li">
+      <%= render :partial => 'comments/comment_detail', :locals => { :comment => comment} %>
+      <div class="media-body" style="margin-top: 30px">
+        <ul class="media-list">
+          <% comment.r_comments.each do |r_comment| %>
+            <li class="media reply_li">
+              <%= render :partial => 'comments/comment_detail', :locals => { :comment => r_comment} %>
+            </li>
+          <% end -%>
+        </ul>
+        <% if @current_user %>
+          <div class="media reply_box" style="display:none">
+            <div class="col-md-2">
+              <%= image_tag @current_user.logo_url(:medium), class: 'pull-right img-thumbnail', size: '72x80'%>
+            </div>
+            <div class="col-md-10" >
+              <%= text_area_tag :content, '', class: 'form-control', rows: '4'%>
+              <%= link_to '回复', 'javascript:;', class: 'btn green pull-right postCommentBtn', style: 'margin-top: 5px', 'data-p_comment_id' => comment.id%>
+            </div>
+          </div>
         <% end -%>
-      </ul>
-      <% if @current_user %>
-        <div class="media reply_box" style="display:none">
-          <div class="col-md-2">
-            <%= image_tag @current_user.logo_url(:medium), class: 'pull-right img-thumbnail', size: '72x80'%>
-          </div>
-          <div class="col-md-10" >
-            <%= text_area_tag :content, '', class: 'form-control', rows: '4'%>
-            <%= link_to '回复', 'javascript:;', class: 'btn green pull-right postCommentBtn', style: 'margin-top: 5px', 'data-p_comment_id' => comment.id%>
-          </div>
-        </div>
-      <% end -%>
-    </div>
-  </li>
+      </div>
+    </li>
+  </div>
+</div>
 <% end -%>
