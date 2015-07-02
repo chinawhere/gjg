@@ -17,6 +17,8 @@
   })
 </script>
 <div class="row">
+  
+  <% if !request.env["HTTP_USER_AGENT"].include?('Mobile') %>
   <div class="col-md-2">
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-bottom: 5px; display: block; position: static;">
       <li><a href="#">全部</a></li>
@@ -39,6 +41,7 @@
       <% end %>
     </ul>
   </div>
+  <% end %>
   <div class="col-md-10">
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->

@@ -1,10 +1,10 @@
 <div class="col-md-3">
   <div class="thumbnail">
-    <%= link_to image_tag(asset_path(event.logo_url(:medium)), style:"width:242px; height: 150px;"), event_path(event) %>
+    <%= link_to image_tag(asset_path(event.logo_url(:lager)), style:"width:342px; height: 150px;", class:"img-responsive"), event_path(event) %>
 
     <div class="caption">
       <h4>
-      <%= truncate(event.name,:length => 12)%>
+      <a href="<%= event_path(event)%>"><%= truncate(event.name,:length => 12)%></a>
       </h4>
       <p><%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
       <p>地点：<%= event.address %></p>
