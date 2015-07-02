@@ -21,7 +21,9 @@
     <%= link_to '活动图片', photos_event_path(@event), class: 'fa fa-photo'%>
   </p>
   <div class="row" style="margin-top: 15px">
-    <div class="col-md-2"><%= image_tag @event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></div>
+    <div class="col-md-2">
+      <a href="<%= @event.logo_url%>"><%= image_tag @event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></a>
+    </div>
     <div class="col-md-6">
       <p>地点：<%= @event.address %></p>
       <p>时间：<%= "#{@event.start_at.strftime('%m月%d日 %H:%M')}--#{@event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
@@ -34,7 +36,7 @@
       <%end%>
     </div>
   </div>
-  <div class="row" style="margin: 10px">
+  <div class="row center-block" style="margin: 10px">
     <h4>活动详情:</h4>
     <p><%= raw(@event.content.to_s.html_safe) rescue ''%></p>
   </div>
