@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
   <title>去哪儿玩</title>
   <%= stylesheet_link_tag    'application' %>
@@ -10,6 +10,7 @@
   <%= yield :header %>
   <%= csrf_meta_tags %>
   <%= include_gon %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <script>
     var Chinawhere = new Object;
     Chinawhere.current_user_id = <%= @current_user.try(:id) || false %>;
