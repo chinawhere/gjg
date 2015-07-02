@@ -21,8 +21,8 @@
     <%= link_to '活动图片', photos_event_path(@event), class: 'fa fa-photo'%>
   </p>
   <div class="row" style="margin-top: 15px">
-    <div class="col-md-2">
-      <a href="<%= @event.logo_url%>"><%= image_tag @event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></a>
+    <div class="col-md-4">
+      <%= image_tag(asset_path(@event.logo_url), style:"width:342px; height: 150px;", class:"img-thumbnail") %>
     </div>
     <div class="col-md-6">
       <p>地点：<%= @event.address %></p>
