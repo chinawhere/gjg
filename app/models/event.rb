@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :participators, class_name:'User'
   has_many :comments, as: :commentable
   before_save :add_city_code
-  default_scope { order("created_at desc")}
+  # default_scope { order("created_at desc")}
 
   # EVENT_CATEGORY = Hash[Category.where(status: 'event').map{|c| [c.id,c.name]}]
   FEE_TYPE = {0 => '免费', 1 => '自费', 2 => '付费', 3 => 'AA'}
