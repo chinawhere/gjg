@@ -15,6 +15,8 @@ class EventLogoUploader < CarrierWave::Uploader::Base
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
     "default_list_logo.jpg"
+    #  "/images/" + [version_name, "default_list_logo.jpg"].compact.join('_')
+    #  ActionController::Base.helpers.asset_path("/" + [version_name, "default_list_logo.jpg"].compact.join('_'))
   end
 
   version :lager do

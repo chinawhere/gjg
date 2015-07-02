@@ -1,6 +1,6 @@
 # coding: utf-8
 class Event < ActiveRecord::Base
-  validates_presence_of :name, :address
+  validates_presence_of :name, :address, :city_id
   mount_uploader :logo, EventLogoUploader
   has_many :photos
   belongs_to :city
@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :participators, class_name:'User'
   has_many :comments, as: :commentable
   before_save :add_city_code
-  
+
   # EVENT_CATEGORY = Hash[Category.where(status: 'event').map{|c| [c.id,c.name]}]
   FEE_TYPE = {0 => '免费', 1 => '自费', 2 => '付费', 3 => 'AA'}
   APPROVED = {0 => '正常', 2 => '取消', 6 => '结束'}

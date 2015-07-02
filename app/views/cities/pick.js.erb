@@ -1,2 +1,3 @@
 $('#myModal').modal('hide');
 $('#nav_city').html("<%= @city.name %>");
+$('div.container').find('div.row:eq(2)').html("<%= j render :partial => 'layouts/shared/events', :locals => {:events => @events} %>");
