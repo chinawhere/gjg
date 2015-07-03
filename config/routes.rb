@@ -14,7 +14,7 @@ ChinaWhere::Application.routes.draw do
     post :sign_up
   end
 
-  mount Twitter::API => '/'
+  # mount Twitter::API => '/'
 
   get 'home', to: 'home#index', as: :home
 
@@ -50,13 +50,13 @@ ChinaWhere::Application.routes.draw do
       post :destroy_comment
     end
   end
-  
+
   resources :taxons, only:[] do
     member do
       get :list
     end
   end
-  
+
   namespace :admin do
     root to: "sessions#index"
     scope controller: :sessions do
@@ -77,6 +77,8 @@ ChinaWhere::Application.routes.draw do
     resources :question_classifies
 
     resources :questions
+
+    resources :slide_ads
 
     resources :taxons do
       collection do
@@ -100,7 +102,7 @@ ChinaWhere::Application.routes.draw do
     member do
       post 'pick'
     end
-    collection do 
+    collection do
       get 'index'
       get 'get_access_token'
       get 'get_weixin_ip'
