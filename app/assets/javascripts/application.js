@@ -12,9 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require ckeditor/init
-
+//= require_tree .
 $(document).ready(function(){
+	// 活动日历
+  $(".nav-first-level").bind('click', function(){
+    $('.menu_active').not(this).siblings('.nav-second-level').hide();
+    $('.menu_active').not(this).children('span').removeClass('glyphicon-menu-down');
+    $('.menu_active').not(this).removeClass('menu_active');
+    $(this).children('span').toggleClass('glyphicon-menu-down');
+    $(this).siblings('.nav-second-level').first().toggle();
+    $(this).toggleClass('menu_active');
+  });
   // 如果没有城市信息， 提示用户选择
   if(gon.city_id == null){
     $.get("/cities/select", null, null);

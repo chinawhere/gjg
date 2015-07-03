@@ -7,8 +7,8 @@
           <div class="col-md-2"><%= image_tag event.logo_url(:medium), :class => 'img-thumbnail', size:"118x118" %></div>
           <div class="col-md-6">
             <p><%= link_to event.name, event_path(event)%></p>
-            <p>时间：<%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
-            <p>地点：<%= event.address %></p>
+            <p>时间:<%= "#{event.start_at.strftime('%Y/%m/%d %H:%M')}--#{event.end_at.strftime('%Y/%m/%d %H:%M')}" %></p>
+            <p>地点:<%= event.address %></p>
           </div>
         </div>
         <%= render partial: 'events/photos_list', locals: {event: event} %>
@@ -29,7 +29,6 @@
             <p><%= link_to event.name, event_path(event)%></p>
             <p>时间：<%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
             <p>地点：<%= event.address %></p>
-
           </div>
         </div>
         <%= render partial: 'events/photos_list', locals: {event: event} %>
