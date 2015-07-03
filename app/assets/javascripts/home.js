@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require ckeditor/init
 //= require_tree .
+
 $(document).ready(function(){
 	// 活动日历
   $(".nav-first-level").bind('click', function(){
