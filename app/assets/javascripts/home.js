@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require ckeditor/init
-//= require_tree .
+
 
 $(document).ready(function(){
 	// 活动日历
