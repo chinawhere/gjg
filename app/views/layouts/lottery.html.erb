@@ -3,19 +3,13 @@
   <head>
   <title>幸运大转盘</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  
   <%= javascript_include_tag "jquery.min" %>
   <%= javascript_include_tag "jQueryRotate" %>
   <%= stylesheet_link_tag    'bootstrap.min' %>
 
-	<style type="text/css">
-	body{font-size:12px;background:#920903;}
-	*{margin:0;padding:0;}
-	img{border:0}
 
-	#tip{position:absolute;left:110px;;top:30px;cursor:pointer;}
-	</style>
-
-	<script type="text/javascript">
+	<script>
 	function GetRandomNum(Min,Max){  
 
 			var Range = Max - Min;  
@@ -173,19 +167,18 @@
 	document.onselectstart=new Function("event.returnValue=false;");
 	document.oncontextmenu=new Function("event.returnValue=false;");
 	</script>
+	<style type="text/css">
+	body{font-size:12px;background:#920903;}
+	*{margin:0;padding:0;}
+	img{border:0}
 
+	#tip{position:absolute;left:110px;;top:30px;cursor:pointer;}
+	</style>
 </head>
 
 <body>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12" id="zhuanpan">
-			<img class="img-responsive" id="img" src="http://mjjt.fwxgx.com/chinawhere/four_zhuanpan.gif" height="526" width="526">
-			<img class="img-responsive" id="tip" src="http://mjjt.fwxgx.com/chinawhere/four1.gif" height="187" width="122">
-		</div>
 
-	</div>
-</div>
+<%= yield%>
 
 </body>
 </html>
