@@ -67,7 +67,7 @@
         <% if @current_user.present? %>
           <li class="active dropdown-user">
             <a style="padding: 10px;" href="./" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-              <%= image_tag @current_user.logo_url(:feed), size: '30x30', :class => 'img-circle' %>
+              <%= image_tag @current_user.logo_url(:feed), size: '30x30', :class => 'img-circle header' %>
               <span class="username"><%= @current_user.try(:name)%></span>
               <i class="fa fa-angle-down"></i>
             </a>
