@@ -32,8 +32,6 @@ group :development, :test do
   gem 'mina'
 end
 
-gem 'bootstrap3-rails'
-
 # 文件和图片处理
 gem 'carrierwave'
 gem 'mini_magick'

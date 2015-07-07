@@ -18,7 +18,7 @@ set :branch, 'master'
 
 # Manually create these paths in shared/ (eg: shared/config/database.yml) in your server.
 # They will be linked in the 'deploy:link_shared_paths' step.
-set :shared_paths, ['config/database.yml', 'log']
+set :shared_paths, ['config/database.yml', 'log', 'public/uploads', 'public/upload']
 
 task :environment do
   invoke :'rbenv:load'
@@ -61,7 +61,7 @@ task :deploy => :environment do
     to :launch do
       queue "mkdir -p #{deploy_to}/#{current_path}/tmp/"
       queue! "RAILS_ENV=production bundle exec rake restart_puma"
-      queue! "ln -sv #{deploy_to}/#{shared_path}/public/upload #{deploy_to}/#{current_path}/public"
+      # queue! "ln -sv #{deploy_to}/#{shared_path}/public/upload #{deploy_to}/#{current_path}/public"
     end
   end
 end

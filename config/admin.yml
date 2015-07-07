@@ -24,3 +24,7 @@ admin:
     menus:
       - name: 分类层级
         href: /admin/taxons
+  - name: 广告管理
+    menus:
+      - name: 首页轮播广告
+        href: /admin/slide_ads
