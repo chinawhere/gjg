@@ -11,10 +11,8 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require_directory .
-//= require turbolinks
-//= require ckeditor/init
+//= require bootstrap.min
+
 
 $(document).ready(function(){
 	// 活动日历
