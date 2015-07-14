@@ -61,7 +61,6 @@ gem 'responders'
 gem 'ransack'
 
 gem 'will_paginate-bootstrap'
-
 gem 'actionpack-xml_parser'
 gem 'rest-client'
 gem 'ckeditor'
