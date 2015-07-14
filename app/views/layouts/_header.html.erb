@@ -24,7 +24,6 @@
         <!--
           <li <%= 'class=active' if params[:controller] == 'events' %>><%= link_to '活动', events_path%></li>
         -->
-        <li><%= link_to '抽奖', '/lottery/index' %></li>
         <% if @current_user.present? %>
           <li <%= 'class=active' if params[:controller] == 'home' %>><%= link_to '个人中心', home_path %></li>
         <% end %>
