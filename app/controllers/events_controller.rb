@@ -37,7 +37,7 @@ class EventsController < ApplicationController
   end
 
   def uploader
-    render layout: 'home'
+    # render layout: 'home'
   end
 
   def photos
