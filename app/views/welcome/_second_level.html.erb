@@ -7,6 +7,6 @@
     <li role="presentation"><%= link_to '已结束', show_events_path(state: 'end'), remote: true,  method: 'post' %></li>
   </ul>
 </div>
-<div class="row">
+<div class="row" id="home_main_row">
   <%= render :partial => "layouts/shared/events", :locals => {:events => events}%>
 </div>

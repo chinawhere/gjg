@@ -24,3 +24,9 @@
   padding-left: 15px;
   margin: 15px 0px;
 }
+.thumbnail{
+  padding: 0px;
+}
+.img-thumbnail{
+  padding: 0px;
+}
