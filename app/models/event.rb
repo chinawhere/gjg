@@ -26,6 +26,10 @@ class Event < ActiveRecord::Base
     Event::FEE_TYPE[self.fee_type]
   end
 
+  def creator? user
+    self.user == user
+  end
+
   class << self
 
     #活动日历

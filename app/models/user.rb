@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def display_sex
     self.sex == 'F' ? '女' : '男'
   end
+
+  def joined? event
+    apply_events.include?event
+  end
 end

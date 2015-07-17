@@ -14,15 +14,6 @@
     $(".image_group").colorbox({rel:'image_group'});
   })
 </script>
-<p class="pull-right" style="margin-top:-30px">
-  <% if @event.user == @current_user %>
-    <%= link_to '编辑', edit_event_path(@event), class: 'fa fa-pencil'%>
-    <%= link_to '上传图片', uploader_event_path(@event), class: 'fa fa-upload'%>
-  <%end%>
-  <!--
-  <%= link_to '活动图片', photos_event_path(@event), class: 'fa fa-photo'%>
-  -->
-</p>
 <div class="row" style="margin-top: 15px;">
   <div class="col-md-4">
     <%= image_tag(asset_path(@event.logo_url(:lager)), style:"width:342px; height: 150px;", class:"img-thumbnail") %>
@@ -33,11 +24,7 @@
     <p>时间：<%= "#{@event.start_at.strftime('%m月%d日 %H:%M')}--#{@event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
     <p>费用：<%= @event.display_fee %> </p>
     <p>类型：<%= @event.taxon.name %></p>
-    <% if @current_user and Apply.where(:user_id => @current_user, :event_id => @event.id).present? %>
-    <%= link_to '退出我们', not_apply_event_event_path(@event), class: 'btn btn-success',:confirm => "您确定要退出我们吗？", style:'margin-top: 18px;'%>
-    <% else %>
-      <%= link_to '加入我们', apply_event_event_path(@event), class: 'btn btn-success', style:'margin-top: 18px;'%>
-    <%end%>
+    <%= render partial:'controls' %>
   </div>
 </div>
 

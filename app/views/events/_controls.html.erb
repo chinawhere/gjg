@@ -1,0 +1,14 @@
+<% if @event.creator?@current_user %>
+	<%= link_to '上传图片', uploader_event_path(@event), class: 'btn btn-primary'%>
+	<%= link_to '编辑活动', edit_event_path(@event), class: 'btn btn-primary'%>
+<% else %>
+	<% if @current_user %>
+		<% if @current_user.joined?(@event) %>
+		  <%= link_to '退出我们', not_apply_event_event_path(@event), class: 'btn btn-success',:confirm => "您确定要退出我们吗？", style:'margin-top: 18px;'%>
+		<% else %>
+			<%= link_to '加入我们', apply_event_event_path(@event), class: 'btn btn-success', style:'margin-top: 18px;'%>
+		<% end %>
+	<% else %>
+			<%= link_to '加入我们', apply_event_event_path(@event), class: 'btn btn-success', style:'margin-top: 18px;'%>
+	<% end %>
+<% end %>

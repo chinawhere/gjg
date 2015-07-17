@@ -1,4 +1,4 @@
-<div class="row comment_info commentPanel" style="margin-top: 15px" data-commentable_id="<%= commentable_id %>" data-commentable_type="<%= commentable_type%>" data-auto_load="<%= auto_load %>">
+<div style="margin-top: 15px" data-commentable_id="<%= commentable_id %>" data-commentable_type="<%= commentable_type%>" data-auto_load="<%= auto_load %>">
   <div class="comment_list">
     <div class="commentLoading">
       <%#= image_tag 'loading.gif' %>
@@ -7,14 +7,12 @@
     </ul>
   </div>
   <% if @current_user %>
-    <div class="row ">
-      <div class="col-md-6">
-        <%= image_tag @current_user.logo_url(:medium), class: 'pull-right img-thumbnail img-circle', size: '72x80'%>
-      </div>
-      <div class="col-md-6 reply_box" >
-        <%= text_area_tag :content, '', class: 'form-control', rows: '3'%>
-        <%= link_to '评论', 'javascript:;', class: 'btn green pull-right postCommentBtn btn-success', style: 'margin-top: 5px'%>
-      </div>
+    <div class="col-md-6">
+      <%= image_tag @current_user.logo_url(:medium), class: 'img-thumbnail', size: '72x80'%>
+    </div>
+    <div class="col-md-6 reply_box" >
+      <%= text_area_tag :content, '', class: 'form-control', rows: '3'%>
+      <%= link_to '评论', 'javascript:;', class: 'btn green postCommentBtn btn-success', style: 'margin-top: 5px'%>
     </div>
   <% end -%>
 </div>
