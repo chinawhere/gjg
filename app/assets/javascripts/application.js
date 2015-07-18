@@ -14,4 +14,3 @@
 //= require jquery_ujs
 //= require_directory .
 //= require turbolinks
-//= require ckeditor/init
