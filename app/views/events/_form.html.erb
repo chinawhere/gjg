@@ -1,9 +1,9 @@
 <% content_for :header do %>
-  <%= stylesheet_link_tag 'bootstrap-datetimepicker.min' %>
-  <%= stylesheet_link_tag 'bootstrap-select.min'%>
-  <%= javascript_include_tag 'bootstrap-datetimepicker.min'%>
-  <%= javascript_include_tag 'bootstrap-datetimepicker.zh-CN'%>
-  <%= javascript_include_tag 'bootstrap-select.min' %>
+  <%= stylesheet_link_tag 'datetimepicker/bootstrap-datetimepicker.min' %>
+  <%= stylesheet_link_tag 'bootstrap-select/bootstrap-select.min'%>
+  <%= javascript_include_tag 'datetimepicker/bootstrap-datetimepicker.min'%>
+  <%= javascript_include_tag 'datetimepicker/bootstrap-datetimepicker.zh-CN'%>
+  <%= javascript_include_tag 'bootstrap-select/bootstrap-select.min' %>
   <%= javascript_include_tag 'ckeditor/ckeditor' %>
 <% end %>
 <%= simple_form_for @event, html: { class: 'form-horizontal' }  do |f| %>

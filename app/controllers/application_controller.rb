@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     session[:user_id] = nil
     @current_user = nil
   end
-
+  
   def current_city
     if cookies.signed[:city_id]
       @current_city ||= City.find(cookies.signed[:city_id])
