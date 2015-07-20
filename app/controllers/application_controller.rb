@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :current_user, :check_location, :set_ransack
   helper_method :current_city
+  respond_to :html, :js
 
   def current_user
     @current_user = User.find(session[:user_id]) if session[:user_id].present?
@@ -14,7 +15,15 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to login_path unless @current_user and session[:user_id]
+    return if current_user
+    if request.xhr?
+      Rails.logger.debug "this is a xhr request"
+      session[:return_to] = request.referer
+      render 'shared/login'
+    else
+      session[:return_to] = request.path || request.referer
+      redirect_to login_path
+    end
   end
 
   def set_login_state(user)

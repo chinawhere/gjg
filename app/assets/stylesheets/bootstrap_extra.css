@@ -1,6 +1,3 @@
-.navbar .glyphicon{
-  top: 2px;
-}
-.no-padding-right{
-  padding-right: 0px;
+.navbar-default{
+  background: #fff;
 }

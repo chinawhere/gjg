@@ -2,6 +2,9 @@
  *= require_directory .
  *= require_self
  */
+body{
+  background: #E7EAEC;
+}
 #main{
   margin-top: 80px;
 }

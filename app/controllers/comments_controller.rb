@@ -2,8 +2,15 @@
 class CommentsController < ApplicationController
   # skip_before_filter :require_login, :only => [:get_comments]
   # before_filter :require_login
-  before_filter :init_commentable, only: [:index, :create]
+  before_action :init_commentable, only: [:index, :create]
+  before_action :require_login, only: [:new, :create, :destroy_comment]
 
+  respond_to :html, :js
+  
+  def new
+    @comment = Comment.new(comment_params)
+  end
+  
   def index
     p_comments = @commentable.comments.p_comments.includes(:user)
     html_str = render_to_string(:partial => 'comments/comment_list', :locals => { :p_comments => p_comments })
@@ -11,24 +18,11 @@ class CommentsController < ApplicationController
   end
 
   def create
-    params.permit!
-    session[:user_id] = params[:current_user_id]
-    @current_user = User.find(session[:user_id])
-    comment = @commentable.comments.build(
-      :content => params[:content], 
-      :user_id => params[:current_user_id],
-      :p_comment_id => params[:p_comment_id],
-      :to_user_id => @commentable.user_id,
-      :reply_to_user_id => params[:reply_to_user_id],
-      :reply_to_comment_id => params[:reply_to_comment_id]
-    )
-    render text: {success: false}.to_json and return unless comment.save
-    if params[:p_comment_id].blank?
-      html_str = render_to_string(:partial => 'comments/comment_list', :locals => { :p_comments => [comment] })
-    else
-      html_str = render_to_string(:partial => 'comments/reply', :locals => { :comment => comment })
-    end
-    render text: {success: true, html: html_str}.to_json
+    @comment = @commentable.comments.build comment_params
+    @comment.user = current_user
+    @comment.save
+    @comments = Comment.lastest
+    respond_with(@comment)
   end
 
   def destroy_comment
@@ -47,7 +41,11 @@ class CommentsController < ApplicationController
   private
 
   def init_commentable
-    @commentable = params[:commentable_type].camelize.safe_constantize.find params[:commentable_id]
+    @commentable = comment_params[:commentable_type].camelize.safe_constantize.find comment_params[:commentable_id]
+  end
+
+  def comment_params
+    params.require(:comment).permit(:content, :commentable_type, :commentable_id)
   end
 
 end

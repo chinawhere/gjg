@@ -14,11 +14,11 @@
     $(".image_group").colorbox({rel:'image_group'});
   })
 </script>
-<div class="row" style="margin-top: 15px;">
+<div class="row" style="margin-top: 15px; margin-bottom: 15px;">
   <div class="col-md-4">
-    <%= image_tag(asset_path(@event.logo_url(:lager)), style:"width:342px; height: 150px;", class:"img-thumbnail") %>
+    <%= image_tag(asset_path(@event.logo_url(:lager)) ) %>
   </div>
-  <div class="col-md-6 col-md-offset-1" style="line-height: 30px;">
+  <div class="col-md-8" style="line-height: 30px;background: #fff; height: 300px;">
     <h3><%= @event.name%></h3>
     <p>地点：<%= @event.address %></p>
     <p>时间：<%= "#{@event.start_at.strftime('%m月%d日 %H:%M')}--#{@event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
@@ -27,18 +27,28 @@
     <%= render partial:'controls' %>
   </div>
 </div>
-
-<h4 style="margin-top: 40px; margin-bottom: 20px;">活动图片:</h4>
-<div class="row">
+<div class="row" style="margin-top: 15px; margin-bottom: 15px;">
 <% @event.photos.each do |photo|%>
-  <div class="col-md-2">
-   <%= link_to (image_tag photo.avatar_url(:medium), size:"118x118"), photo.avatar_url(:lager), class:'image_group'%>
+  <div class="col-md-1">
+   <%= link_to (image_tag photo.avatar_url(:medium), size:"60x60"), photo.avatar_url(:lager), class:'image_group'%>
   </div>
 <% end -%>
 </div>
 
-<h4 style="margin-top: 20px;">活动详情:</h4>
-<div><%= raw(@event.content.to_s.html_safe) rescue ''%></div>
+<div class="row" style="margin-top: 15px; margin-bottom: 15px;margin-left: 0px;">
+  <div class="col-md-12" style="background: #fff; padding: 15px;">
+    <%= raw(@event.content.to_s.html_safe) rescue ''%>
+  </div>
+</div>
 
-<h4 style="margin-top: 20px;">评论:</h4>
-<%= render :partial => 'comments/comment_panel', :locals => { :commentable_id => @event.id, :commentable_type => 'Event', :auto_load => 'on' } %>
+<div class="row" style="margin-left: 0px;">
+  <div class="col-md-12" style="background: #fff; margin-bottom: 15px;padding: 15px;">
+    <p style="margin:auto;">
+      共收到 <span id="comment_count">21</span> 条回复
+      <%= link_to "写评论", new_comment_path({"comment[commentable_type]": 'Event', "comment[commentable_id]": @event.id}),remote:true, class:'btn-sm btn-info', style:'margin-left: 20px;' %> 
+    </p>
+  </div>
+  <div class="row" id="comment_content">
+    <%= render :partial => 'comments/index'%>
+  </div>
+</div>

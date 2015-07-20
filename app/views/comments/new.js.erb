@@ -1,0 +1,4 @@
+$('#myModal #myModalLabel').html('请输入评论内容');
+$('#myModal .modal-body').html("<%= j render(partial:'form')%>");
+$('#myModal .modal-footer').remove();
+$('#myModal').modal();

@@ -65,3 +65,4 @@ gem 'actionpack-xml_parser'
 gem 'rest-client'
 gem 'newrelic_rpm'
 gem 'dalli'
+gem "rails-erd"

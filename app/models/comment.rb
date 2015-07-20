@@ -1,9 +1,11 @@
 # coding: utf-8
 class Comment < ActiveRecord::Base
+  default_scope { order('created_at desc') }
   belongs_to :commentable, polymorphic: true
 
   belongs_to :user
   scope :p_comments ,->{ where(:p_comment_id => nil) }
+  scope :lastest, ->{ limit(10) }
 
   def p_comment_user_id
     self.class.find(self.p_comment_id).try(:user_id) rescue nil

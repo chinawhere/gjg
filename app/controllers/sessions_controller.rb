@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.where(email: params[:email], password: params[:password]).first
     if user.present?
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to session[:return_to] || root_path
     else
       flash.now[:notice] = true
       render :login

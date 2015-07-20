@@ -1,7 +1,7 @@
 #encoding: utf-8
 class EventsController < ApplicationController
-  before_filter :require_login, except: [:index, :show, :photos]
-  before_filter :load_event, only: [:show, :update, :edit, :destroy, :uploader, :photos]
+  before_action :require_login, except: [:index, :show, :photos]
+  before_action :load_event, only: [:show, :update, :edit, :destroy, :uploader, :photos]
 
   respond_to :html
   def index
@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
   def show
     @event.update_attributes(weight: @event.weight + 1)
+    @comments = @event.comments
   end
 
   def update
