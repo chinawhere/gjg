@@ -1,3 +1,13 @@
 .navbar-default{
   background: #fff;
 }
+.nav-pills>li>a {
+  border-radius: 0px;
+}
+.dropdown-menu {
+  border-radius: 0px;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+  color: #fff;
+  background-color: #5bc0de;
+}

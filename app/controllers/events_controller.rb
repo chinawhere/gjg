@@ -22,7 +22,7 @@ class EventsController < ApplicationController
 
   def show
     @event.update_attributes(weight: @event.weight + 1)
-    @comments = @event.comments
+    @comments = @event.comments.lastest
   end
 
   def update
