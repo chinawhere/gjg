@@ -33,7 +33,7 @@ class SlideAdImgUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :medium do
-    process :resize_to_fill => [945, 295]
+    process :resize_to_fill => [945, 300]
   end
   version :thumb do
     process :resize_to_fit => [100, 100]
