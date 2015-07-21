@@ -28,7 +28,7 @@ class UserLogoUploader < CarrierWave::Uploader::Base
   end
 
   version :feed do
-    process resize_to_fill: [45, 50]
+    process resize_to_fill: [40, 40]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
