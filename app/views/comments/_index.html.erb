@@ -1,40 +1,38 @@
-<div class="col-md-12">
-  <table class="table table-bordered" style="background: #fff">
-    <% if @comments.empty? %>
-      <tr>
+<table class="table table-bordered" style="background: #fff">
+  <% if @comments.empty? %>
+    <tr>
+      <td>
+        <p class='text-center'>
+        还没有评论， 来写几句吧。
+        </p>
+      </td>
+    </tr>
+  <% else %>
+    <% @comments.each_with_index do |comment, index| %>
+      <tr id="comment_<%= comment.id%>">
         <td>
-          <p class='text-center'>
-          还没有评论， 来写几句吧。
-          </p>
-        </td>
+          <div class="col-xs-1">
+            <%= image_tag comment.user.logo.url(:feed), class:'img-responsive' %>
+          </div>
+          <div class="col-xs-11" style="margin-left: 0px;padding-left: 10px;">
+            <div class="row" style="margin-left: 0px;">
+              <span style="color: #7AA87A;">
+                <%= comment.user.name %>
+              </span>
+              <span style="color: #9fc5e8">
+                <%= distance_of_time_in_words comment.created_at, Time.now %>前
+              </span>
+              <span class="pull-right" style="color: #7AA87A;"> #<%= index + 1 %> </span>
+            </div>
+            <div class="row" style="margin-top: 6px;margin-left: 0px;">
+              <%= comment.content %>
+              <% if comment.user == current_user %>
+                <%= link_to "删除", comment_path(comment), method: "delete", remote: true, class:'btn-sm btn-warning pull-right'%>
+              <% end %>
+            </div>
+          </div>
+        </td> 
       </tr>
-    <% else %>
-      <% @comments.each_with_index do |comment, index| %>
-        <tr id="comment_<%= comment.id%>">
-          <td>
-            <div class="col-md-1" style="padding: 0 0;">
-              <%= image_tag comment.user.logo.url(:feed), width:"40", height: "40" %>
-            </div>
-            <div class="col-md-8" style="margin-left: 0;padding: 0 0;">
-              <div class="row">
-                <span style="color: #7AA87A; margin-right: 20px;">
-                  <%= comment.user.name %>
-                </span>
-                <span style="color: #9fc5e8">
-                  <%= distance_of_time_in_words comment.created_at, Time.now %>前
-                </span>
-              </div>
-              <div class="row" style="margin-top: 6px;">
-                <%= comment.content %>
-              </div>
-            </div>
-            <span class="pull-right" style="color: #7AA87A; margin-left: 20px;"> #<%= index + 1 %> </span>
-            <% if comment.user == current_user %>
-              <%= link_to "删除", comment_path(comment), method: "delete", remote: true, class:'btn-sm btn-warning pull-right'%>
-            <% end %>
-          </td> 
-        </tr>
-      <% end %>
     <% end %>
-  </table>
-</div>
+  <% end %>
+</table>
