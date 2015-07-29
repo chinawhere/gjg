@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :current_user, :check_location, :set_ransack
   helper_method :current_city
+  helper_method :current_user
   respond_to :html, :js
 
   def current_user

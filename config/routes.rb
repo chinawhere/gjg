@@ -47,11 +47,7 @@ ChinaWhere::Application.routes.draw do
     end
   end
 
-  resources :comments, only:[:index, :create, :destroy, :new] do
-    collection do
-      post :destroy_comment
-    end
-  end
+  resources :comments, only:[:index, :create, :destroy, :new]
 
   resources :taxons, only:[] do
     collection do

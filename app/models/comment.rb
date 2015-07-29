@@ -7,6 +7,8 @@ class Comment < ActiveRecord::Base
   scope :p_comments ,->{ where(:p_comment_id => nil) }
   scope :lastest, ->{ limit(10) }
 
+  validates :content, presence: true
+  
   def p_comment_user_id
     self.class.find(self.p_comment_id).try(:user_id) rescue nil
   end
