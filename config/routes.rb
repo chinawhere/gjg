@@ -1,6 +1,8 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
+  get 'game/snake'
+
   get 'game/index'
 
   get 'lottery/index'
