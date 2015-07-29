@@ -52,7 +52,7 @@ ChinaWhere::Application.routes.draw do
   end
 
   resources :taxons, only:[] do
-    member do
+    collection do
       get :list
     end
   end
