@@ -1,9 +1,7 @@
 # coding: utf-8
 class CommentsController < ApplicationController
-  # skip_before_filter :require_login, :only => [:get_comments]
-  # before_filter :require_login
-  before_action :init_commentable, only: [:index, :create]
-  before_action :require_login, only: [:new, :create, :destroy_comment]
+  before_action :init_commentable, only: [:index, :create ]
+  before_action :require_login, only: [:new, :create, :destroy]
 
   respond_to :html, :js
   
@@ -21,22 +19,16 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build comment_params
     @comment.user = current_user
     @comment.save
-    @comments = Comment.lastest
+    @comments = @commentable.comments.lastest
     respond_with(@comment)
   end
 
-  def destroy_comment
-    session[:user_id] = params[:current_user_id]
-    @current_user = User.find(session[:user_id])
-    comment = Comment.find params[:comment_id]
-    user_id = params[:current_user_id].to_i
-    if user_id == comment.user_id || user_id == comment.commentable.user_id
-      comment.destroy
-      render text: {success: true}.to_json
-    else
-      render text: {success: false}.to_json
-    end
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy if @comment.user == current_user
+    respond_with(@comment)
   end
+
 
   private
 
