@@ -4,6 +4,21 @@ zh:
     next_label: "下页"
     page_gap: "&hellip;"
   activerecord:
+    models:
+      event: '活动'
+    attributes:
+      event:
+        name: 活动名称
+        city: 城市
+        address: 活动地址
+        taxon: 活动分类
+        start_at: 开始时间
+        end_at: 结束时间
+        fee_type: 费用类型
+        fee: 费用
+        min_count: 人数下限
+        max_count: 人数上限
+        logo: LOGO
     errors:
       messages:
         record_invalid: 格式不正确

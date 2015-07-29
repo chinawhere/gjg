@@ -6,125 +6,53 @@
   <%= javascript_include_tag 'bootstrap-select/bootstrap-select.min' %>
   <%= javascript_include_tag '//cdn.bootcss.com/ckeditor/4.4.5/ckeditor.js' %>
 <% end %>
-<%= simple_form_for @event, html: { class: 'form-horizontal' }  do |f| %>
-<fieldset>
+<div class="row" style="background: #fff;padding: 10px;">
+  
 
-<!-- Form Name -->
-<legend>创建新的活动</legend>
+<%= simple_form_for @event, html: { class: 'form-horizonal' }  do |f| %>
 
-<!-- Text input-->
-<div class="form-group required-control">
-  <label class="col-md-3 control-label" for="textinput">活动标题</label>
   <div class="col-md-6">
-    <%= f.input :name, input_html:{class:'form-control', placeholder: '请输入活动标题'}, label:false, required: true %>
-  </div>
-</div>
+    <%= f.input :name, input_html:{ placeholder: '请输入活动标题'}, required: true %>
+  
+    <%= f.association :city, input_html:{class: 'selectpicker'}, include_blank: false %>
 
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-3 control-label" for="selectbasic">城市</label>
-  <div class="col-md-2">
-    <%= f.association :city, input_html:{class: 'form-control selectpicker'}, label: false, include_blank: false %>
+    <%= f.input :address, input_html:{required: 'required', placeholder:'请输入活动地址'}%>
+    
+    <%= f.association :taxon, collection: Taxon.select_options, input_html:{class:'selectpicker', 'data-live-search': 'true'},include_blank: false %>
+    
+    <%
+      start_at = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+      end_at = (Time.now + 24 * 60 * 60).strftime('%Y-%m-%d %H:%M:%S')
+    
+      start_at = @event.start_at.strftime('%Y-%m-%d %H:%M:%S') if @event.start_at.present?
+      end_at = @event.end_at.strftime('%Y-%m-%d %H:%M:%S') if @event.end_at.present?
+    %>
+    <%= f.input :start_at, as:'string', input_html:{required: 'required', placeholder:'请输入活动开始时间', value: start_at} %>
+    
+    <%= f.input :end_at, as:'string', input_html:{required: 'required', placeholder:'请输入活动开始时间', value: end_at}%>
+    
+    <%= f.input :fee_type, as:'select', collection: Event.fee_type_options, input_html:{class: ' selectpicker'},include_blank: false %>
+    
+    <%= f.input :fee, input_html:{placeholder: '请输入活动金额'} %>
+    
+    <%= f.input :min_count, input_html:{placeholder: '请输入活动下限人数'} %>
+  
+    <%= f.input :max_count, input_html:{ placeholder: '请输入活动上限人数'}%>
+    
+    <%= f.input :logo, as:'file' %>
   </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group required-control">
-  <label class="col-md-3 control-label" for="textinput">详细地址</label>
   <div class="col-md-6">
-    <%= f.input :address, input_html:{class:'form-control', required: 'required', placeholder:'请输入活动地址'}, label:false%>
+    <div class="form-group">
+      <label for="event_content">活动描述</label>
+      <%= f.input :content, label: false %>
+    </div>
+    <button type="submit" class="btn btn-info btn-lg btn-block">创建活动</button>
   </div>
-</div>
 
-<div class="form-group">
-  <label class="col-md-3 control-label" for="selectbasic">活动类型</label>
-  <div class="col-md-2">
-    <%= f.association :taxon, collection: Taxon.select_options, input_html:{class:'selectpicker', 'data-live-search': 'true'}, label: false, include_blank: false %>
-  </div>
-</div>
-
-<%
-  start_at = Time.now.strftime('%Y-%m-%d %H:%M:%S')
-  end_at = (Time.now + 24 * 60 * 60).strftime('%Y-%m-%d %H:%M:%S')
-
-  start_at = @event.start_at.strftime('%Y-%m-%d %H:%M:%S') if @event.start_at.present?
-  end_at = @event.end_at.strftime('%Y-%m-%d %H:%M:%S') if @event.end_at.present?
-%>
-<!-- Text input-->
-<div class="form-group required-control">
-  <label class="col-md-3 control-label" for="textinput">开始时间</label>
-  <div class="col-md-6">
-    <%= f.input :start_at, as:'string', input_html:{class:'form-control', required: 'required', placeholder:'请输入活动开始时间', value: start_at}, label:false %>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group required-control">
-  <label class="col-md-3 control-label" for="textinput">结束时间</label>
-  <div class="col-md-6">
-    	<%= f.input :end_at, as:'string', input_html:{class:'form-control', required: 'required', placeholder:'请输入活动开始时间', value: end_at}, label:false %>
-  </div>
-</div>
-
-<!-- Select Basic -->
-<div class="form-group">
-  <label class="col-md-3 control-label" for="selectbasic">消费类型</label>
-  <div class="col-md-2">
-    <%= f.input :fee_type, as:'select', collection: Event.fee_type_options, input_html:{class: 'form-control selectpicker'}, label:false, include_blank: false %>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-3 control-label" for="fee">活动金额</label>
-  <div class="col-md-6">
-    <%= f.input :fee, input_html:{class:'form-control', placeholder: '请输入活动金额'}, label: false %>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group required-control">
-  <label class="col-md-3 control-label" for="min_count">下限人数</label>
-  <div class="col-md-6">
-    <%= f.input :min_count, input_html:{class:'form-control', placeholder: '请输入活动下限人数'}, label: false %>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group required-control">
-  <label class="col-md-3 control-label" for="max_count">上限人数</label>
-  <div class="col-md-6">
-    <%= f.input :max_count, input_html:{class:'form-control', placeholder: '请输入活动上限人数'}, label: false %>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group required-control">
-  <label class="col-md-3 control-label" for="max_count">活动LOGO</label>
-  <div class="col-md-6">
-    <%= f.input :logo, input_html:{class:'form-control', placeholder: '请上传活动logo'}, label: false %>
-  </div>
-</div>
-
-
-<!-- Text input-->
-<div class="form-group required-control">
-  <label class="col-md-3 control-label" for="content">活动描述</label>
-  <div class="col-md-8">
-    <%= f.input :content, label: false %>
-  </div>
-</div>
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-3 control-label" for="singlebutton"></label>
-  <div class="col-lg-6">
-    <button id="singlebutton" name="singlebutton" class="btn btn-primary">提交</button>
-  </div>
-</div>
-
-</fieldset>
 <% end %>
+  
+</div>
+
 <script>
   $(document).ready(function(){
     $('#event_start_at').datetimepicker({
