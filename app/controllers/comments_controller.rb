@@ -1,7 +1,5 @@
 # coding: utf-8
 class CommentsController < ApplicationController
-  # skip_before_filter :require_login, :only => [:get_comments]
-  # before_filter :require_login
   before_action :init_commentable, only: [:index, :create]
   before_action :require_login, only: [:new, :create, :destroy_comment]
 
@@ -21,7 +19,7 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.build comment_params
     @comment.user = current_user
     @comment.save
-    @comments = Comment.lastest
+    @comments = @commentable.comments.lastest
     respond_with(@comment)
   end
 
