@@ -22,7 +22,7 @@
 </div>
 <div class="row" style="margin: 15px 0px;">
 <% @event.photos.each do |photo|%>
-  <div class="col-md-1" style="padding-left: 0px;">
+  <div class="col-xs-1" style="padding-left: 0px;margin-right: 35px;">
    <%= link_to (image_tag photo.avatar_url(:medium), size:"60x60"), photo.avatar_url(:lager), class:'image_group'%>
   </div>
 <% end -%>
