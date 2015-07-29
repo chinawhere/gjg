@@ -37,11 +37,11 @@ body{
   margin-bottom: 10px;
 }
 .simple_form input{
-  width: 66%;
+  width: 80%;
   height: 34px;
 }
 .simple_form label{
-  width: 17%;
+  width: 20%;
 }
 .error{
   color: red;
