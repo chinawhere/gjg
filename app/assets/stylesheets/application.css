@@ -33,9 +33,10 @@ body{
 .img-thumbnail{
   padding: 0px;
 }
-/*.simple_form div.input{
+.simple_form div.input{
   margin-bottom: 10px;
 }
+/*
 .simple_form div div input{
   width: 80%;
   height: 34px;
