@@ -86,15 +86,15 @@
         <%= f.input :logo, as:'file', label:false %>
       </div>
     </div>
-    
-    
   </div>
   <div class="col-md-6">
-    <label for="event_content">活动描述</label>
-    <%= f.input :content, label: false %>
-    <button type="submit" class="btn btn-info btn-lg btn-block">创建活动</button>
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= f.input :content, label: false %>
+          <button type="submit" class="btn btn-info btn-lg btn-block">创建活动</button>
+      </div>
+    </div> 
   </div>
-
 <% end %>
   
 </div>
