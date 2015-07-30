@@ -16,6 +16,7 @@ class EventsController < ApplicationController
   def create
     params.permit!
     @event = @current_user.events.build(params[:event])
+    @event.city = current_city
     @event.save
     respond_with(@event, location: events_path)
   end
