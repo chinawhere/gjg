@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150718181838) do
+ActiveRecord::Schema.define(version: 20150731080414) do
 
   create_table "applies", force: :cascade do |t|
     t.integer  "user_id"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 20150718181838) do
     t.string   "city_code"
     t.integer  "city_id"
     t.integer  "weight",      default: 0
+    t.float    "lng"
+    t.float    "lat"
   end
 
   create_table "events_users", force: :cascade do |t|
