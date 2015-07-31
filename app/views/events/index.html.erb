@@ -1,22 +1,8 @@
 <%= render 'events/filter' %>
 
-<% @events.in_groups_of(4, false) do |events| %>
-  <div class="row">
-    <% for event in events %>
-      <div class="col-md-3">
-          <div class="thumbnail">
-              <%= link_to image_tag(asset_path(event.logo_url(:medium)), class:'img-responsive'), event_path(event) %>
-              <div class="caption">
-                  <h3><%= event.name %></h3>
-                  <!--
-                  <p><%= event.content %></p>
-                  -->
-                  <p><a href="<%= event_path(event)%>" class="btn btn-primary">查看</a> <a href="#" class="btn btn-default">加入</a></p>
-              </div>
-          </div>
-      </div>
-    <% end %>
-  </div>
-<% end %>
+
+<div class="row" id="home_main_row">
+  <%= render :partial => "shared/events", :locals => {:events => @events}%>
+</div>
 
 <%= will_paginate @events, renderer: BootstrapPagination::Rails,inner_window: 1 %>
