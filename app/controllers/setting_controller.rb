@@ -1,7 +1,6 @@
 # coding: utf-8
 class SettingController < ApplicationController
   before_filter :require_login
-  layout 'home'
   def account
   end
 
