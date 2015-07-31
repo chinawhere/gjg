@@ -95,6 +95,7 @@ ChinaWhere::Application.routes.draw do
     end
     collection do
       get 'select'
+      post 'mark'
     end
   end
 
