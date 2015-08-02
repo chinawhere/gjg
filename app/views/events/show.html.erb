@@ -1,24 +1,28 @@
 <%= content_for :header do %>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <%= javascript_include_tag 'colorbox/jquery.colorbox-min' %>
   <%= stylesheet_link_tag    'colorbox/colorbox' %>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=C9EDmgsKeOeQ9gMAkMlPMtaZ"></script>
 <% end -%>
 <script>
   $(document).ready(function(){
     $(".image_group").colorbox({rel:'image_group'});
-    $("img").addClass('img-responsive');
+    // $("img").addClass('img-responsive');
   })
 </script>
 <div class="row" style="margin: 15px 0px;">
   <div class="col-md-4" style="padding-left: 0px;">
     <%= image_tag(asset_path(@event.logo_url(:lager)), class:'img-responsive') %>
   </div>
-  <div class="col-md-8" style="line-height: 30px;background: #fff; height: 300px;">
+  <div class="col-md-5" style="line-height: 30px;background: #fff; height: 273px;">
     <h3><%= @event.name%></h3>
     <p>地点：<%= @event.address %></p>
     <p>时间：<%= "#{@event.start_at.strftime('%m月%d日 %H:%M')}--#{@event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
     <p>费用：<%= @event.display_fee %> </p>
     <p>类型：<%= @event.taxon.name %></p>
     <%= render partial:'controls' %>
+  </div>
+  <div class="col-md-3" style="height: 273px;" id="lmap">
   </div>
 </div>
 <div class="row" style="margin: 15px 0px;">
@@ -46,3 +50,15 @@
     <%= render :partial => 'comments/index'%>
   </div>
 </div>
+
+<script>
+  $(document).ready(function(){
+    var map = new BMap.Map("l-map");
+  	var point = new BMap.Point(116.400244,39.92556);
+  	map.centerAndZoom(point, 12);
+  	var marker = new BMap.Marker(point);// 创建标注
+  	map.addOverlay(marker);             // 将标注添加到地图中
+  	marker.disableDragging();           // 不可拖拽
+  })
+  
+</script>
