@@ -30,6 +30,10 @@ class Event < ActiveRecord::Base
     self.user == user
   end
 
+  def marked?
+    self.lng && self.lat
+  end
+
   class << self
 
     #活动日历

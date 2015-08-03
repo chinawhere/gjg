@@ -20,7 +20,7 @@ class EventLogoUploader < CarrierWave::Uploader::Base
   end
 
   version :lager do
-    process :resize_to_fill => [300, 300]
+    process :resize_to_fill => [273, 273]
   end
 
   version :medium do

@@ -13,7 +13,6 @@
   </style>
 <% end -%>
 <script>
-
   $(document).ready(function(){
     var init = function() {
       var center = new qq.maps.LatLng(<%= @event.lat %>,<%= @event.lng %>);
@@ -31,7 +30,6 @@
           map: map
       });
       marker.setVisible(true);
-      
     }
     $(".image_group").colorbox({rel:'image_group'});
     init();
@@ -49,10 +47,12 @@
     <p>类型：<%= @event.taxon.name %></p>
     <%= render partial:'controls' %>
   </div>
-  <div class="col-md-3" style="height: 273px;">
-    <div class="row" id="map_div" style="height: 243px;"></div>
-    <div class="row"><%= link_to '查看完整地图', look_city_path(@event), class:'btn btn-info btn-sm btn-block', remote:true, method: 'post' %></div>
-  </div>
+  <% if @event.marked? %>
+    <div class="col-md-3" style="height: 273px;">
+      <div class="row" id="map_div" style="height: 243px;"></div>
+      <div class="row"><%= link_to '查看完整地图', look_city_path(@event), class:'btn btn-info btn-sm btn-block', remote:true, method: 'post' %></div>
+    </div>
+  <% end %>
 </div>
 <div class="row" style="margin: 15px 0px;">
 <% @event.photos.each do |photo|%>
