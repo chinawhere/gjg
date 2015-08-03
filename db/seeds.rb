@@ -16,10 +16,10 @@ User.where( name:     '夏雷',
             qq:       '279596262').first_or_create.add_role :admin
 
 
-City.find_or_create_by(name: '北京', code:'100000')
-City.find_or_create_by(name: '上海', code:'200000')
-City.find_or_create_by(name: '广州', code:'510000')
-City.find_or_create_by(name: '重庆', code:'630000')
+City.find_or_create_by(name: '北京', code:'010')
+City.find_or_create_by(name: '上海', code:'021')
+City.find_or_create_by(name: '广州', code:'020')
+City.find_or_create_by(name: '重庆', code:'023')
 
 
 qinzi = Taxon.find_or_create_by(name: '亲子')

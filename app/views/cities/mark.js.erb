@@ -3,15 +3,31 @@ $('#myModal .modal-body').html("<%= j render('map') %>");
 $('#myModal').modal();
 
 
-// 百度地图API功能
-var map = new BMap.Map("allmap");
-var point = new BMap.Point(116.404, 39.915);
-map.centerAndZoom(point, 15);
-var marker = new BMap.Marker(point);// 创建标注
-map.addOverlay(marker);             // 将标注添加到地图中
-marker.enableDragging();           // 不可拖拽
+var citylocation,map;
+var center = new qq.maps.LatLng(39.916527,116.397128);
+map = new qq.maps.Map(document.getElementById('allmap'),{
+    center: center,
+    zoom: 13
+});
+citylocation = new qq.maps.CityService({
+    complete : function(results){
+        map.setCenter(results.detail.latLng);
+    }
+});
+citylocation.searchCityByAreaCode("<%= current_city.code %>");
 
-marker.addEventListener('dragend', function(e){
-		$("#event_lng").val(e.point.lng);
-		$("#event_lat").val(e.point.lat);
-})
+var middleControl = document.createElement("div");
+middleControl.style.left="265px";
+middleControl.style.top="114px";
+middleControl.style.position="relative";
+middleControl.style.width="36px";
+middleControl.style.height="36px";
+middleControl.style.zIndex="100000";
+middleControl.innerHTML ="<img src='<%= asset_path 'icon-location.png' %>' />";
+document.getElementById("allmap").appendChild(middleControl);
+$(".modal-footer button:first").bind('click', function(){
+  $("#event_lng").val(map.getCenter().lng);
+  $("#event_lat").val(map.getCenter().lat);
+  $('#myModal').modal('hide')
+});
+

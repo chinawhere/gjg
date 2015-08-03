@@ -2,55 +2,39 @@
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
   <%= javascript_include_tag 'colorbox/jquery.colorbox-min' %>
   <%= stylesheet_link_tag    'colorbox/colorbox' %>
-  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=C9EDmgsKeOeQ9gMAkMlPMtaZ"></script>
+  <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+  <style>
+    #zoom_btn{
+      color: black;
+    }
+    #zoom_btn:hover{
+      text-decoration: none;
+    }
+  </style>
 <% end -%>
 <script>
+
   $(document).ready(function(){
+    var init = function() {
+      var center = new qq.maps.LatLng(<%= @event.lat %>,<%= @event.lng %>);
+      var map = new qq.maps.Map(document.getElementById('map_div'),{
+          center: center,
+          zoom: 13,
+          zoomControl: true,
+          zoomControlOptions: {
+              style: qq.maps.ZoomControlStyle.SMALL
+          },
+          panControl: false
+      });
+      var marker = new qq.maps.Marker({
+          position: center,
+          map: map
+      });
+      marker.setVisible(true);
+      
+    }
     $(".image_group").colorbox({rel:'image_group'});
- 
-    var map = new BMap.Map("l-map");
-  	var point = new BMap.Point(<%= @event.lng %>, <%= @event.lat%>);
-  	map.centerAndZoom(point, 12);
-  	var marker = new BMap.Marker(point);// 创建标注
-  	map.addOverlay(marker);             // 将标注添加到地图中
-    var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL});
-    map.addControl(top_right_navigation); 
-  	marker.disableDragging();           // 不可拖拽
-    
-    // 定义一个控件类,即function
-  	function ZoomControl(){
-  	  // 默认停靠位置和偏移量
-  	  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
-  	  this.defaultOffset = new BMap.Size(10, 10);
-  	}
-  
-  	// 通过JavaScript的prototype属性继承于BMap.Control
-  	ZoomControl.prototype = new BMap.Control();
-  
-  	// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
-  	// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
-  	ZoomControl.prototype.initialize = function(map){
-  	  // 创建一个DOM元素
-  	  var div = document.createElement("div");
-  	  // 添加文字说明
-  	  div.appendChild(document.createTextNode("查看大图"));
-  	  // 设置样式
-  	  div.style.cursor = "pointer";
-  	  div.style.border = "1px solid gray";
-  	  div.style.backgroundColor = "white";
-  	  // 绑定事件,点击一次放大两级
-  	  div.onclick = function(e){
-        $.post("<%= look_city_path(@event)%>", null, null);
-  	  }
-  	  // 添加DOM元素到地图中
-  	  map.getContainer().appendChild(div);
-  	  // 将DOM元素返回
-  	  return div;
-  	}
-  	// 创建控件
-  	var myZoomCtrl = new ZoomControl();
-  	// 添加到地图当中
-  	map.addControl(myZoomCtrl);
+    init();
   })
 </script>
 <div class="row" style="margin: 15px 0px;">
@@ -65,8 +49,9 @@
     <p>类型：<%= @event.taxon.name %></p>
     <%= render partial:'controls' %>
   </div>
-  <div class="col-md-3" style="height: 273px;" id="l-map">
-    地图
+  <div class="col-md-3" style="height: 273px;">
+    <div class="row" id="map_div" style="height: 243px;"></div>
+    <div class="row"><%= link_to '查看完整地图', look_city_path(@event), class:'btn btn-info btn-sm btn-block', remote:true, method: 'post' %></div>
   </div>
 </div>
 <div class="row" style="margin: 15px 0px;">

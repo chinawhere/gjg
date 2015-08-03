@@ -3,33 +3,13 @@ $('#myModal .modal-body').html("<%= j render('map') %>");
 $('#myModal .modal-footer').remove();
 $('#myModal').modal();
 
-
-// 百度地图API功能
-var map_view = new BMap.Map("allmap");
-// var view_point = new BMap.Point("<%= @event.lng %>", "<%= @event.lat %>");
-var view_point = new BMap.Point(116.404, 39.915);
-map_view.centerAndZoom(view_point, 15);
-var view_marker = new BMap.Marker(view_point);// 创建标注
-map_view.addOverlay(view_marker);             // 将标注添加到地图中
-map_view.enableDragging();           // 不可拖拽
-// map_view.panBy(305,165);
-
-
-
-// $('#myModal #myModalLabel').html('请标注地点');
-// $('#myModal .modal-body').html("<%= j render('map') %>");
-// $('#myModal').modal();
-
-
-// // 百度地图API功能
-// var map = new BMap.Map("allmap");
-// var point = new BMap.Point(116.404, 39.915);
-// map.centerAndZoom(point, 15);
-// var marker = new BMap.Marker(point);// 创建标注
-// map.addOverlay(marker);             // 将标注添加到地图中
-// marker.enableDragging();           // 不可拖拽
-
-// marker.addEventListener('dragend', function(e){
-// 		$("#event_lng").val(e.point.lng);
-// 		$("#event_lat").val(e.point.lat);
-// })
+var center_view = new qq.maps.LatLng(<%= @event.lat %>,<%= @event.lng %>);
+var map_view = new qq.maps.Map(document.getElementById('allmap'),{
+  center: center_view,
+  zoom: 13,
+  zoomControl: true
+});
+var marker_view = new qq.maps.Marker({
+  position: center_view,
+  map: map_view
+});
