@@ -4,7 +4,6 @@
   <%= javascript_include_tag 'datetimepicker/bootstrap-datetimepicker.min'%>
   <%= javascript_include_tag 'datetimepicker/bootstrap-datetimepicker.zh-CN'%>
   <%= javascript_include_tag 'bootstrap-select/bootstrap-select.min' %>
-  <%= javascript_include_tag '//cdn.bootcss.com/ckeditor/4.4.5/ckeditor.js' %>
   <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
 <% end %>
 <%= simple_form_for @event, html: { class: 'form-horizontal' }  do |f| %>
@@ -41,11 +40,11 @@
           <%= f.association :taxon, collection: Taxon.select_options, input_html:{class:'selectpicker', 'data-live-search': 'true'},include_blank: false, label:false %>
         </div>
       </div>
-      
+
       <%
         start_at = Time.now.strftime('%Y-%m-%d %H:%M:%S')
         end_at = (Time.now + 24 * 60 * 60).strftime('%Y-%m-%d %H:%M:%S')
-      
+
         start_at = @event.start_at.strftime('%Y-%m-%d %H:%M:%S') if @event.start_at.present?
         end_at = @event.end_at.strftime('%Y-%m-%d %H:%M:%S') if @event.end_at.present?
       %>
@@ -55,42 +54,42 @@
           <%= f.input :start_at, as:'string', input_html:{required: 'required', placeholder:'请输入活动开始时间', value: start_at, class:'form-control'} , label: false%>
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="event_end_at" class="col-md-2 control-label">结束时间</label>
         <div class="col-md-10">
           <%= f.input :end_at, as:'string', input_html:{required: 'required', placeholder:'请输入活动结束时间', value: end_at, class:'form-control'}, label: false%>
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="event_fee_type" class="col-md-2 control-label">费用类型</label>
         <div class="col-md-10">
           <%= f.input :fee_type, as:'select', collection: Event.fee_type_options, input_html:{class: ' selectpicker'},include_blank: false, label:false %>
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="event_fee_type" class="col-md-2 control-label">活动金额</label>
         <div class="col-md-10">
           <%= f.input :fee, input_html:{placeholder: '请输入活动金额', class: 'form-control'}, label:false %>
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="event_fee_type" class="col-md-2 control-label">下限人数</label>
         <div class="col-md-10">
           <%= f.input :min_count, input_html:{placeholder: '请输入活动下限人数', class: 'form-control'}, label:false %>
         </div>
       </div>
-      
+
       <div class="form-group">
         <label for="event_fee_type" class="col-md-2 control-label">上线人数</label>
         <div class="col-md-10">
           <%= f.input :max_count, input_html:{ placeholder: '请输入活动上限人数', class:'form-control'}, label:false%>
         </div>
       </div>
-    
+
       <div class="form-group">
         <label for="event_fee_type" class="col-md-2 control-label">LOGO</label>
         <div class="col-md-10">
@@ -101,9 +100,9 @@
     <div class="col-md-6">
       <div class="form-group">
         <div class="col-md-12">
-          <%= f.input :content, label: false %>   
+          <%= f.input :content, label: false, :as => :kindeditor, :input_html => { :simple_mode => true } %>
         </div>
-      </div> 
+      </div>
       <button type="submit" class="btn btn-info btn-lg btn-block">创建活动</button>
     </div>
   </div>
@@ -134,20 +133,8 @@
     $('.selectpicker').selectpicker({
       size: 8
     });
-    CKEDITOR.replace( 'event_content' ,{ 
-      toolbar: [ 
-        ['Bold','Italic','Underline','Strike'], ['Cut','Copy','Paste'], 
-        ['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'], 
-        ['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'] 
-        ] 
-      });
-    });
-    <% unless @event.content %>
-      $("#event_content").html(
-  			'在这里输入活动的描述!'
-  		);
-    <% end %>
     $("#map_btn").bind('click',function(){
       $.post("<%= mark_cities_path%>", null, null);
-    })
+    });
+  });
 </script>

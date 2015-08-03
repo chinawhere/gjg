@@ -66,3 +66,5 @@ gem 'rest-client'
 gem 'newrelic_rpm'
 gem 'dalli'
 gem "rails-erd"
+gem 'rails_kindeditor'
+gem 'sprockets', '~> 2.12.4'
