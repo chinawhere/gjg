@@ -92,6 +92,7 @@ ChinaWhere::Application.routes.draw do
   resources :cities do
     member do
       post 'pick'
+      post 'look'
     end
     collection do
       get 'select'

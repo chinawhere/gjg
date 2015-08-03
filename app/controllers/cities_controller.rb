@@ -10,5 +10,9 @@ class CitiesController < ApplicationController
 	
 	def mark
 	end
+  
+  def look
+    @event = Event.find(params[:id])
+  end
 
 end
