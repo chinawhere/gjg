@@ -32,6 +32,8 @@
       marker.setVisible(true);
     }
     $(".image_group").colorbox({rel:'image_group'});
+    //适配活动内容中的图片
+    $("#body_row img").addClass('img-responsive');
     init();
   })
 </script>
@@ -62,7 +64,7 @@
 <% end -%>
 </div>
 
-<div class="row" style="margin: 15px 0px;">
+<div class="row" style="margin: 15px 0px;" id="body_row">
   <div class="col-md-12" style="background: #fff; padding: 15px;">
     <%= raw(@event.content.to_s.html_safe) rescue ''%>
   </div>
