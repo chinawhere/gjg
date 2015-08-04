@@ -13,28 +13,31 @@
   </style>
 <% end -%>
 <script>
+  var init = function() {
+    var center = new qq.maps.LatLng("<%= @event.try(:lat) %>","<%= @event.try(:lng) %>");
+    var map = new qq.maps.Map(document.getElementById('map_div'),{
+        center: center,
+        zoom: 13,
+        zoomControl: true,
+        zoomControlOptions: {
+            style: qq.maps.ZoomControlStyle.SMALL
+        },
+        panControl: false
+    });
+    var marker = new qq.maps.Marker({
+        position: center,
+        map: map
+    });
+    marker.setVisible(true);
+  }
   $(document).ready(function(){
-    var init = function() {
-      var center = new qq.maps.LatLng(<%= @event.lat %>,<%= @event.lng %>);
-      var map = new qq.maps.Map(document.getElementById('map_div'),{
-          center: center,
-          zoom: 13,
-          zoomControl: true,
-          zoomControlOptions: {
-              style: qq.maps.ZoomControlStyle.SMALL
-          },
-          panControl: false
-      });
-      var marker = new qq.maps.Marker({
-          position: center,
-          map: map
-      });
-      marker.setVisible(true);
-    }
+
     $(".image_group").colorbox({rel:'image_group'});
     //适配活动内容中的图片
     $("#body_row img").addClass('img-responsive');
-    init();
+    <% if @event.marked? %>
+      init();
+    <% end %>
   })
 </script>
 <div class="row" style="margin: 15px 0px;">
