@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     @event = @current_user.events.build(params[:event])
     @event.city = current_city
     @event.save
-    respond_with(@event, location: events_path)
+    respond_with(@event)
   end
 
   def show
@@ -29,7 +29,7 @@ class EventsController < ApplicationController
   def update
     params.permit!
     @event.update(params[:event])
-    respond_with(@event, location: events_path)
+    respond_with(@event)
   end
 
   def edit
