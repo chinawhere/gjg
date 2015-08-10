@@ -20,7 +20,9 @@
   <% if !request.env["HTTP_USER_AGENT"].include?('Mobile') %>
   <div class="col-md-2">
     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="margin-bottom: 5px; display: block; position: static;">
-      <li><a href="<%=  list_taxons_path %>">全部</a></li>
+      <!--
+        <li><a href="<%=  list_taxons_path %>">全部</a></li>
+      -->
       <% @taxons.each do |taxon| %>
         <% sub_menus = taxon.sub_menus %>
         <li class="<%= sub_menus.empty? ? '' : 'dropdown-submenu' %>">
