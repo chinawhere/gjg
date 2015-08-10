@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require kindeditor
+//= require jquery_ujs
 //= require_directory .
