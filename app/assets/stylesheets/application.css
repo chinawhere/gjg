@@ -3,11 +3,11 @@
  *= require_self
  */
 body{
-  background: #E7EAEC;
+  background: #ccc;
 }
 #main{
   margin-top: 80px;
-  padding-bottom: 70px; 
+  padding-bottom: 70px;
 }
 .nav-second-level{
   display: none;
