@@ -7,7 +7,7 @@
       <a href="<%= event_path(event)%>"><%= truncate(event.name,:length => 12)%></a>
       </h4>
       <p><%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
-      <p>地点：<%= truncate event.address, 16 %></p>
+      <p>地点：<%= truncate event.address, length: 16 %></p>
       <p>
         <a href="<%= event_path(event)%>" target="_blank" class="btn btn-info" role="button">查看</a>
         <% if @current_user and Apply.where(:user_id => @current_user, :event_id => event.id).present? %>
