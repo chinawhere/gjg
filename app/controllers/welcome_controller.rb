@@ -2,7 +2,8 @@
 class WelcomeController < ApplicationController
 
   def index
-  	@events = Event.where("city_code= ? and start_at > ?", current_city.code, Time.now).limit(8)
+  	now_time = Time.now
+    @events = Event.where("city_code= ? and end_at < ?",current_city.code, now_time).limit(8)
     @taxons = Taxon.roots
     @slide_ads = SlideAd.all
   end
