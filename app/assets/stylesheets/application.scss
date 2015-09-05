@@ -1,0 +1,38 @@
+/*
+ *= require_directory .
+ *= require_self
+ */
+body{
+  background: #ccc;
+  #main{
+    margin-top: 80px;
+    padding-bottom: 70px;
+    .nav-second-level{
+      display: none;
+    }
+    .nav-pills{
+      padding-left: 15px;
+      margin: 15px 0;
+    }
+    .thumbnail{
+      padding: 0;
+    }
+    .img-thumbnail{
+      padding: 0;
+    }
+    .error{
+      color: red;
+    }
+  }
+}
+// #wrapper{
+//   border: 1px solid #eee;
+// }
+// #wrapper li{
+//   border-bottom: 1px solid #eee;
+// }
+// #wrapper a{
+//   font: bold;
+//   font-weight: 700;
+//   color: #333;
+// }
