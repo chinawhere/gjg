@@ -1,5 +1,8 @@
 # coding: utf-8
 class Event < ActiveRecord::Base
+
+  default_scope {order("created_at desc")}
+
   validates_presence_of :name, :address, :city_id
   mount_uploader :logo, EventLogoUploader
   has_many :photos
