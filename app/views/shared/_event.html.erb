@@ -4,7 +4,7 @@
 
     <div class="caption">
       <h4>
-      <a href="<%= event_path(event)%>"><%= truncate(event.name,:length => 12)%></a>
+      <a href="<%= event_path(event)%>"><%= truncate(event.name,:length => 14)%></a>
       </h4>
       <p><%= "#{event.start_at.strftime('%m月%d日 %H:%M')}--#{event.end_at.strftime('%m月%d日 %H:%M')}" %></p>
       <p>地点：<%= truncate event.address, length: 14 %></p>
