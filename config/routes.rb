@@ -23,7 +23,8 @@ ChinaWhere::Application.routes.draw do
 
 
   get 'home', to: 'home#index', as: :home
-  post 'feedback', to: 'home#feedback'
+  get 'feedback/select', to: 'home#feedback_select'
+  post 'feedback/submit', to: 'home#feedback_submit'
 
   resources :setting, as: :settings, only: [] do
     collection do
