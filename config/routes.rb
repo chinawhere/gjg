@@ -1,6 +1,7 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
 
+
   get 'game/snake'
 
   get 'game/index'
@@ -20,7 +21,9 @@ ChinaWhere::Application.routes.draw do
 
   # mount Twitter::API => '/'
 
+
   get 'home', to: 'home#index', as: :home
+  post 'feedback', to: 'home#feedback'
 
   resources :setting, as: :settings, only: [] do
     collection do

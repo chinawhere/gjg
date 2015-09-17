@@ -18,5 +18,7 @@ $(document).ready(function(){
   if(gon.city_id == null){
     $.get("/cities/select", null, null);
   }
+  $("#btn_feedback").bind('click', null, function () {
+    alert('clicked.');
+  })
 })
-
