@@ -13,3 +13,10 @@
 //= require kindeditor
 //= require jquery_ujs
 //= require_directory .
+$(document).ready(function(){
+  // 如果没有城市信息， 提示用户选择
+  if(gon.city_id == null){
+    $.get("/cities/select", null, null);
+  }
+})
+
