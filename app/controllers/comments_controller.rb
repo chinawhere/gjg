@@ -4,11 +4,11 @@ class CommentsController < ApplicationController
   before_action :require_login, only: [:new, :create, :destroy]
 
   respond_to :html, :js
-  
+
   def new
     @comment = Comment.new(comment_params)
   end
-  
+
   def index
     p_comments = @commentable.comments.p_comments.includes(:user)
     html_str = render_to_string(:partial => 'comments/comment_list', :locals => { :p_comments => p_comments })
