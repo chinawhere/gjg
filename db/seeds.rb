@@ -14,7 +14,14 @@ User.where( name:     '夏雷',
             position: 'ruby工程师',
             age:      31,
             qq:       '279596262').first_or_create.add_role :admin
-
+User.where( name:     'admin',
+            email:    'admin@163.com',
+            password: '123456',
+            sex:      'M',
+            mobile:   '15000000000',
+            position: '管理员',
+            age:      1,
+            qq:       '666666666').first_or_create.add_role :admin
 
 City.find_or_create_by(name: '北京', code:'010')
 City.find_or_create_by(name: '上海', code:'021')
