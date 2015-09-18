@@ -8,7 +8,6 @@
       <%= form_text_field(text_label: '名称', text_name: 'event[name]', text_value: f.object.name) %>
       <%= form_text_field(text_label: '用户id', text_name: 'event[user_id]', text_value: f.object.user_id, text_class: 'fa-user') %>
       <%= form_text_field(text_label: '地址', text_name: 'event[address]', text_value: f.object.address, text_class: 'fa-suitcase') %>
-      <%= form_select_field(text_label: '类型', text_name: 'event[category_id]', text_option: Category.where(status: 'event').map{|c| [c.id,c.name]}, text_class: 'fa-angle-down', text_value: f.object.category_id) %>
       <div class="form-group">
         <label>开始时间</label>
         <div class="input-group">
