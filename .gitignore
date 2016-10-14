@@ -28,3 +28,4 @@
 .settings/
 tags
 *.pdf
+.ruby-version

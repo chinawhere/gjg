@@ -1,4 +1,4 @@
-source 'http://ruby.taobao.org'
+source 'https://ruby.taobao.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
@@ -44,7 +44,7 @@ gem "rolify"
 # 分页
 gem 'will_paginate'
 
-gem 'puma'
+# gem 'puma'
 
 gem 'grape'
 gem 'grape-swagger'
