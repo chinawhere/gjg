@@ -62,7 +62,7 @@ ChinaWhere::Application.routes.draw do
   end
 
   namespace :admin do
-    # root to: "sessions#index"
+    root to: "sessions#index"
     scope controller: :sessions do
       get :login
       get :logout
