@@ -17,10 +17,10 @@ class Admin::SessionsController < Admin::ApplicationController
   end
 
   def sessions
-    @user = User.where(name: params[:name], password: params[:password]).first
+    @user = User.where(email: params[:email], password: params[:password]).first
     if @user.present?
       session[:staffer_id] = @user.id
-      redirect_to admin_root_path
+      redirect_to admin_users_path
     else
       flash[:notic] = true
       redirect_to admin_login_path
