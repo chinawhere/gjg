@@ -133,7 +133,7 @@ GEM
     multipart-post (2.0.0)
     mustermann19 (0.4.4)
       enumerable-lazy
-    mysql2 (0.4.4)
+    mysql2 (0.3.20)
     netrc (0.11.0)
     newrelic_rpm (3.16.0.318)
     nokogiri (1.6.8)
@@ -273,7 +273,7 @@ DEPENDENCIES
   meta_request
   mina
   mini_magick
-  mysql2
+  mysql2 (~> 0.3.18)
   newrelic_rpm
   piet
   rails (= 4.2.4)
