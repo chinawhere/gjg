@@ -9,7 +9,7 @@ class Admin::ApplicationController < ApplicationController
     @current_staffer = User.find(session[:staffer_id]) rescue nil
     # redirect_to admin_login_path and return unless @current_staffer.present?
     # redirect_to root_path unless @current_staffer.has_role? :admin
-    redirect_to admin_login_path and return
+    redirect_to admin_users_path and return
   end
 
 end
