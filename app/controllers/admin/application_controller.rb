@@ -7,10 +7,9 @@ class Admin::ApplicationController < ApplicationController
 
   def admin_access_denied
     @current_staffer = User.find(session[:staffer_id]) rescue nil
-    redirect_to admin_login_path and return unless @current_staffer.present?
-    redirect_to root_path unless @current_staffer.has_role? :admin
-    # redirect_to admin_login_path and return if @current_staffer.present?
-    # redirect_to root_path if @current_staffer.present?
+    # redirect_to admin_login_path and return unless @current_staffer.present?
+    # redirect_to root_path unless @current_staffer.has_role? :admin
+    redirect_to admin_login_path and return
   end
 
 end
