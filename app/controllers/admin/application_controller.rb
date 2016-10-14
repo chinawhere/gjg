@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::ApplicationController < ApplicationController
   protect_from_forgery
-  before_filter :admin_access_denied
+  # before_filter :admin_access_denied
 
   layout 'admin'
 
