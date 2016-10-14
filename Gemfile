@@ -44,7 +44,7 @@ gem "rolify"
 # 分页
 gem 'will_paginate'
 
-# gem 'puma'
+gem 'puma'
 
 gem 'grape'
 gem 'grape-swagger'
