@@ -6,8 +6,9 @@ class Admin::ApplicationController < ApplicationController
   layout 'admin'
 
   def admin_access_denied
+  	redirect_to admin_login_path and return if session[:staffer_id].blank?
     @current_staffer = User.find(session[:staffer_id])
-    # redirect_to admin_login_path and return unless @current_staffer.present?
+    redirect_to admin_login_path and return if @current_staffer.blank? || !(@current_staffer.has_role? :admin)
     # redirect_to root_path unless @current_staffer.has_role? :admin
     # redirect_to admin_users_path and return
   end

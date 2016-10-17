@@ -28,7 +28,8 @@
     <div class="page-header-inner">
       <!-- BEGIN LOGO -->
       <div class="page-logo" style="margin-top: -8px;margin-left:15px">
-        <%= image_tag 'logo.jpg', class:'logo-default', style:"width:50px;height:33px"%>
+        <!-- <%= image_tag 'logo.jpg', class:'logo-default', style:"width:50px;height:33px"%> -->
+        <h3 style="color:#7B7B7B">管理后台</h3>
       </div>
       <!-- END LOGO -->
       <!-- END HEADER SEARCH BOX -->
@@ -90,7 +91,7 @@
           <li class="<%= 'start active open' if index == tab%>" tab="<%= index%>">
             <a href="javascript:;">
             <i class="fa fa-cogs"></i>
-            <span class="title">
+            <span class="title" style="font-size: 16px;">
             <%= menu["name"] %></span>
             <span class="arrow <%= 'open' %>">
             </span>
@@ -99,7 +100,7 @@
               <ul class="sub-menu">
                 <% menu["menus"].each do |s_menu| %>
                   <li >
-                    <a href="<%= s_menu['href'] %>">
+                    <a href="<%= s_menu['href'] %>" style="color:   #d0d0d0;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <%= s_menu['name'] %></a>
                   </li>
                 <% end %>
