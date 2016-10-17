@@ -32,11 +32,11 @@
           <% taxon.sub_menus.each_with_index do |sm, index| %>
           <% if index == 0 %>
           <li>
-            <a href="<%= list_taxons_path(sm) %>" tabindex="-1"><%= sm.name %></a>
+            <a href="<%= list_taxons_path(id: sm.id) %>" tabindex="-1"><%= sm.name %></a>
           </li>
           <% else %>
           <li>
-            <a href="<%= list_taxons_path(sm) %>"><%= sm.name %></a>
+            <a href="<%= list_taxons_path(id: sm.id) %>"><%= sm.name %></a>
           </li>
           <% end %>
           <% end %>
