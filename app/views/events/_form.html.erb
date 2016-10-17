@@ -37,7 +37,7 @@
       <div class="form-group">
         <label for="event_taxon" class="col-md-2 control-label">活动分类</label>
         <div class="col-md-10">
-          <%= f.association :taxon, collection: Taxon.select_options, input_html:{class:'selectpicker', 'data-live-search': 'true'},include_blank: false, label:false %>
+          <%= f.association :taxon, collection: Taxon.select_options, input_html:{class:'selectpicker', 'data-live-search'=> 'true'}, include_blank: false, label: false %>
         </div>
       </div>
 
