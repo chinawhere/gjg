@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
   	now_time = Time.now
-    @events = Event.where("city_code= ? and end_at < ?",current_city.code, now_time).limit(8)
+    @events = Event.order("id desc").limit(8)
     @taxons = Taxon.roots
     @slide_ads = SlideAd.all
   end

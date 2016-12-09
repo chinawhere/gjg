@@ -14,10 +14,12 @@ class EventsController < ApplicationController
   end
 
   def create
+    puts params
     params.permit!
     @event = @current_user.events.build(params[:event])
     @event.city = current_city
-    @event.save
+    @event.save!
+    puts @event.errors
     respond_with(@event)
   end
 
