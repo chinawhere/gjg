@@ -1,2 +1,0 @@
-module Admin::SlideAdsHelper
-end

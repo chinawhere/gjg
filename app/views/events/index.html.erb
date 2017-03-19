@@ -1,8 +1,0 @@
-<%= render 'events/filter' %>
-
-
-<div class="row" id="home_main_row">
-  <%= render :partial => "shared/events", :locals => {:events => @events}%>
-</div>
-
-<%= will_paginate @events, renderer: BootstrapPagination::Rails,inner_window: 1 %>

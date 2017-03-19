@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150917070947) do
+ActiveRecord::Schema.define(version: 20170317094724) do
 
   create_table "applies", force: :cascade do |t|
     t.integer  "user_id"
@@ -52,6 +52,18 @@ ActiveRecord::Schema.define(version: 20150917070947) do
   add_index "comments", ["p_comment_id"], name: "index_comments_on_p_comment_id"
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
+  create_table "enlists", force: :cascade do |t|
+    t.integer  "player_id"
+    t.string   "name"
+    t.string   "qq"
+    t.string   "company"
+    t.string   "address"
+    t.string   "mobile"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "mold"
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "category_id"
@@ -90,6 +102,25 @@ ActiveRecord::Schema.define(version: 20150917070947) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "gensees", force: :cascade do |t|
+    t.integer  "uid",        limit: 20
+    t.string   "area"
+    t.string   "company"
+    t.integer  "joinTime",   limit: 20
+    t.integer  "leaveTime",  limit: 20
+    t.string   "nickname"
+    t.string   "mobile"
+    t.integer  "device"
+    t.string   "ip"
+    t.string   "name"
+    t.integer  "video_id"
+    t.string   "mold"
+    t.string   "sdk"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.integer  "see_time"
+  end
+
   create_table "photos", force: :cascade do |t|
     t.integer  "event_id"
     t.string   "name"
@@ -104,6 +135,16 @@ ActiveRecord::Schema.define(version: 20150917070947) do
     t.string   "imageable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string   "username"
+    t.integer  "global_id"
+    t.string   "mobile"
+    t.string   "email"
+    t.string   "sex"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "question_classifies", force: :cascade do |t|
@@ -176,5 +217,16 @@ ActiveRecord::Schema.define(version: 20150917070947) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+
+  create_table "videos", force: :cascade do |t|
+    t.string   "zkey"
+    t.string   "zurl"
+    t.string   "lkey"
+    t.string   "lurl"
+    t.string   "name"
+    t.string   "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end

@@ -5,7 +5,12 @@ class ApplicationController < ActionController::Base
   before_action :current_user, :check_location, :set_ransack
   helper_method :current_city
   helper_method :current_user
+  helper_method :current_player
   respond_to :html, :js
+
+  def current_player
+    @current_player = Player.find_by_global_id(session[:global_id]) if session[:global_id].present?
+  end
 
   def current_user
     @current_user = User.find(session[:user_id]) if session[:user_id].present?

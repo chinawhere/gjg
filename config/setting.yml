@@ -1,0 +1,17 @@
+# -*- encoding : utf-8 -*-
+# config/setting.yml
+defaults: &defaults
+  sso_key: 'P5JBn2NWcnOJnhk33wpT4zljGDukwRqG'
+  sso_secret: 'Xjr3vKY5MMr8OdeAtkuarYaOCKLwGils'
+  sso_base64: 'Basic UDVKQm4yTldjbk9KbmhrMzN3cFQ0emxqR0R1a3dScUc6WGpyM3ZLWTVNTXI4T2RlQXRrdWFyWWFPQ0tMd0dpbHM='
+  frontend_cas_base_url: 'https://account.glodon.com'
+  frontend_cas_login_url: 'https://account.glodon.com/serviceLogin'
+  frontend_cas_logout_url: 'https://account.glodon.com/cas/serviceLogout'
+  frontend_cas_validate_url: 'https://account.glodon.com/cas/serviceValidate'
+  frontend_cas_register_url: "https://account.glodon.com/register"
+  frontend_cas_username_column: 'global_id'
+
+development:
+  <<: *defaults
+production:
+  <<: *defaults

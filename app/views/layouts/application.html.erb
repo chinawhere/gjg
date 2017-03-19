@@ -1,33 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <title>去哪玩</title>
-  <meta name="keywords" content="活动, 聚会, 亲子, 讲座, 电影, 戏剧, 展览" />
-  <meta name="description" content="去哪儿玩chinawhere.cn, 期待你的加入, 这里你可以探讨旅游、运动、学习等各类活动." />
-  <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-  <%= stylesheet_link_tag    'application' %>
-  <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag '//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js' %>
-  <%= yield :header %>
-  <%= csrf_meta_tags %>
-  <%= include_gon %>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <script>
-    var Chinawhere = new Object;
-    Chinawhere.current_user_id = <%= @current_user.try(:id) || false %>;
-    $(document).ready(function(){
-      $('.dropdown-toggle').dropdown();
-      $('[data-toggle="popover"]').popover();
-    })
-  </script>
+  <title>钢结构活动</title>
+      <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+	  <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+	  <%= javascript_include_tag '//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js' %>
 </head>
-<body>
-  <%= render '/layouts/header' %>
-  <div class="container" id="main" class="main">
+<body style="background:  url(http://gjg.fwxgx.com/template/kym_xiaomi/portal/jxdy/images/body_bg.jpg) no-repeat fixed top;color: white;">
     <%= yield %>
-  </div>
-  <%= render '/layouts/popup' %>
-  <%= render '/layouts/footer' %>
+    <%= render '/layouts/footer' %>
 </body>
 </html>

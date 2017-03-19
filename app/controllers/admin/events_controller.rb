@@ -1,16 +1,15 @@
 # coding: utf-8
 class Admin::EventsController < Admin::ApplicationController
-  before_filter :load_event, only: [:edit, :update, :destroy]
   def index
-    @events = Event.paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
+    @events = Video.paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
   end
 
   def new
-    @event = Event.new
+    @event = Video.new
   end
 
   def create
-    @event = Event.new(params[:event])
+    @event = Video.new(video_params)
     if @event.save
       redirect_to admin_events_path
     else
@@ -19,10 +18,12 @@ class Admin::EventsController < Admin::ApplicationController
   end
 
   def edit
+    @event = Video.find(params[:id])
   end
 
   def update
-    if @event.update_attributes(params[:event])
+    @event = Video.find(params[:id])
+    if @event.update_attributes(video_params)
       redirect_to admin_events_path
     else
       render :edit
@@ -30,12 +31,12 @@ class Admin::EventsController < Admin::ApplicationController
   end
 
   def destroy
+    @event = Video.find(params[:id])
     redirect_to admin_events_path if @event.destroy
   end
 
   private
-
-  def load_event
-    @event = Event.find(params[:id])
-  end
+    def video_params
+      params.require(:event).permit(:name, :zkey,:zurl,:lkey,:lurl)
+    end
 end

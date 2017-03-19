@@ -4,27 +4,23 @@
 admin:
   - name: 权限管理
     menus:
-      - name: 用户管理
+      - name: 管理员列表
         href: /admin/users
       - name: 权限角色
         href: /admin/roles
-  - name: 活动管理
+  - name: 视频管理
     menus:
-      - name: 活动信息
+      - name: 视频列表
         href: /admin/events
-      - name: 活动报名
-        href: /admin/applies
-  # - name: 答题管理
-  #   menus:
-  #     - name: 试题分类
-  #       href: /admin/question_classifies
-  #     - name: 试题
-  #       href: /admin/questions
-  - name: 分类管理
+  - name: 报名管理
     menus:
-      - name: 分类层级
-        href: /admin/taxons
-  - name: 广告管理
-    menus:
-      - name: 首页轮播广告
-        href: /admin/slide_ads
+      - name: 报名列表
+        href: /admin/enlists
+  - name: 用户管理
+    menus: 
+      - name: 用户列表
+        href: /admin/players
+  - name: 观看记录
+    menus: 
+      - name: 记录列表
+        href: /admin/gensees

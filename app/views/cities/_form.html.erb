@@ -1,3 +1,0 @@
-<% City.find_each do |city| %>
-  <%= link_to city.name, pick_city_path(city), class:'btn btn-default',  method: 'post', remote: true %>
-<% end %>

@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box grey-cascade">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>报名信息
+        </div>
+        <div class="tools">
+          <a class="collapse" href="javascript:;">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="dataTables_wrapper">
+          <div class="btn-group">
+            <a href="<%= new_admin_enlist_path %>" class="btn green">
+            添加报名 <i class="fa fa-plus"></i>
+            </a>
+          </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover dataTable">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>姓名</th>
+              <th>公司</th>
+              <th>地址</th>
+              <th>qq</th>
+              <th>手机号</th>
+              <th>报名方式</th>
+              <th>创建时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <% @enlists.each do |one|%>
+            <tbody>
+              <tr class="odd gradeX">
+                <td class="ng-binding"><%= one.id %></td>
+                <td class="ng-binding"><%= one.name %></td>
+                <td class="ng-binding"><%= one.company %></td>
+                <td class="ng-binding"><%= one.address %></td>
+                <td class="ng-binding"><%= one.qq %></td>
+                <td class="ng-binding"><%= one.mobile %></td>
+                <td class="ng-binding"><%= one.mold %></td>
+                <td class="ng-binding"><%= time_format(one.created_at)%></td>
+                <td>
+                  <%= link_to '编辑', edit_admin_enlist_path(one) %>
+                  <%= link_to '删除', admin_enlist_path(one), method: :delete, confirm: '确认要删除吗？' %>
+                </td>
+              </tr>
+            </tbody>
+          <% end -%>
+        </table>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>

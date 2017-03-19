@@ -1,0 +1,27 @@
+<%= content_for :header do %>
+  <%= stylesheet_link_tag    'product/calendar/jscal2','product/calendar/border-radius','product/calendar/steel' %>
+  <%= javascript_include_tag 'product/calendar/jscal2',  'product/calendar/cn'%>
+<% end -%>
+<div class="portlet-body form">
+
+  <% 
+    if params[:action] == "new" 
+      url = admin_enlists_path
+    else
+      url = admin_enlist_path
+    end
+  %>
+  <%= form_for @enlist, url: url, methods: :post do |f|%>
+    <div class="form-body">
+      <%= form_text_field(text_label: '姓名', text_name: 'enlist[name]', text_value: f.object.name) %>
+      <%= form_text_field(text_label: '公司', text_name: 'enlist[company]', text_value: f.object.company, text_class: 'fa-user') %>
+      <%= form_text_field(text_label: '地址', text_name: 'enlist[address]', text_value: f.object.address, text_class: 'fa-user') %>
+
+      <%= form_text_field(text_label: 'QQ', text_name: 'enlist[qq]', text_value: f.object.qq, text_class: 'fa-user') %>
+      <%= form_text_field(text_label: '手机号', text_name: 'enlist[mobile]', text_value: f.object.mobile, text_class: 'fa-user') %>
+     
+      <%= f.submit '添加', :class => 'btn blue'%>
+      <%= link_to '取消', admin_enlists_path, :class => 'btn default'%>
+    </div>
+  <% end -%>
+</div>

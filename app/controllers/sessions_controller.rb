@@ -1,44 +1,38 @@
 #coding: utf-8
 class SessionsController < ApplicationController
-
   def login
+    session[:user_return_to] ||= request.referrer || "/"
+    callback_url = URI.encode("http://localhost:3000/yun_callback")
+    redirect_to Setting['frontend_cas_login_url'] + "?service_key=#{Setting['sso_key']}&callback_url=#{callback_url}"
   end
 
-  def sessions
-    user = User.where(email: params[:email], password: params[:password]).first
-    if user.present?
-      session[:user_id] = user.id
-      redirect_to session[:return_to] || root_path
-    else
-      flash.now[:notice] = true
-      render :login
+  def yun_callback
+    if params[:ticket].present?
+      res = request_sso_validate params[:ticket]
+      if res.status == 200
+        detail = JSON.parse Nokogiri::XML(res.body).xpath('//cas:detail').text
+        @player = Player.find_by_global_id(detail['globalId'])
+        @player ||= Player.construct_from_sso detail
+        session[:global_id] = @player.global_id
+      end
     end
-  end
-
-  def register
-    @user ||= User.new
-  end
-
-  def sign_up
-    @user = User.new(user_params)
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path
-    else
-      flash.now[:notice] = @user.errors.messages.values.join(',')
-      render :register
-    end
+    redirect_to session[:user_return_to]
   end
 
   def logout
-    session[:user_id] = nil
-    @current_user = nil
-    redirect_to root_path
+    reset_session
+    service = "http://" + request.host_with_port
+    redirect_to Setting['frontend_cas_logout_url'] + "?service_key=" + Setting['sso_key'] + "&return_to=" + service
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  def request_sso_validate ticket
+    conn = Faraday.new url:Setting['frontend_cas_base_url']
+    conn.get do |req|
+      req.url '/cas/serviceValidate'
+      req.params['service_key']    = Setting[:sso_key]
+      req.params['ticket']         = params[:ticket]
+      req.headers['Authorization'] = Setting[:sso_base64]
+    end
   end
 end

@@ -1,9 +1,0 @@
-<div class="row" style="margin-top: 15px; margin-left:0px ">
-  <h4 class="form-section">活动图片</h4>
-  <% event.photo_ids.each do |photo_id| %>
-    <div class="col-md-2" style="padding:5px">
-      <% photo = @photos.select{|p| p.id == photo_id.to_i}.first%>
-      <%= link_to (image_tag photo.avatar_url(:medium), :class => 'img-thumbnail', size:"110x110"), photos_event_path(id: event.id, p_id: photo.id)%>
-    </div>
-  <% end -%>
-</div>

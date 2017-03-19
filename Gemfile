@@ -69,3 +69,4 @@ gem 'dalli'
 gem "rails-erd"
 gem 'rails_kindeditor'
 gem 'sprockets', '~> 2.12.4'
+gem 'settingslogic'

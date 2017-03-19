@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- BEGIN EXAMPLE TABLE PORTLET-->
+    <div class="portlet box grey-cascade">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-globe"></i>观看记录
+        </div>
+        <div class="tools">
+          <a class="collapse" href="javascript:;">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="dataTables_wrapper">
+          <div class="btn-group">
+          </div>
+        </div>
+        <table class="table table-striped table-bordered table-hover dataTable">
+          <thead>
+            <tr>
+              <th>uid</th>
+              <th>视频</th>
+              <th>SDK</th>       
+              <th>用户</th>
+              <th>地区</th>
+              <th>加入时间</th>
+              <th>离开时间</th>
+              <th>观看方式</th>
+              <th>观看时长(分钟)</th>
+            </tr>
+          </thead>
+          <% @enlists.each do |one|%>
+            <tbody>
+              <tr class="odd gradeX">
+                <td class="ng-binding"><%= one.uid %></td>
+                <td class="ng-binding"><%= one.video_id %></td>
+                <td class="ng-binding"><%= one.sdk %></td>
+                <td class="ng-binding"><%= one.nickname %></td>
+                <td class="ng-binding"><%= one.area %></td>
+                <td class="ng-binding"><%= time_format(Time.at(one.joinTime.to_i * 0.001)) %></td>
+                <td class="ng-binding"><%= time_format(Time.at(one.leaveTime.to_i * 0.001)) %></td>
+                <td class="ng-binding"><%= one.mold %></td>
+                <td class="ng-binding"><%= (one.see_time.to_i * 0.001 /60).round(1) %></td>
+              </tr>
+            </tbody>
+          <% end -%>
+        </table>
+      </div>
+    </div>
+    <!-- END EXAMPLE TABLE PORTLET-->
+  </div>
+</div>
