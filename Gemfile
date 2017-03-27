@@ -46,8 +46,8 @@ gem 'will_paginate'
 
 # gem 'puma'
 
-gem 'grape'
-gem 'grape-swagger'
+# gem 'grape'
+# gem 'grape-swagger'
 
 # gem 'mysql2', '~> 0.3.18'
 
