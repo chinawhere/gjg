@@ -19,18 +19,18 @@
             </a>
           </div>
         </div>
-        <table class="table table-striped table-bordered table-hover dataTable">
+        <table class="table table-striped table-bordered table-hover dataTable" style="table-layout:fixed;word-break:break-all;">
           <thead>
             <tr>
-              <th>视频id</th>
-              <th>名称</th>
-              <th>直播sdk_id</th>
-              <th>直播url</th>
-              <th>录播sdk_id</th>
-              <th>录播url</th>
-              <th>开始时间</th>
-              <th>创建时间</th>
-              <th>操作</th>
+              <th >视频id</th>
+              <th >名称</th>
+              <th >直播sdk_id</th>
+              <th width="25%">直播url</th>
+              <th >录播sdk_id</th>
+              <th width="25%">录播url</th>
+              <th >开始时间</th>
+              <th >创建时间</th>
+              <th >操作</th>
             </tr>
           </thead>
           <% @events.each do |event|%>
@@ -39,9 +39,9 @@
                 <td class="ng-binding"><%= event.id %></td>
                 <td class="ng-binding"><%= event.name %></td>
                 <td class="ng-binding"><%= event.zkey %></td>
-                <td class="ng-binding"><%= event.zurl %></td>
+                <td class="ng-binding" width="20%" style="word-wrap:break-word;"><%= event.zurl %></td>
                 <td class="ng-binding"><%= event.lkey %></td>
-                <td class="ng-binding"><%= event.lurl %></td>
+                <td class="ng-binding" width="20%" style="word-wrap:break-word;"><%= event.lurl %></td>
                 <td class="ng-binding"><%= event.start_time %></td>
                 <td class="ng-binding"><%= time_format(event.created_at)%></td>
                 <td>

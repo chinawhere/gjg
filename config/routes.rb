@@ -20,7 +20,11 @@ ChinaWhere::Application.routes.draw do
       post :sessions
       post :set_tab
     end
-    resources :enlists
+    resources :enlists do 
+      collection do
+        get :export_csv
+      end
+    end
 
     resources :players
 

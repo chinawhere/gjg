@@ -52,5 +52,12 @@
       </div>
     </div>
     <!-- END EXAMPLE TABLE PORTLET-->
+    <div class="row">
+      <div class="large-6 large-push-5 columns ">
+        <div class="digg_pagination">
+            <%= will_paginate @enlists, :container => false, :previous_label => '<<', :next_label => '>>' %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

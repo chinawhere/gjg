@@ -35,6 +35,12 @@ class Admin::EnlistsController < Admin::ApplicationController
     redirect_to admin_enlists_path if @enlist.destroy
   end
 
+  def export_csv
+    # @enlists = Enlist.all
+
+    send_data(Enlist.to_csv, :type => 'text/csv', :filename => "123.csv")    
+  end
+
   private
     def enlist_params
       params.require(:enlist).permit(:player_id,:name,:qq,:company,:address,:mobile,:mold,:province,:training_time,:skill_one,:skill_two,:sign_number)

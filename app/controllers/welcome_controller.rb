@@ -7,10 +7,10 @@ class WelcomeController < ApplicationController
   	@enlist = current_player.enlist
   	if @enlist.blank?
   		@enlist = Enlist.new(enlist_params)
-  		@enlist.training_time = params["training_time"].join(",") if params["training_time"].present?
+  		@enlist.training_time = params["training_time"].join("+") if params["training_time"].present?
   		@enlist.save
   	else
-  		@enlist.training_time = params["training_time"].join(",") if params["training_time"].present?
+  		@enlist.training_time = params["training_time"].join("+") if params["training_time"].present?
   		@enlist.update_attributes(enlist_params)
   	end
 
