@@ -2,7 +2,7 @@
 class SessionsController < ApplicationController
   def login
     session[:user_return_to] ||= request.referrer || "/"
-    callback_url = URI.encode("http://localhost:3000/yun_callback")
+    callback_url = URI.encode("http://gjgpx.fwxgx.com/yun_callback")
     redirect_to Setting['frontend_cas_login_url'] + "?service_key=#{Setting['sso_key']}&callback_url=#{callback_url}"
   end
 
