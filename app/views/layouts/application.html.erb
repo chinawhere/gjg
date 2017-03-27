@@ -13,8 +13,19 @@
 
 <!-- <body style="background:  url(http://desk.fd.zol-img.com.cn/t_s2880x1800c5/g5/M00/0D/0C/ChMkJ1X_aaeIMF2TAAo95p4LHCkAAC2wAMJrvQACj3-670.jpg) no-repeat scroll center top;color: white;"> -->
 
-<body style="background:  url(http://localhost:3000/assets/gjg/body_2.png) fixed repeat top center;background-size:cover;color: white;">
+<body style="background:  url(http://gjgpx.fwxgx.com/assets/gjg/body_2.png) fixed repeat top center;background-size:cover;color: white;">
     <%= yield %>
     <%= render '/layouts/footer' %>
+    <script>
+	var _mtac = {};
+	(function() {
+	    var mta = document.createElement("script");
+	    mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+	    mta.setAttribute("name", "MTAH5");
+	    mta.setAttribute("sid", "500424093");
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(mta, s);
+	})();
+	</script>
 </body>
 </html>
