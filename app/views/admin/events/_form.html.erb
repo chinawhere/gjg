@@ -20,6 +20,7 @@
       <%= form_text_field(text_label: '录播sdk_id', text_name: 'event[lkey]', text_value: f.object.lkey, text_class: 'fa-user') %>
       <%= form_text_field(text_label: '录播链接', text_name: 'event[lurl]', text_value: f.object.lurl, text_class: 'fa-user') %>
      
+      <%= form_text_field(text_label: '开始时间', text_name: 'event[start_time]', text_value: f.object.start_time, text_class: 'fa-user') %>
       <%= f.submit '添加', :class => 'btn blue'%>
       <%= link_to '取消', admin_events_path, :class => 'btn default'%>
     </div>

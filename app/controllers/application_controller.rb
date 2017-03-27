@@ -2,8 +2,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  before_action :current_user, :check_location, :set_ransack
-  helper_method :current_city
+  before_action :current_user
   helper_method :current_user
   helper_method :current_player
   respond_to :html, :js
@@ -48,19 +47,6 @@ class ApplicationController < ActionController::Base
   def clear_login_state
     session[:user_id] = nil
     @current_user = nil
-  end
-  
-  def current_city
-    if cookies.signed[:city_id]
-      @current_city ||= City.find(cookies.signed[:city_id])
-    else
-      @current_city = City.first
-    end
-    @current_city
-  end
-
-  def set_ransack
-    @q ||= Event.ransack(params[:q])
   end
 
 end

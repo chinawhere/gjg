@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170317094724) do
+ActiveRecord::Schema.define(version: 20170321063738) do
 
   create_table "applies", force: :cascade do |t|
     t.integer  "user_id"
@@ -59,9 +59,14 @@ ActiveRecord::Schema.define(version: 20170317094724) do
     t.string   "company"
     t.string   "address"
     t.string   "mobile"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.string   "mold"
+    t.string   "province"
+    t.string   "training_time"
+    t.boolean  "skill_one",     default: false
+    t.boolean  "skill_two",     default: false
+    t.integer  "sign_number",   default: 0
   end
 
   create_table "events", force: :cascade do |t|
@@ -227,6 +232,7 @@ ActiveRecord::Schema.define(version: 20170317094724) do
     t.string   "desc"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "start_time"
   end
 
 end

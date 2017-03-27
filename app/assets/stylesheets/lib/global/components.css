@@ -3002,7 +3002,7 @@ Portlets
   background-image: url(../assets/portlet-expand-icon-white.png);
 }
 .portlet.box > .portlet-title > .tools > a.collapse {
-  background-image: url(../assets/portlet-collapse-icon-white.png);
+  /*background-image: url(../assets/portlet-collapse-icon-white.png);*/
 }
 .portlet.box > .portlet-body {
   background-color: #fff;

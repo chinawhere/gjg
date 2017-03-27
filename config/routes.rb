@@ -1,7 +1,8 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
   root to: 'welcome#index'
-
+  get 'welcome/info_edit'
+  
   scope controller: :sessions do
     get :login
     get :register

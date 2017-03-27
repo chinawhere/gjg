@@ -37,6 +37,6 @@ class Admin::EnlistsController < Admin::ApplicationController
 
   private
     def enlist_params
-      params.require(:enlist).permit(:player_id,:name,:qq,:company,:address,:mobile,:mold)
+      params.require(:enlist).permit(:player_id,:name,:qq,:company,:address,:mobile,:mold,:province,:training_time,:skill_one,:skill_two,:sign_number)
     end
 end

@@ -22,7 +22,9 @@
       <%= form_text_field(text_label: '手机号', text_name: 'enlist[mobile]', text_value: f.object.mobile, text_class: 'fa-user') %>
       <%= form_text_field(text_label: '报名方式', text_name: 'enlist[mold]', text_value: f.object.mold, text_class: 'fa-user') %>
      
-      <%= f.submit '添加', :class => 'btn blue'%>
+      <%= form_text_field(text_label: '地区', text_name: 'enlist[province]', text_value: f.object.province, text_class: 'fa-user') %>
+      <%= form_text_field(text_label: '培训时间', text_name: 'enlist[training_time]', text_value: f.object.training_time, text_class: 'fa-user') %>
+      <%= f.submit '确定', :class => 'btn blue'%>
       <%= link_to '取消', admin_enlists_path, :class => 'btn default'%>
     </div>
   <% end -%>

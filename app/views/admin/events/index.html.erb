@@ -28,6 +28,7 @@
               <th>直播url</th>
               <th>录播sdk_id</th>
               <th>录播url</th>
+              <th>开始时间</th>
               <th>创建时间</th>
               <th>操作</th>
             </tr>
@@ -41,6 +42,7 @@
                 <td class="ng-binding"><%= event.zurl %></td>
                 <td class="ng-binding"><%= event.lkey %></td>
                 <td class="ng-binding"><%= event.lurl %></td>
+                <td class="ng-binding"><%= event.start_time %></td>
                 <td class="ng-binding"><%= time_format(event.created_at)%></td>
                 <td>
                   <%= link_to '编辑', edit_admin_event_path(event) %>

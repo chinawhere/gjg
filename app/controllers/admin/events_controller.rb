@@ -37,6 +37,6 @@ class Admin::EventsController < Admin::ApplicationController
 
   private
     def video_params
-      params.require(:event).permit(:name, :zkey,:zurl,:lkey,:lurl)
+      params.require(:event).permit(:name, :zkey,:zurl,:lkey,:lurl,:start_time)
     end
 end
