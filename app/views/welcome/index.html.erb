@@ -186,7 +186,7 @@ h4 {
 				 	   <a><font><b>欢迎</b></font>  &nbsp;
 				 	  	 <b><%= current_player.email%> </b>&nbsp;&nbsp;
 				 	  	 签到:<b><font color="RoyalBlue"><%= current_player.enlist.try(:sign_number) || 0%>次</font></b> &nbsp;&nbsp;
-				 	  	 <% if current_player.enlist.try(:sign_number) > 4%>
+				 	  	 <% if current_player.enlist.try(:sign_number).present?%>
 				 	  	   获得:<b><font color="RoyalBlue">超凡大师</font></b>
 				 	  	 <% else %>
 				 	  	 <% end %>
