@@ -1,6 +1,13 @@
 #coding: utf-8
 class WelcomeController < ApplicationController
   def index
+    puts request.user_agent
+    agent = ""
+    if agent == "ie8"
+      render "index_ie"
+    else
+      render "index"
+    end
   end
 
   def info_edit
