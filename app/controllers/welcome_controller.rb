@@ -2,8 +2,8 @@
 class WelcomeController < ApplicationController
   def index
     puts request.user_agent
-    agent = ""
-    if agent == "ie8"
+    if request.user_agent =~ /MSIE 7.0|MSIE 8.0/
+      puts "***************  ie 8"
       render "index_ie"
     else
       render "index"
