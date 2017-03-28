@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170321063738) do
+ActiveRecord::Schema.define(version: 20170328050355) do
 
   create_table "applies", force: :cascade do |t|
     t.integer  "user_id"
@@ -144,7 +144,7 @@ ActiveRecord::Schema.define(version: 20170321063738) do
 
   create_table "players", force: :cascade do |t|
     t.string   "username"
-    t.integer  "global_id"
+    t.string   "global_id"
     t.string   "mobile"
     t.string   "email"
     t.string   "sex"
