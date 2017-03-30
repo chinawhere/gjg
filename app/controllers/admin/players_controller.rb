@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::PlayersController < Admin::ApplicationController
   def index
-    @enlists = Player.paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
+    @enlists = Player.order("created_at desc").paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
   end
 
   def new
