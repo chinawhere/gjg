@@ -19,18 +19,72 @@
             </a>
           </div>
         </div>
-        <a href="<%= export_csv_admin_enlists_path%>" target="_blank">导出EXCEL</a>
-        <h5>共<%= @enlists.count%>条记录</h5>
+        <%= form_tag(admin_enlists_path, method: "get",:class => "form-inline",:style => "border: 5px solid #ADADAD;padding: 10px;") do %>
+          <div  class="row">
+<!--             <div class="col-md-3">
+              <label>
+                <input type="text" name="number" value="<%= params[:number]%>" placeholder="报名方式"/>
+              </label>
+            </div> -->
+
+            <div class="col-md-3">
+              <label>
+                <input type="text" name="province" value="<%= params[:province]%>" placeholder="地区"/>
+              </label>
+            </div>
+
+            <div class="col-md-3">
+              <label>
+                <input type="text" name="training_time" value="<%= params[:training_time]%>"  placeholder="培训时间"/>
+              </label>
+            </div>
+
+            <div class="col-md-3">
+              <label>
+                第二技能: <input type="checkbox" name="skill_one" value="true" <%= "checked" if params[:skill_one].present?%> placeholder="第二技能"/>
+              </label>
+            </div>
+
+            <div class="col-md-3">
+              <label>
+                超凡大师: <input type="checkbox" name="skill_two" value="true" <%= "checked" if params[:skill_two].present?%> placeholder="超凡大师"/>
+              </label>
+            </div>
+          </div>
+
+
+          <div  class="row">
+
+
+            <div class="col-md-3">
+              <label>
+                <input type="number" name="sign_number" value="<%= params[:sign_number]%>" placeholder="签到次数"/>
+              </label>
+            </div>
+
+            <div class="col-md-3">
+              <input type="submit"  class="button tiny info" value="🔍搜  索"/>
+            </div>
+          </div>
+        <% end %>
+        <div  class="row">
+          <div class="col-md-10">
+            <h5>共<%= @enlists.count%>条记录</h5>
+          </div>
+          <div class="col-md-2">
+            <a href="<%= export_csv_admin_enlists_path%>" target="_blank">导出EXCEL</a>
+          </div>
+        </div>
         <table class="table table-striped table-bordered table-hover dataTable">
           <thead>
             <tr>
               <!-- <th>ID</th> -->
               <th>姓名</th>
               <th>公司</th>
-              <th>地址</th>
+<!--               <th>地址</th> -->
               <th>qq</th>
               <th>手机号</th>
-              <th>报名方式</th>
+              <th>是否线下报名</th>
               <th>地区</th>
               <th>培训时间</th>
               <th>第二技能</th>
@@ -46,15 +100,27 @@
                 <!-- <td class="ng-binding"><%= one.id %></td> -->
                 <td class="ng-binding"><%= one.name %></td>
                 <td class="ng-binding"><%= one.company %></td>
-                <td class="ng-binding"><%= one.address %></td>
+                <!-- <td class="ng-binding"><%= one.address %></td> -->
                 <td class="ng-binding"><%= one.qq %></td>
                 <td class="ng-binding"><%= one.mobile %></td>
-                <td class="ng-binding"><%= one.mold %></td>
+                <td class="ng-binding"><%= one.mold == "线下" ? "是" : "否" %></td>
 
                 <td class="ng-binding"><%= one.province %></td>
                 <td class="ng-binding"><%= one.training_time %></td>
-                <td class="ng-binding"><%= one.skill_one %></td>
-                <td class="ng-binding"><%= one.skill_two %></td>
+                <td class="ng-binding">
+                  <% if one.skill_one == false %>
+                    <a class="btn btn-default">待审核 </a>
+                  <% else %>
+                    <a class="btn btn-success">审核通过 </a>
+                  <% end %>
+                </td>
+                <td class="ng-binding">
+                  <% if one.skill_two == false %>
+                    <a class="btn btn-default">待审核 </a>
+                  <% else %>
+                    <a class="btn btn-success">审核通过 </a>
+                  <% end %>
+                </td>
                 <td class="ng-binding"><%= one.sign_number %></td>
 
                 <!-- <td class="ng-binding"><%= time_format(one.created_at)%></td> -->

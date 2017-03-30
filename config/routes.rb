@@ -25,6 +25,10 @@ ChinaWhere::Application.routes.draw do
       collection do
         get :export_csv
       end
+      member do
+        get :auditing_one
+        get :auditing_two
+      end
     end
 
     resources :players

@@ -2881,7 +2881,7 @@ Portlets
 }
 .portlet > .portlet-title > .tools > a.collapse {
   margin-bottom: 2px;
-  background-image: url(../img/portlet-collapse-icon.png);
+  /*background-image: url(../img/portlet-collapse-icon.png);*/
   width: 14px;
 }
 .portlet > .portlet-title > .tools > a:hover {
