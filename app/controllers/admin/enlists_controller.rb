@@ -5,7 +5,7 @@ class Admin::EnlistsController < Admin::ApplicationController
     sql = " and skill_one = 'true' " if params[:skill_one].present?
     sql = " and skill_two = 'true' " if params[:skill_two].present?
     puts params
-    @enlists = Enlist.where("province like '%#{params[:province]}%' and training_time like '%#{params[:training_time]}%' and sign_number like '%#{params[:sign_number]}%' #{sql}").order("created_at desc")paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
+    @enlists = Enlist.where("province like '%#{params[:province]}%' and training_time like '%#{params[:training_time]}%' and sign_number like '%#{params[:sign_number]}%' #{sql}").order("created_at desc").paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
   end
 
   def new

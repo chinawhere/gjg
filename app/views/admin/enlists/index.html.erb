@@ -12,13 +12,13 @@
         </div>
       </div>
       <div class="portlet-body">
-        <div class="dataTables_wrapper">
+<!--         <div class="dataTables_wrapper">
           <div class="btn-group">
             <a href="<%= new_admin_enlist_path %>" class="btn green">
             添加报名 <i class="fa fa-plus"></i>
             </a>
           </div>
-        </div>
+        </div> -->
         <%= form_tag(admin_enlists_path, method: "get",:class => "form-inline",:style => "border: 5px solid #ADADAD;padding: 10px;") do %>
           <div  class="row">
 <!--             <div class="col-md-3">
@@ -109,14 +109,14 @@
                 <td class="ng-binding"><%= one.training_time %></td>
                 <td class="ng-binding">
                   <% if one.skill_one == false %>
-                    <a class="btn btn-default">待审核 </a>
+                    <a class="btn btn-default" href="<%= auditing_one_admin_enlist_path(id: one.id)%>">等待审核 </a>
                   <% else %>
                     <a class="btn btn-success">审核通过 </a>
                   <% end %>
                 </td>
                 <td class="ng-binding">
                   <% if one.skill_two == false %>
-                    <a class="btn btn-default">待审核 </a>
+                    <a class="btn btn-default" href="<%= auditing_two_admin_enlist_path(id: one.id)%>">等待审核 </a>
                   <% else %>
                     <a class="btn btn-success">审核通过 </a>
                   <% end %>
