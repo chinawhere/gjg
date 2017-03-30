@@ -94,6 +94,17 @@
   color: white;
 }
 
+.btn-gray{
+  background-color: #a7a7a7;
+  color: white;
+
+}
+
+.btn-gray:hover{
+  color: white;
+  background-color: gray;
+}
+
 
 .left-fly-img{
   position: absolute;
@@ -114,7 +125,8 @@ h4 {
 }
 
 .logo-title{
-  height: 380px;
+  /*height: 380px;*/
+  padding: 15%
 }
 
 .list_title{
@@ -329,9 +341,9 @@ h4 {
            <p>获奖时间：2017.4.6~2017.6.30</p>
            <a href="javascript:showBg0();">
             <% if current_player.present? %>
-               <button class="btn btn-large btn-block btn-info" type="button">点击观看直播视频</button> 
+               <button class="btn btn-large btn-block btn-danger" type="button">点击观看直播视频</button> 
             <% else %>
-               <a class="btn btn-large btn-block btn-info" href="<%= login_path%>">点击观看直播视频</a> 
+               <a class="btn btn-large btn-block btn-danger" href="<%= login_path%>">点击观看直播视频</a> 
             <% end %>
             </a>
 
@@ -343,12 +355,12 @@ h4 {
             <a href="javascript:showBg1();">
               <% if current_player.present? %>
                   <% if current_player.enlist.try("mold").present? %>
-              <a class="btn btn-block btn-large btn-primary" type="button" >已报名</a>
+              <a class="btn btn-block btn-large btn-gray" type="button" >已报名</a>
               <% else %>
-              <button class="btn btn-block btn-large btn-primary" type="button" >去报名</button>
+              <button class="btn btn-block btn-large btn-gray" type="button" >去报名</button>
               <% end %>
               <% else %>
-                  <a class="btn btn-large btn-block btn-info" href="<%= login_path%>">去报名</a> 
+                  <a class="btn btn-large btn-block btn-gray" href="<%= login_path%>">去报名</a> 
               <% end %>
               
             </a>
