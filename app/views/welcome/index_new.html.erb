@@ -91,6 +91,12 @@
 
 }
 
+.huodong-border{
+  padding: 0px;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+}
+
 .btn-gray:hover{
   color: white;
   background-color: gray;
@@ -244,6 +250,10 @@ h4 {
 }
 
 @media (max-width: 767px) {
+  .huodong-border{
+    padding: 0px;
+    border: none!important;
+  }
   .dialog {
     left:5%;
     top:10%;
@@ -331,7 +341,7 @@ h4 {
           <%= image_tag('gjg/lct.png', style: 'width: 100%;')%>
         </div>
       </div>
-      <div class="col-md-4 col-xs-12" style="padding: 0px;border-left: 1px solid gray;border-right: 1px solid gray;">
+      <div class="col-md-4 col-xs-12 huodong-border">
         <h4 style="margin-left: 5px">活动规则</h4>
         <div class="col-md-12 col-xs-12">
           <div class="col-sm-3 col-xs-3 list_title">活动时间：</div>
