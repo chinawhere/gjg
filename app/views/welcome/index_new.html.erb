@@ -93,6 +93,18 @@
 /*  background-image: url("<%= asset_path 'gjg/bg1.png' %>");filter: alpha(opacity=100); opacity: 1;background-size:cover;*/
 }
 
+.padding-0px{
+  padding: 0px;
+}
+
+.padding-10px{
+  padding: 0 10px;
+}
+
+.padding-right-0px{
+  padding-right: 0px;
+}
+
 .btn-gray{
   background-color: #a7a7a7;
   color: white;
@@ -262,6 +274,14 @@ h4 {
     padding: 0px;
     border: none!important;
   }
+
+  .padding-0px{
+    padding: 10px!important;
+  }
+
+  .padding-right-0px{
+    padding-right: 10px;
+  }
   .dialog {
     left:5%;
     top:10%;
@@ -340,78 +360,78 @@ h4 {
     <% end %>
     
   </div>
-  <div class="row">
-    <div class="col-md-12 col-xs-12">
-      <div class="col-md-12 col-xs-12 col_row2">
+  <div class="row padding-0px">
+    <div class="col-md-12 col-xs-12 col_row2">
 
-        <div class="col-md-5 col-xs-12" style="padding: 0px;">
-          <div style="margin: 10px;"><h4>活动流程图</h4></div>
-          <div class="col-md-12 col-xs-12">
-            <%= image_tag('gjg/lct.png', style: 'width: 100%;')%>
+      <div class="col-md-4 col-xs-12 padding-0px">
+        <h4>活动规则</h4>
+        <div class="col-md-12 col-xs-12" style="padding: 0px;">
+          <div class="col-sm-3 col-xs-3 list_title">活动时间：</div>
+          <div class="col-sm-9 col-xs-9 padding-0px list_info">2017/4/6~2017/10/30</div>
+          <div class="col-sm-3 col-xs-3 list_title">获奖方式：</div>
+          <div class="col-sm-9 col-xs-9 padding-0px list_info">
+            <div>1、签到5次，提交第二技能认证信息</div>
+            <div>2、签到8次，提交钢构大师认证信息</div>
+          </div>
+          <div class="col-sm-3 col-xs-3 list_title">参与方式：</div>
+          <div class="col-sm-9 col-xs-9 padding-0px list_info">
+            <div>1、在活动时间内，观看直播/回放时间超过40分钟，记为签到一次</div>
+            <div>2、每期视频最多签到一次，总计13次签到</div>
+          </div>
+          <div class="col-sm-3 col-xs-3 list_title">友情提示：</div>
+          <div class="col-sm-9 col-xs-9 padding-0px list_info">
+            <div>1、提交认证信息时，请提交正确信息，确保发放奖品的有效</div>
+            <div>2、第二技能认证、钢构大师认证只可获得其中一项</div>
+            <div>3、活动结束后会公布认证情况，活动方会跟您联系确定获奖信息</div>
+            <div>4、奖品发放时间为活动结束后的1~2周内</div>
+            <div>5、活动最终解释权归广联达钢结构产品组</div>
           </div>
         </div>
-        <div class="col-md-4 col-xs-12 huodong-border">
-          <h4 style="margin-left: 5px">活动规则</h4>
-          <div class="col-md-12 col-xs-12">
-            <div class="col-sm-3 col-xs-3 list_title">活动时间：</div>
-            <div class="col-sm-9 col-xs-9 padding-0px list_info">2017/4/6~2017/10/30</div>
-            <div class="col-sm-3 col-xs-3 list_title">获奖方式：</div>
-            <div class="col-sm-9 col-xs-9 padding-0px list_info">
-              <div>1、签到5次，提交第二技能认证信息</div>
-              <div>2、签到8次，提交钢构大师认证信息</div>
-            </div>
-            <div class="col-sm-3 col-xs-3 list_title">参与方式：</div>
-            <div class="col-sm-9 col-xs-9 padding-0px list_info">
-              <div>1、在活动时间内，观看直播/回放时间超过40分钟，记为签到一次</div>
-              <div>2、每期视频最多签到一次，总计13次签到</div>
-            </div>
-            <div class="col-sm-3 col-xs-3 list_title">友情提示：</div>
-            <div class="col-sm-9 col-xs-9 padding-0px list_info">
-              <div>1、提交认证信息时，请提交正确信息，确保发放奖品的有效</div>
-              <div>2、第二技能认证、钢构大师认证只可获得其中一项</div>
-              <div>3、活动结束后会公布认证情况，活动方会跟您联系确定获奖信息</div>
-              <div>4、奖品发放时间为活动结束后的1~2周内</div>
-              <div>5、活动最终解释权归广联达钢结构产品组</div>
-            </div>
-          </div>
+      </div>
+
+      <div class="col-md-5 col-xs-12 huodong-border">
+        <div style="margin: 5px;"><h4>活动流程图</h4></div>
+        <div class="col-md-12 col-xs-12">
+          <%= image_tag('gjg/lct.png', style: 'width: 100%;')%>
         </div>
-        <div class="col-md-3 col-xs-12">
-          <div class="" style="margin-bottom: 5px">
-            <h4>线上学习</h4>
-          </div>
-          <p >钢结构-土建人员的必备技能，边学边拿广联达官方认证</p>
-          <p>每一期免费学习观看40分钟，免费拿认证</p>
-          <p>获奖时间：2017.4.6~2017.6.30</p>
-          <a href="javascript:showBg0();">
+      </div>
+      
+      <div class="col-md-3 col-xs-12">
+        <div class="" style="margin-bottom: 5px">
+          <h4>线上学习</h4>
+        </div>
+        <p >钢结构-土建人员的必备技能，边学边拿广联达官方认证</p>
+        <p>每一期免费学习观看40分钟，免费拿认证</p>
+        <p>获奖时间：2017.4.6~2017.6.30</p>
+        <a href="javascript:showBg0();">
+        <% if current_player.present? %>
+           <button class="btn btn-large btn-block btn-danger"  type="button">点击观看直播视频</button> 
+        <% else %>
+           <a class="btn btn-large btn-block btn-danger" href="<%= login_path%>">点击观看直播视频</a> 
+        <% end %>
+        </a>
+
+        <div class="" style="margin-bottom: 10px;margin-top: 15px">
+          <h4>线下学习</h4>
+        </div> 
+        <p >预约报名分公司培训，面对面讲解</p>
+        <p>分公司会跟您确定具体培训时间，请填写正确信息</p>
+        <a href="javascript:showBg1();">
           <% if current_player.present? %>
-             <button class="btn btn-large btn-block btn-danger"  type="button">点击观看直播视频</button> 
-          <% else %>
-             <a class="btn btn-large btn-block btn-danger" href="<%= login_path%>">点击观看直播视频</a> 
-          <% end %>
-          </a>
-
-          <div class="" style="margin-bottom: 15px;margin-top: 25px">
-            <h4>线下学习</h4>
-          </div> 
-          <p >预约报名分公司培训，面对面讲解</p>
-          <p>分公司会跟您确定具体培训时间，请填写正确信息</p>
-          <a href="javascript:showBg1();">
-            <% if current_player.present? %>
-              <% if current_player.enlist.try("mold").present? %>
-                <a class="btn btn-block btn-large btn-gray" type="button" >已报名</a>
-              <% else %>
-                <button class="btn btn-block btn-large btn-gray"  type="button" >去报名</button>
-              <% end %>
+            <% if current_player.enlist.try("mold").present? %>
+              <a class="btn btn-block btn-large btn-gray" type="button" >已报名</a>
             <% else %>
-              <a class="btn btn-large btn-block btn-gray" href="<%= login_path%>">去报名</a> 
+              <button class="btn btn-block btn-large btn-gray"  type="button" >去报名</button>
             <% end %>
-          </a>
-        </div>
+          <% else %>
+            <a class="btn btn-large btn-block btn-gray" href="<%= login_path%>">去报名</a> 
+          <% end %>
+        </a>
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3 col-xs-12" style="padding: 20px;height:290px;">
+    <div class="col-md-3 col-xs-12 padding-0px">
       <div class="col-md-12 col-xs-12 col_row">
         <h4 style="text-align:center;">
           技能认证
@@ -429,7 +449,7 @@ h4 {
         </div>
       </div>
     </div>
-    <div class="col-md-5 col-xs-12" style="padding: 20px;height:290px;">
+    <div class="col-md-5 col-xs-12 padding-10px">
       <div class="col-md-12 col-xs-12 col_row">
         <h4 style="text-align:center;">
           钢构大师认证
@@ -453,7 +473,7 @@ h4 {
       </div>
     </div>
 
-    <div class="col-md-4 col-xs-12" style="padding: 20px;height:290px;">
+    <div class="col-md-4 col-xs-12 padding-0px">
       <div class="col-md-12 col-xs-12 col_row">
         <h4 style="text-align:center;">
           获奖展示
@@ -470,14 +490,14 @@ h4 {
             </li>
             <% end %>
 
-            <p align="center" style="padding-top:25%">活动在4.6号15:00开始第一期，尽请期待</p>
+            <p align="center" style="padding-top:20%">活动在4.6号15:00开始第一期，尽请期待</p>
           </ul>
         </div> 
       </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-9 col-xs-12">
+    <div class="col-md-9 col-xs-12 padding-0px">
       <div class="col-md-12 col-xs-12 col_row">
         <h4>广联BIM钢结构宣传片</h4>
         <div class="col_row1" style="width: 100%;">
@@ -486,7 +506,7 @@ h4 {
         </div>
       </div>
     </div>
-    <div class="col-md-3 col-xs-12">
+    <div class="col-md-3 col-xs-12 padding-right-0px">
       <div class="col-md-12 col-xs-12 col_row" style="height: 470px">
         <h4>下载链接</h4>
       

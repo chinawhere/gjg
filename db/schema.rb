@@ -13,45 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20170328050355) do
 
-  create_table "applies", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "event_id"
-    t.string   "name"
-    t.string   "email"
-    t.integer  "age"
-    t.string   "sex"
-    t.integer  "approved",   default: 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "cities", force: :cascade do |t|
-    t.string   "name"
-    t.string   "code"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "cities", ["code"], name: "index_cities_on_code", unique: true
-
-  create_table "comments", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "to_user_id"
-    t.integer  "reply_to_user_id"
-    t.integer  "reply_to_comment_id"
-    t.text     "content"
-    t.integer  "p_user_id"
-    t.integer  "p_comment_id"
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "comments", ["commentable_id", "commentable_type"], name: "commentable"
-  add_index "comments", ["p_comment_id"], name: "index_comments_on_p_comment_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
-
   create_table "enlists", force: :cascade do |t|
     t.integer  "player_id"
     t.string   "name"
@@ -67,44 +28,6 @@ ActiveRecord::Schema.define(version: 20170328050355) do
     t.boolean  "skill_one",     default: false
     t.boolean  "skill_two",     default: false
     t.integer  "sign_number",   default: 0
-  end
-
-  create_table "events", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "category_id"
-    t.string   "name"
-    t.string   "address"
-    t.string   "logo"
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.integer  "fee_type"
-    t.string   "fee"
-    t.integer  "max_count"
-    t.integer  "min_count"
-    t.integer  "approved",    default: 0
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "photos_path"
-    t.string   "city_code"
-    t.integer  "city_id"
-    t.integer  "weight",      default: 0
-    t.float    "lng"
-    t.float    "lat"
-  end
-
-  create_table "events_users", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "user_id"
-  end
-
-  add_index "events_users", ["event_id"], name: "index_events_users_on_event_id"
-  add_index "events_users", ["user_id"], name: "index_events_users_on_user_id"
-
-  create_table "feedbacks", force: :cascade do |t|
-    t.string   "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "gensees", force: :cascade do |t|
@@ -126,22 +49,6 @@ ActiveRecord::Schema.define(version: 20170328050355) do
     t.integer  "see_time"
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.integer  "event_id"
-    t.string   "name"
-    t.string   "avatar"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "pictures", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "imageable_id"
-    t.string   "imageable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "players", force: :cascade do |t|
     t.string   "username"
     t.string   "global_id"
@@ -150,25 +57,6 @@ ActiveRecord::Schema.define(version: 20170328050355) do
     t.string   "sex"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "question_classifies", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "parent_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "questions", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "question_classify_id"
-    t.string   "a"
-    t.string   "b"
-    t.string   "c"
-    t.string   "d"
-    t.string   "answer"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -182,22 +70,6 @@ ActiveRecord::Schema.define(version: 20170328050355) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
 
-  create_table "slide_ads", force: :cascade do |t|
-    t.string   "title"
-    t.string   "link"
-    t.string   "img"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "taxons", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "position"
-    t.integer  "parent"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
@@ -210,8 +82,6 @@ ActiveRecord::Schema.define(version: 20170328050355) do
     t.string   "qq"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "hobby"
-    t.string   "weixin_id"
   end
 
   add_index "users", ["email", "password"], name: "index_users_on_email_and_password"

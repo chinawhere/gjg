@@ -74,5 +74,5 @@ gem 'settingslogic'
 gem 'soap4r'
 gem 'soap4r-spox'
 
-gem 'execjs'
-gem 'therubyracer'
+# gem 'execjs'
+# gem 'therubyracer'
