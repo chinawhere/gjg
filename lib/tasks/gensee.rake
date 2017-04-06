@@ -37,6 +37,18 @@ namespace :gensee do
 
   end
 
+  desc '统计用户签到次数'
+  task :statistics => :environment do 
+    puts "****  统计用户签到次数  ****"
+
+    Enlist.find_each do |enlist|
+      # results = Gensee.select("video_id,sum(see_time) as see_times").where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*10000)
+      results = Gensee.select("count(*)").where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*10000)
+      puts "#{enlist.name}    #{results}次"
+    end
+
+  end
+
   def get_total_pages(uri)
     html_response = nil  
     open(uri) do |http|  
