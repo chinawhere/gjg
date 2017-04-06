@@ -43,7 +43,7 @@ namespace :gensee do
 
     Enlist.find_each do |enlist|
       # results = Gensee.select("video_id,sum(see_time) as see_times").where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*10000)
-      num = Gensee.select("video_id,sum(see_time) as see_times").where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*10000).length
+      num = Gensee.select("video_id,sum(see_time) as see_times").where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*1000).length
       
       if num > 0
         puts "#{enlist.name}  #{num}"
