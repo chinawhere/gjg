@@ -47,6 +47,8 @@ namespace :gensee do
       
       if num > 0
         puts "#{enlist.name}  #{num}"
+        enlist.sign_number = num
+        # enlist.save!
       end
     end
 
