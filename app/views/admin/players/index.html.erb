@@ -28,6 +28,7 @@
               <th>手机号</th>
               <th>邮箱</th>
               <th>性别</th>
+              <th>签到次数</th>
               <th>创建时间</th>
               <!-- <th>操作</th> -->
             </tr>
@@ -40,7 +41,7 @@
                 <td class="ng-binding"><%= one.mobile %></td>
                 <td class="ng-binding"><%= one.email %></td>
                 <td class="ng-binding"><%= one.sex %></td>
-
+                <td class="ng-binding"><%= one.sign_number %></td>
                 <td class="ng-binding"><%= time_format(one.created_at)%></td>
 <!--                 <td>
                   <%= link_to '编辑', edit_admin_player_path(one) %>

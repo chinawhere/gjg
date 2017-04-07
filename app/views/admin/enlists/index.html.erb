@@ -121,7 +121,7 @@
                     <a class="btn btn-success">审核通过 </a>
                   <% end %>
                 </td>
-                <td class="ng-binding"><%= one.sign_number %></td>
+                <td class="ng-binding"><%= one.player.try(:sign_number) %></td>
 
                 <!-- <td class="ng-binding"><%= time_format(one.created_at)%></td> -->
                 <td>

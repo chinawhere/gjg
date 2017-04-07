@@ -41,16 +41,16 @@ namespace :gensee do
   task :statistics => :environment do 
     puts "****  统计用户签到次数  ****"
 
-    Enlist.find_each do |enlist|
+    Player.find_each do |player|
       # results = Gensee.select("video_id,sum(see_time) as see_times").where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*10000)
       #  num = Gensee.where("nickname=?",enlist.player.global_id).select("video_id,sum(see_time) as see_times").group("video_id").having("sum(see_time) > ?", 40*60*1000).length
 
-      results = Gensee.where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*1000).sum(:see_time)
+      results = Gensee.where("nickname=?",player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*1000).sum(:see_time)
 
       if results.count > 0
-        puts "#{enlist.name}  #{results}   #{results.count}"
-        enlist.sign_number = results.count
-        enlist.save!
+        puts "#{player.id}  #{results}   #{results.count}"
+        player.sign_number = results.count
+        player.save!
       end
     end
 
