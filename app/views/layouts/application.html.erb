@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-	<!-- <meta http-equiv = "X-UA-Compatible" content = "IE=8"/> -->
+  <!-- <meta http-equiv = "X-UA-Compatible" content = "IE=8"/> -->
     <title>钢结构活动</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-	<%= javascript_include_tag '//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js' %>
-	<link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <%= javascript_include_tag '//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js' %>
+  <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <!-- [if lt IE 9] -->
     <!-- <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,20 +27,22 @@
 
 <!-- <body style="background:  url(http://desk.fd.zol-img.com.cn/t_s2880x1800c5/g5/M00/0D/0C/ChMkJ1X_aaeIMF2TAAo95p4LHCkAAC2wAMJrvQACj3-670.jpg) no-repeat scroll center top;color: white;"> -->
 
-<body style="background:  url(http://gss.gspu.glodon.com/v1/AUTH_a91e21e6349a4ae29c5173b2ab8a4d3b/software/body_2.jpg) fixed repeat top center;background-size:cover;color: white;">
-<!-- <body style="background:  url(http://127.0.0.1:3002/assets/gjg/bj2.jpg) no-repeat; background-size:100%; background-color: #ffde3d"> -->
+<!-- <body style="background:  url(http://gss.gspu.glodon.com/v1/AUTH_a91e21e6349a4ae29c5173b2ab8a4d3b/software/body_2.jpg) fixed repeat top center;background-size:cover;color: white;"> -->
+<!-- <body style="background-image: url(<%= asset_path 'gjg/bj2.jpg' %>); background-repeat: no-repeat; background-size:100%; background-color: #ffde3d"> -->
+<!-- 蓝 #2d9fe7 黄 #ffde3d 绿 #05a0a2 -->
+<body style="background-color: #05a0a2">
     <%= yield %>
     <%= render '/layouts/footer' %>
     <script>
-	var _mtac = {};
-	(function() {
-	    var mta = document.createElement("script");
-	    mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
-	    mta.setAttribute("name", "MTAH5");
-	    mta.setAttribute("sid", "500424093");
-	    var s = document.getElementsByTagName("script")[0];
-	    s.parentNode.insertBefore(mta, s);
-	})();
-	</script>
+  var _mtac = {};
+  (function() {
+      var mta = document.createElement("script");
+      mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.2";
+      mta.setAttribute("name", "MTAH5");
+      mta.setAttribute("sid", "500424093");
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(mta, s);
+  })();
+  </script>
 </body>
 </html>

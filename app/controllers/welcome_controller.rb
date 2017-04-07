@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
       puts "***************  ie 8"
       render "index_new_ie", :layout => 'test'
     else
-      render "index_new", :layout => 'test'
+      render "index_new"
     end
   end
 
