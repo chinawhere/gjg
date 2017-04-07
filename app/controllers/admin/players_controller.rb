@@ -1,7 +1,15 @@
 # coding: utf-8
 class Admin::PlayersController < Admin::ApplicationController
   def index
-    @enlists = Player.order("created_at desc").paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
+    sql = ""
+    sql = " and username like '%#{params[:username]}%' " if params[:username].present?
+    sql = " and mobile like '%#{params[:mobile]}%' " if params[:mobile].present?
+    sql = " and email like '%#{params[:email]}%' " if params[:email].present?
+    sql = " and mobile like '%#{params[:mobile]}%' " if params[:mobile].present?
+    sql = " and sign_number like '%#{params[:sign_number]}%' " if params[:sign_number].present?
+    puts params
+    @enlists = Player.where("id > 0 #{sql}").order("created_at desc").paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
+    #@enlists = Player.order("created_at desc").paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
   end
 
   def new

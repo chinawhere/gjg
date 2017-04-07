@@ -1,20 +1,20 @@
 #coding: utf-8
 class WelcomeController < ApplicationController
   def index
-    puts request.user_agent
-    if request.user_agent =~ /MSIE 7.0|MSIE 8.0/
-      puts "***************  ie 8"
-      render "index_new_ie", :layout => 'test'
-    else
-      render "index_new", :layout => 'test'
-    end
     # puts request.user_agent
     # if request.user_agent =~ /MSIE 7.0|MSIE 8.0/
     #   puts "***************  ie 8"
-    #   render "index_ie"
+    #   render "index_new_ie", :layout => 'test'
     # else
-    #   render "index"
+    #   render "index_new", :layout => 'test'
     # end
+    puts request.user_agent
+    if request.user_agent =~ /MSIE 7.0|MSIE 8.0/
+      puts "***************  ie 8"
+      render "index_ie"
+    else
+      render "index"
+    end
   end
 
   def index_new
