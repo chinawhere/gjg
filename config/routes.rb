@@ -1,6 +1,6 @@
 # coding: utf-8
 ChinaWhere::Application.routes.draw do
-  root to: 'welcome#index'
+  root to: 'welcome#index_new'
   get '/test', to: 'welcome#index'
   get 'welcome/info_edit'
   
