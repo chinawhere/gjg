@@ -51,6 +51,12 @@ namespace :gensee do
         puts "#{player.id}  #{results}   #{results.count}"
         player.sign_number = results.count
         player.save!
+
+        enlist = player.enlist
+        if enlist.present?
+          enlist.sign_number = results.count
+          enlist.save!
+        end
       end
     end
 
