@@ -25,8 +25,8 @@ namespace :gensee do
   desc '同步gensee 回放观看记录'
   task :playback => :environment do 
     puts "****  同步gensee 回放观看记录  ****"
-
-    uri = "http://fwxgx.gensee.com/integration/site/training/export/study/history?loginName=hhy@126.com&password=123456&date=1491471304000"
+    time_sec = (Time.now.to_i - 24*60*60)*1000
+    uri = "http://fwxgx.gensee.com/integration/site/training/export/study/history?loginName=hhy@126.com&password=123456&date=#{time_sec}"
 
     totalPages = get_total_pages(uri)
     puts "    共 #{totalPages} 页"
