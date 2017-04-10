@@ -24,42 +24,49 @@ namespace :gensee do
 
   desc '同步gensee 回放观看记录'
   task :playback => :environment do 
-    puts "****  同步gensee 回放观看记录  ****"
-    time_sec = (Time.now.to_i - 24*60*60)*1000
-    uri = "http://fwxgx.gensee.com/integration/site/training/export/study/history?loginName=hhy@126.com&password=123456&date=#{time_sec}"
+    while true
+      puts "****  同步gensee 回放观看记录  ****"
+      time_sec = (Time.now.to_i - 24*60*60)*1000
+      uri = "http://fwxgx.gensee.com/integration/site/training/export/study/history?loginName=hhy@126.com&password=123456&date=#{time_sec}"
 
-    totalPages = get_total_pages(uri)
-    puts "    共 #{totalPages} 页"
-    for i in 1..totalPages
-      puts "-- 当前第 #{i} 页"
-      get_playback_record(uri + "&pageNo=#{i}")
+      totalPages = get_total_pages(uri)
+      puts "    共 #{totalPages} 页"
+      for i in 1..totalPages
+        puts "-- 当前第 #{i} 页"
+        get_playback_record(uri + "&pageNo=#{i}")
+      end 
+      
+      sleep 60  
     end
+
 
   end
 
   desc '统计用户签到次数'
   task :statistics => :environment do 
-    puts "****  统计用户签到次数  ****"
+    while true
+      puts "****  统计用户签到次数  ****"
 
-    Player.find_each do |player|
-      # results = Gensee.select("video_id,sum(see_time) as see_times").where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*10000)
-      #  num = Gensee.where("nickname=?",enlist.player.global_id).select("video_id,sum(see_time) as see_times").group("video_id").having("sum(see_time) > ?", 40*60*1000).length
+      Player.find_each do |player|
+        # results = Gensee.select("video_id,sum(see_time) as see_times").where("nickname=?",enlist.player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*10000)
+        #  num = Gensee.where("nickname=?",enlist.player.global_id).select("video_id,sum(see_time) as see_times").group("video_id").having("sum(see_time) > ?", 40*60*1000).length
 
-      results = Gensee.where("nickname=?",player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*1000).sum(:see_time)
+        results = Gensee.where("nickname=?",player.global_id).group("video_id").having("sum(see_time) > ?", 40*60*1000).sum(:see_time)
 
-      if results.count > 0
-        puts "#{player.id}  #{results}   #{results.count}"
-        player.sign_number = results.count
-        player.save!
+        if results.count > 0
+          puts "#{player.id}  #{results}   #{results.count}"
+          player.sign_number = results.count
+          player.save!
 
-        enlist = player.enlist
-        if enlist.present?
-          enlist.sign_number = results.count
-          enlist.save!
+          enlist = player.enlist
+          if enlist.present?
+            enlist.sign_number = results.count
+            enlist.save!
+          end
         end
-      end
+      end 
+      sleep 60       
     end
-
   end
 
   def get_total_pages(uri)

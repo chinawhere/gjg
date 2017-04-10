@@ -1,7 +1,7 @@
 # coding: utf-8
 class Admin::GenseesController < Admin::ApplicationController
   def index
-    @enlists = Gensee.order("joinTime desc").paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
+    @enlists = Gensee.where("nickname like '%#{params[:nickname]}%'").order("joinTime desc").paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
   end
 
   private

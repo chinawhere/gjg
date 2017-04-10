@@ -16,6 +16,20 @@
           <div class="btn-group">
           </div>
         </div>
+        <%= form_tag(admin_gensees_path, method: "get",:class => "form-inline",:style => "border: 5px solid #ADADAD;padding: 10px;") do %>
+          <div  class="row">
+
+            <div class="col-md-6">
+              <label>
+                <input type="text" style="width:300px;" name="nickname" value="<%= params[:nickname]%>" placeholder="Global Id"/>
+              </label>
+            </div>
+
+            <div class="col-md-3">
+              <input type="submit"  class="button tiny info" value="🔍搜  索"/>
+            </div>
+          </div>
+        <% end %>
         <h5>共<%= @enlists.count%>条记录</h5>
         <table class="table table-striped table-bordered table-hover dataTable">
           <thead>
