@@ -22,6 +22,24 @@ namespace :gensee do
     end
   end
 
+  desc '历史gensee 回放观看记录'
+  task :history => :environment do 
+    (1...20).to_a.each  do |i|
+      puts "****  同步gensee 回放观看记录  ****"
+      time_sec = (Time.now.to_i - i*24*60*60)*1000
+      uri = "http://fwxgx.gensee.com/integration/site/training/export/study/history?loginName=hhy@126.com&password=123456&date=#{time_sec}"
+
+      totalPages = get_total_pages(uri)
+      puts "    共 #{totalPages} 页"
+      for i in 1..totalPages
+        puts "-- 当前第 #{i} 页"
+        get_playback_record(uri + "&pageNo=#{i}")
+      end 
+      
+      sleep 6
+    end
+  end
+
   desc '同步gensee 回放观看记录'
   task :playback => :environment do 
     while true
@@ -38,8 +56,6 @@ namespace :gensee do
       
       sleep 60  
     end
-
-
   end
 
   desc '统计用户签到次数'
