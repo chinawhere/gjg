@@ -44,7 +44,7 @@ namespace :gensee do
   task :playback => :environment do 
     while true
       puts "****  同步gensee 回放观看记录  ****"
-      time_sec = (Time.now.to_i - 24*60*60)*1000
+      time_sec = (Time.now.to_i)*1000
       uri = "http://fwxgx.gensee.com/integration/site/training/export/study/history?loginName=hhy@126.com&password=123456&date=#{time_sec}"
 
       totalPages = get_total_pages(uri)
