@@ -4,22 +4,27 @@ require "json"
 namespace :gensee do
   desc '同步gensee 直播观看记录'
   task :sync => :environment do 
-    Video.all.each do |video|
-      uri = "http://fwxgx.gensee.com/integration/site/training/export/history?roomId=#{video.zkey}&loginName=hhy@126.com&password=123456"  
-      html_response = nil  
-      open(uri) do |http|  
-        html_response = http.read  
-      end  
-      json = JSON.parse html_response.gsub("\r","-").gsub("\t","-").gsub("\n","-")
-      puts json["list"]
-      hash = {"video_id" => video.id, "mold" => "直播", "sdk" => video.zkey}
-      json["list"].each do |gensee|
-        if Gensee.find_by_nickname_and_joinTime(gensee["nickname"],gensee["joinTime"]).blank?
-          seeTimeHash = {"see_time" => gensee["leaveTime"] - gensee["joinTime"]}
-          Gensee.create!(gensee.merge(hash).merge(seeTimeHash))
+    while true
+      Video.all.each do |video|
+        uri = "http://fwxgx.gensee.com/integration/site/training/export/history?roomId=#{video.zkey}&loginName=hhy@126.com&password=123456"  
+        html_response = nil  
+        open(uri) do |http|  
+          html_response = http.read  
+        end  
+        json = JSON.parse html_response.gsub("\r","-").gsub("\t","-").gsub("\n","-")
+        puts json["list"]
+        hash = {"video_id" => video.id, "mold" => "直播", "sdk" => video.zkey}
+        json["list"].each do |gensee|
+          if Gensee.find_by_nickname_and_joinTime(gensee["nickname"],gensee["joinTime"]).blank?
+            seeTimeHash = {"see_time" => gensee["leaveTime"] - gensee["joinTime"]}
+            Gensee.create!(gensee.merge(hash).merge(seeTimeHash))
+          end
         end
       end
+
+      sleep 6
     end
+
   end
 
   desc '历史gensee 回放观看记录'
