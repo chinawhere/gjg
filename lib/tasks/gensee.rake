@@ -54,7 +54,7 @@ namespace :gensee do
         get_playback_record(uri + "&pageNo=#{i}")
       end 
       
-      sleep 60  
+      sleep 6  
     end
   end
 
@@ -81,7 +81,7 @@ namespace :gensee do
           end
         end
       end 
-      sleep 60       
+      sleep 6      
     end
   end
 

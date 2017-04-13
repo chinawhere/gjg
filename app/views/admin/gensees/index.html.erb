@@ -18,8 +18,12 @@
         </div>
         <%= form_tag(admin_gensees_path, method: "get",:class => "form-inline",:style => "border: 5px solid #ADADAD;padding: 10px;") do %>
           <div  class="row">
-
-            <div class="col-md-6">
+            <div class="col-md-4">
+              <label>
+                <input type="text" style="width:300px;" name="video_id" value="<%= params[:video_id]%>" placeholder="视频Id"/>
+              </label>
+            </div>
+            <div class="col-md-5">
               <label>
                 <input type="text" style="width:300px;" name="nickname" value="<%= params[:nickname]%>" placeholder="Global Id"/>
               </label>
@@ -30,7 +34,7 @@
             </div>
           </div>
         <% end %>
-        <h5>共<%= @enlists.count%>条记录</h5>
+        <h5>共<%= @enlists.count%>条记录    &nbsp;&nbsp;&nbsp;按用户去重数量:<%= @total_count%></h5>
         <table class="table table-striped table-bordered table-hover dataTable">
           <thead>
             <tr>
