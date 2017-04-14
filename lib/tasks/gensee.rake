@@ -124,7 +124,7 @@ namespace :gensee do
           one.save!
         else
           seeTimeHash = {"see_time" => gensee["leaveTime"] - gensee["startTime"]}
-          puts "观看时间：" + (seeTimeHash["see_time"]* 0.001 /60).round(1)
+          puts "观看时间：" + (seeTimeHash["see_time"]* 0.001 /60).round(1).to_s
 
           @gensee.joinTime = gensee["startTime"]
           @gensee.leaveTime= gensee["leaveTime"]
