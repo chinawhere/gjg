@@ -111,7 +111,8 @@ namespace :gensee do
       if video.present?
         hash = {"video_id" => video.id, "mold" => "回放", "sdk" => video.lkey}
         puts gensee
-        if Gensee.find_by_nickname_and_joinTime(gensee["name"],gensee["startTime"]).blank?
+        @gensee = Gensee.find_by_nickname_and_joinTime(gensee["name"],gensee["startTime"])
+        if @gensee.blank?
           seeTimeHash = {"see_time" => gensee["leaveTime"] - gensee["startTime"]}
           one = Gensee.new(hash.merge(seeTimeHash))
           one.uid = gensee["uid"]
@@ -121,6 +122,16 @@ namespace :gensee do
           one.joinTime = gensee["startTime"]
           one.leaveTime= gensee["leaveTime"]
           one.save!
+        else
+          seeTimeHash = {"see_time" => gensee["leaveTime"] - gensee["startTime"]}
+          one = @gensee
+          one.uid = gensee["uid"]
+          one.ip = gensee["ip"]
+          one.name = gensee["name"]
+          one.nickname = gensee["name"]
+          one.joinTime = gensee["startTime"]
+          one.leaveTime= gensee["leaveTime"]
+          one.save! 
         end    
       end
 
