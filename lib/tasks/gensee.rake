@@ -110,7 +110,7 @@ namespace :gensee do
       video = Video.find_by_lkey(gensee["id"])
       if video.present?
         hash = {"video_id" => video.id, "mold" => "回放", "sdk" => video.lkey}
-        puts gensee
+        # puts gensee
         @gensee = Gensee.find_by_nickname_and_joinTime(gensee["name"],gensee["startTime"])
         if @gensee.blank?
           seeTimeHash = {"see_time" => gensee["leaveTime"] - gensee["startTime"]}
@@ -124,14 +124,12 @@ namespace :gensee do
           one.save!
         else
           seeTimeHash = {"see_time" => gensee["leaveTime"] - gensee["startTime"]}
-          one = @gensee
-          one.uid = gensee["uid"]
-          one.ip = gensee["ip"]
-          one.name = gensee["name"]
-          one.nickname = gensee["name"]
-          one.joinTime = gensee["startTime"]
-          one.leaveTime= gensee["leaveTime"]
-          one.save! 
+          puts "观看时间：" + seeTimeHash["see_time"]* 0.001 /60).round(1)
+
+          @gensee.joinTime = gensee["startTime"]
+          @gensee.leaveTime= gensee["leaveTime"]
+          @gensee.see_time= seeTimeHash["see_time"]
+          @gensee.save! 
         end    
       end
 
