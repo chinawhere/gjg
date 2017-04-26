@@ -327,7 +327,7 @@ h4 {
           <% if current_player.present? %>
           <li id="sign-in-item">
              <a><font><b>欢迎</b></font>  &nbsp;
-               <b><%= current_player.email%> </b>&nbsp;&nbsp;
+               <b><%= current_player.email || current_player.username || current_player.mobile%> </b>&nbsp;&nbsp;
                <b><font color="white">签到:<%= current_player.try(:sign_number) || 0%>次</font></b> &nbsp;&nbsp;
                <% if current_player.enlist.try(:skill_two) == true%>
                  获得:<b><font color="red">钢构大师认证</font></b>
