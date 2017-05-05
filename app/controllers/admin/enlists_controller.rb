@@ -2,12 +2,12 @@
 class Admin::EnlistsController < Admin::ApplicationController
   def index
     sql = " id > 0 "
-    sql = " and skill_one = 'true' " if params[:skill_one].present?
-    sql = " and skill_two = 'true' " if params[:skill_two].present?
+    sql =  sql + " and skill_one = 'true' " if params[:skill_one].present?
+    sql = sql +  " and skill_two = 'true' " if params[:skill_two].present?
 
-    sql = " and province like '%#{params[:province]}%' " if params[:province].present?
-    sql = " and training_time like '%#{params[:training_time]}%' " if params[:training_time].present?
-    sql = " and sign_number like '%#{params[:sign_number]}%' " if params[:sign_number].present?
+    sql = sql + " and province like '%#{params[:province]}%' " if params[:province].present?
+    sql = sql + " and training_time like '%#{params[:training_time]}%' " if params[:training_time].present?
+    sql = sql + " and sign_number like '%#{params[:sign_number]}%' " if params[:sign_number].present?
     puts params
     @enlists = Enlist.where("#{sql}").order("created_at desc").paginate(page: params[:page] || 1, per_page: params[:per_page] || 20)
   end
