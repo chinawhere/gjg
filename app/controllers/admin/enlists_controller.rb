@@ -2,8 +2,8 @@
 class Admin::EnlistsController < Admin::ApplicationController
   def index
     sql = " id > 0 "
-    sql =  sql + " and skill_one = 'true' " if params[:skill_one].present?
-    sql = sql +  " and skill_two = 'true' " if params[:skill_two].present?
+    sql =  sql + " and skill_one = 't' " if params[:skill_one].present?
+    sql = sql +  " and skill_two = 't' " if params[:skill_two].present?
 
     sql = sql + " and province like '%#{params[:province]}%' " if params[:province].present?
     sql = sql + " and training_time like '%#{params[:training_time]}%' " if params[:training_time].present?
