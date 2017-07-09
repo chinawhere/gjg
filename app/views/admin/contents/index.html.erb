@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-12">
+
+  <table class="table table-bordered">
+	  <% @contents.each do |content| %>
+	  <tr>
+		  <td>
+			  <% if content.ctype == 1 %>
+				  活动规则
+			  <% elsif  content.ctype == 2 %>
+				  线上学习
+			  <% elsif  content.ctype == 3 %>
+				  线下学习
+			  <% else %>
+				  其余定制内容
+			  <% end %>
+		  </td>
+		  <td><%= raw content.content%></td>
+		  <td><%=link_to "修改", edit_admin_content_path(content) %></td>
+	  </tr>
+	  <% end %>
+  </table>
+  </div>
+</div>

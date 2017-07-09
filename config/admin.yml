@@ -24,3 +24,7 @@ admin:
     menus: 
       - name: 记录列表
         href: /admin/gensees
+  - name: 页面内容定制
+    menus: 
+      - name: 定制列表
+        href: /admin/contents

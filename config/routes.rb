@@ -41,6 +41,7 @@ ChinaWhere::Application.routes.draw do
 
     resources :gensees
 
+    resources :contents
 
   end
 end

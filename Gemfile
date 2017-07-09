@@ -49,8 +49,6 @@ gem 'will_paginate'
 # gem 'grape'
 # gem 'grape-swagger'
 
-# gem 'mysql2', '~> 0.3.18'
-
 gem 'faraday'
 
 gem 'simple_form'
@@ -73,6 +71,4 @@ gem 'settingslogic'
 
 gem 'soap4r'
 gem 'soap4r-spox'
-
-# gem 'execjs'
-# gem 'therubyracer'
+gem 'mysql2', '~>0.3.6'
