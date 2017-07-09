@@ -43,6 +43,10 @@ class Admin::PlayersController < Admin::ApplicationController
     redirect_to admin_players_path if @enlist.destroy
   end
 
+  def export_csv
+    send_data(Player.to_csv, :type => 'text/csv', :filename => "用户表.csv")
+  end
+
   private
     def enlist_params
       params.require(:enlist).permit(:global_id,:email,:mobile,:username,:sex)

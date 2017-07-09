@@ -19,6 +19,9 @@ class WelcomeController < ApplicationController
 
   def index_new
     puts request.user_agent
+    @rule_content = Content.find_by_ctype(1)
+    @online_study_content = Content.find_by_ctype(2)
+    @offline_study_content = Content.find_by_ctype(3)
     if request.user_agent =~ /MSIE 7.0|MSIE 8.0/
       puts "***************  ie 8"
       render "index_new_ie", :layout => 'test'

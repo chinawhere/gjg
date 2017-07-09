@@ -31,7 +31,11 @@ ChinaWhere::Application.routes.draw do
       end
     end
 
-    resources :players
+    resources :players do
+	   collection do
+		   get :export_csv
+	   end
+    end
 
     resources :users
 

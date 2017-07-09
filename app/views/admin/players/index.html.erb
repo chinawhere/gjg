@@ -17,6 +17,7 @@
 <!--             <a href="<%= new_admin_enlist_path %>" class="btn green">
             添加学生 <i class="fa fa-plus"></i>
             </a> -->
+	    <%= link_to  '导出全部用户', export_csv_admin_players_path%>
           </div>
         </div>
         <%= form_tag(admin_players_path, method: "get",:class => "form-inline",:style => "border: 5px solid #ADADAD;padding: 10px;") do %>
