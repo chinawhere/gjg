@@ -43,7 +43,11 @@ ChinaWhere::Application.routes.draw do
 
     resources :events
 
-    resources :gensees
+    resources :gensees do
+	    collection do
+		    get :export_csv
+	    end
+    end
 
     resources :contents
 

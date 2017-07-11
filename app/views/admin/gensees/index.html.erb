@@ -14,6 +14,7 @@
       <div class="portlet-body">
         <div class="dataTables_wrapper">
           <div class="btn-group">
+	    <%= link_to  '导出观看记录', export_csv_admin_gensees_path%>
           </div>
         </div>
         <%= form_tag(admin_gensees_path, method: "get",:class => "form-inline",:style => "border: 5px solid #ADADAD;padding: 10px;") do %>
