@@ -44,7 +44,7 @@ class Admin::PlayersController < Admin::ApplicationController
   end
 
   def export_csv
-    send_data(Player.to_csv, :type => 'text/csv', :filename => "用户表.csv")
+    send_data(Player.to_csv.encode("gb18030"), :type => 'text/csv', :filename => "用户表.csv")
   end
 
   private

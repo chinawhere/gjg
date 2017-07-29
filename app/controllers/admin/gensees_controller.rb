@@ -6,7 +6,7 @@ class Admin::GenseesController < Admin::ApplicationController
   end
 
   def export_csv
-    send_data(Gensee.to_csv, :type => 'text/csv', :filename => "观看记录.csv")
+    send_data(Gensee.to_csv.encode("gb18030"), :type => 'text/csv', :filename => "观看记录.csv")
   end
 
   private
