@@ -329,12 +329,14 @@ h4 {
              <a><font><b>欢迎</b></font>  &nbsp;
                <b><%= current_player.email || current_player.username || current_player.mobile%> </b>&nbsp;&nbsp;
                <b><font color="white">签到:<%= current_player.try(:sign_number) || 0%>次</font></b> &nbsp;&nbsp;
+               <!--
                <% if current_player.enlist.try(:skill_two) == true%>
                  获得:<b><font color="red">钢构大师认证</font></b>
                <% elsif current_player.enlist.try(:skill_one) == true %>
                  <b>获得:<font color="red">第二技能认证</font></b>
                  <li id="sign-in-item"><a href="<%= enlists_cert_path(id: current_player.enlist.id) %>" /><font color="red">查看证书</font></a></li>
                <% end %>
+               -->
               </a>
             </li>
           <li id="sign-in-item"><a href="<%= logout_path%>" >退出</a></li>
